@@ -26,6 +26,14 @@
 
         public double Weight { get; set; }
 
+        public bool StockAvailable { 
+            get 
+            {
+                if (Quantity == 0) return false;
+                else return true;
+            } 
+        }
+
         public int CompanyId { get; set; }
         public virtual CompanyEntity Company { get; set; } = null!;
 

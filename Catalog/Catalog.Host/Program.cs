@@ -12,8 +12,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddTransient<ITeapotService, TeapotService>();
-builder.Services.AddTransient<ITeapotProvider, TeapotProvider>();
+
+builder.Services.AddTransient<ICatalogProvider, CatalogProvider>();
+builder.Services.AddTransient<ICatalogService, CatalogService>();
+
+builder.Services.AddTransient<ICatalogItemProvider, CatalogItemProvider>();
+builder.Services.AddTransient<ICatalogItemService, CatalogItemService>();
+
+builder.Services.AddTransient<ICatalogCompanyProvider, CatalogCompanyProvider>();
+builder.Services.AddTransient<ICatalogCompanyService, CatalogCompanyService>();
+
 builder.Services.AddScoped<IDbContextWrapper<ApplicationDbContext>, DbContextWrapper<ApplicationDbContext>>();
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseNpgsql(connectionString));
 

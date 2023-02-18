@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Host", "Catalog\Catalog.Host\Catalog.Host.csproj", "{837141F9-598A-48DF-BF1F-F1F5636982C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalog.Host", "Catalog\Catalog.Host\Catalog.Host.csproj", "{837141F9-598A-48DF-BF1F-F1F5636982C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastracture", "Infrastracture\Infrastracture\Infrastracture.csproj", "{B7DBEDAB-D328-4042-913E-C6BDC8340CAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{837141F9-598A-48DF-BF1F-F1F5636982C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{837141F9-598A-48DF-BF1F-F1F5636982C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{837141F9-598A-48DF-BF1F-F1F5636982C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7DBEDAB-D328-4042-913E-C6BDC8340CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7DBEDAB-D328-4042-913E-C6BDC8340CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7DBEDAB-D328-4042-913E-C6BDC8340CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7DBEDAB-D328-4042-913E-C6BDC8340CAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

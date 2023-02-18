@@ -2,12 +2,8 @@
 
 namespace Catalog.Host.Providers.Abstractions
 {
-    public interface ITeapotProvider
+    public interface ICatalogItemProvider
     {
-        public Task<List<TeapotEntity>> GetAllTeapotsAsync();
-
-        public Task<TeapotEntity?> GetTeapotByIdAsync(string teapotId);
-
         public Task<bool> AddTeapotAsync(TeapotEntity newTeapot);
 
         public Task<bool> RemoveTeapotAsync(string teapotId);

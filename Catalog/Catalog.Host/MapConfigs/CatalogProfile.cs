@@ -5,12 +5,14 @@ using Catalog.Host.ResponseModels;
 
 namespace Catalog.Host.MapConfigs
 {
-    public class TeapotProfile : Profile
+    public class CatalogProfile : Profile
     {
-        public TeapotProfile() 
+        public CatalogProfile() 
         {
             CreateMap<TeapotRequest, TeapotEntity>();
             CreateMap<TeapotEntity, TeapotResponse>();
+            CreateMap<CompanyEntity, CompanyResponse>();
+            CreateMap<CompanyRequest, CompanyEntity>();
         }
     }
 }

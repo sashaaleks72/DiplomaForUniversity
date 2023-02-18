@@ -1,14 +1,9 @@
 ﻿using Catalog.Host.RequestModels;
-using Catalog.Host.ResponseModels;
 
 namespace Catalog.Host.Services.Abstractions
 {
-    public interface ITeapotService
+    public interface ICatalogItemService
     {
-        public Task<List<TeapotResponse>> GetAllTeapotsAsync();
-
-        public Task<TeapotResponse?> GetTeapotByIdAsync(string teapotId);
-
         public Task AddTeapotAsync(TeapotRequest newTeapot);
 
         public Task RemoveTeapotAsync(string teapotId);

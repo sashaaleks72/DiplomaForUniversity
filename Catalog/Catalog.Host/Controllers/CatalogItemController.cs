@@ -1,47 +1,20 @@
 ﻿using Catalog.Host.RequestModels;
 using Catalog.Host.ResponseModels;
 using Catalog.Host.Services.Abstractions;
+using Infrastracture;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.Host.Controllers
 {
-    [Route("api/teapots")]
+    [Route(ComponentDefaults.DefaultRoute)]
     [ApiController]
-    public class TeapotController : ControllerBase
+    public class CatalogItemController : ControllerBase
     {
-        private readonly ITeapotService _teapotService;
+        private readonly ICatalogItemService _catalogItemService;
 
-        public TeapotController(ITeapotService teapotService) 
-        { 
-            _teapotService = teapotService;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<List<TeapotResponse>>> GetAll()
+        public CatalogItemController(ICatalogItemService catalogItemService) 
         {
-            try
-            {
-                var teapots = await _teapotService.GetAllTeapotsAsync();
-                return Ok(teapots);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TeapotResponse>> GetById(string id)
-        {
-            try
-            {
-                var teapot = await _teapotService.GetTeapotByIdAsync(id);
-                return Ok(teapot);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
+            _catalogItemService = catalogItemService;
         }
 
         [HttpPost]
@@ -49,7 +22,7 @@ namespace Catalog.Host.Controllers
         {
             try
             {
-                await _teapotService.AddTeapotAsync(newTeapot);
+                await _catalogItemService.AddTeapotAsync(newTeapot);
                 return Ok("Teapot has been added!");
             }
             catch (Exception ex)
@@ -63,7 +36,7 @@ namespace Catalog.Host.Controllers
         {
             try
             {
-                await _teapotService.UpdateTeapotAsync(id, updatedTeapot);
+                await _catalogItemService.UpdateTeapotAsync(id, updatedTeapot);
                 return Ok("Teapot has been updated!");
             }
             catch (Exception ex)
@@ -77,7 +50,7 @@ namespace Catalog.Host.Controllers
         {
             try
             {
-                await _teapotService.RemoveTeapotAsync(id);
+                await _catalogItemService.RemoveTeapotAsync(id);
                 return Ok("Teapot has been deleted!");
             }
             catch (Exception ex)
