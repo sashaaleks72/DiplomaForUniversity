@@ -73,7 +73,7 @@ namespace Catalog.Host.Services
 
                 if (recievedTeapot == null)
                 {
-                    string errMsg = "There are no a teapot with input id!";
+                    string errMsg = "There are no any teapot with input id!";
 
                     _logger.LogError(errMsg);
                     throw new Exception(errMsg);
