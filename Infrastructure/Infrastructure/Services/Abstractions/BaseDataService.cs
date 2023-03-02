@@ -27,12 +27,12 @@ namespace Catalog.Host.Services.Abstractions
                 await Action(cancellationToken);
 
                 await transaction.CommitAsync(cancellationToken);
+                _logger.LogInformation("Transaction commited");
             }
             catch (Exception ex)
             {
                 await transaction.RollbackAsync(cancellationToken);
                 _logger.LogError($"Transaction rollbacked with exception:\n {ex}");
-                throw;
             }
         }
 
@@ -45,6 +45,7 @@ namespace Catalog.Host.Services.Abstractions
                 var result = await action(cancellationToken);
 
                 await transaction.CommitAsync(cancellationToken);
+                _logger.LogInformation("Transaction commited");
 
                 return result;
             }
@@ -52,8 +53,9 @@ namespace Catalog.Host.Services.Abstractions
             {
                 await transaction.RollbackAsync(cancellationToken);
                 _logger.LogError($"Transaction rollbacked with exception:\n {ex}");
-                throw;
             }
+
+            return default(TResult)!;
         }
     }
 }

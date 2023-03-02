@@ -30,13 +30,13 @@ namespace Catalog.Host.Services
 
                 if (!isAdded)
                 {
-                    string errMsg = "Teapot hasn't been added by some reason!";
+                    string errMsg = "Teapot hasn't been added by some reason";
 
                     _logger.LogError(errMsg);
                     throw new Exception(errMsg);
                 }
 
-                _logger.LogInformation("Teapot was recieved");
+                _logger.LogInformation("Teapot has been added");
             });
 
         }

@@ -1,18 +1,4 @@
-﻿using AutoMapper;
-using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
-using Catalog.Host.Providers.Abstractions;
-using Catalog.Host.ResponseModels;
-using Catalog.Host.Services;
-using Catalog.Host.Services.Abstractions;
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Logging;
-using Moq;
-using System.Collections.Generic;
-
-namespace Catalog.UnitTests.Services
+﻿namespace Catalog.UnitTests.Services
 {
     public class CatalogServiceTest
     {
@@ -321,7 +307,7 @@ namespace Catalog.UnitTests.Services
         [Fact]
         public async Task GetTeapotsByCompanyNameAsync_DataIsEmpty_ThrownException()
         {
-            //arrange
+            //arrange   
             int page = 1;
             int limit = 10;
             string companyName = "test";

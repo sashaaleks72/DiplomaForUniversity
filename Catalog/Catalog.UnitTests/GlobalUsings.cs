@@ -1,1 +1,12 @@
+global using AutoMapper;
+global using Catalog.Host.Data;
+global using Catalog.Host.Data.Entities;
+global using Catalog.Host.Providers.Abstractions;
+global using Catalog.Host.ResponseModels;
+global using Catalog.Host.Services;
+global using Catalog.Host.Services.Abstractions;
+global using FluentAssertions;
+global using Microsoft.EntityFrameworkCore.Storage;
+global using Microsoft.Extensions.Logging;
+global using Moq;
 global using Xunit;
