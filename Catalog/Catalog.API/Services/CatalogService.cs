@@ -3,6 +3,7 @@ using Catalog.Host.Data;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.ResponseModels;
 using Catalog.Host.Services.Abstractions;
+using Infrastructure.Exceptions;
 
 namespace Catalog.Host.Services
 {
@@ -30,7 +31,7 @@ namespace Catalog.Host.Services
                 if (recievedTeapots.Data.Count() == 0)
                 {
                     _logger.LogError("Data list is empty!");
-                    throw new Exception("There are no any teapots in the list!");
+                    throw new BusinessException("There are no any teapots in the list!");
                 }
                 _logger.LogInformation("Teapots have been recieved");
 
@@ -56,7 +57,7 @@ namespace Catalog.Host.Services
                 if (recievedCompanies.Count == 0)
                 {
                     _logger.LogError("Db is empty!");
-                    throw new Exception("There are no any companies!");
+                    throw new BusinessException("There are no any companies!");
                 }
                 _logger.LogInformation("Companies have been recieved");
 
@@ -76,7 +77,7 @@ namespace Catalog.Host.Services
                     string errMsg = "There are no any teapot with input id!";
 
                     _logger.LogError(errMsg);
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
                 _logger.LogInformation("Teapot has been recieved");
 
@@ -98,7 +99,7 @@ namespace Catalog.Host.Services
                     string errMsg = "There are no any teapots with input parameters' values!";
 
                     _logger.LogError(errMsg);
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
                 _logger.LogInformation("Teapots have been recieved");
 

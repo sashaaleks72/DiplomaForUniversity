@@ -3,12 +3,13 @@ using Catalog.Host.Providers;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.Services;
 using Catalog.Host.Services.Abstractions;
+using Infrastructure.Filters;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt => opt.Filters.Add(typeof(HttpGlobalExceptionFilter)));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program));

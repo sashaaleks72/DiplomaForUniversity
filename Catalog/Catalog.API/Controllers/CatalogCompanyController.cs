@@ -23,15 +23,8 @@ namespace Catalog.Host.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Add(CompanyRequest newCompany)
         {
-            try
-            {
-                await _catalogCompanyService.AddCompanyAsync(newCompany);
-                return Ok("Company has been added!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            await _catalogCompanyService.AddCompanyAsync(newCompany);
+            return Ok("Company has been added!");
         }
 
         [HttpPut("{id}")]
@@ -39,15 +32,8 @@ namespace Catalog.Host.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Edit(int id, CompanyRequest updatedCompany)
         {
-            try
-            {
-                await _catalogCompanyService.UpdateCompanyAsync(id, updatedCompany);
-                return Ok("Company has been updated!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            await _catalogCompanyService.UpdateCompanyAsync(id, updatedCompany);
+            return Ok("Company has been updated!");
         }
 
         [HttpDelete("{id}")]
@@ -55,15 +41,8 @@ namespace Catalog.Host.Controllers
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Delete(int id)
         {
-            try
-            {
-                await _catalogCompanyService.DeleteCompanyByIdAsync(id);
-                return Ok("Company has been deleted!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            await _catalogCompanyService.DeleteCompanyByIdAsync(id);
+            return Ok("Company has been deleted!");
         }
     }
 }

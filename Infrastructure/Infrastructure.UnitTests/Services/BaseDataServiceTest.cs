@@ -53,9 +53,14 @@ namespace Infrastructure.UnitTests.Services
             //arrange
 
             //act
-            await _mockService.ExecuteWithException();
+            var action = async () => 
+            {
+                await _mockService.ExecuteWithException();
+            };
 
             //assert
+            await action.Should().ThrowAsync<Exception>();
+
             _dbContextTransaction.Verify(d => d.CommitAsync(CancellationToken.None), Times.Never);
             _dbContextTransaction.Verify(d => d.RollbackAsync(CancellationToken.None), Times.Once);
 
