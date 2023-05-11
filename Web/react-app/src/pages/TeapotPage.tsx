@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ITeapot from "../models/ITeapot";
 import TabItems from "../components/TabItems";
 import { Outlet, useParams } from "react-router-dom";
 import ITabItem from "../models/ITabItem";
+import TeapotsService from "../API/TeapotsService";
 
 const TeapotPage = (): JSX.Element => {
     const { id } = useParams();
@@ -14,29 +15,50 @@ const TeapotPage = (): JSX.Element => {
     ]);
 
     const [teapot, setTeapot] = useState<ITeapot>({
-        id: "id1",
-        name: "The smartest teapot in the world - ITeapot M100",
-        quantity: 12,
-        color: "black",
-        bodyMaterial: "plastic",
-        power: 1200,
-        price: 2499,
-        imgName:
-            "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-        volume: 1.8,
-        functions: "heating by choosen temperature",
-        weight: 1,
-        warrantyInMonths: 12,
-        stockAvailable: true,
-        company: "Tefal",
-        manufacturerCountry: "China",
+        name: "",
+        quantity: 0,
+        color: "",
+        bodyMaterial: "",
+        power: 0,
+        price: 0,
+        imgName: "",
+        volume: 0,
+        warrantyInMonths: 0,
+        functions: "",
+        weight: 0,
+        company: "",
+        stockAvailable: false,
+        manufacturerCountry: "",
     });
+
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        const init = async () => {
+            setIsLoading(true);
+            const recievedTeapot = await TeapotsService.getTeapotById(id);
+            setTeapot(recievedTeapot);
+
+            setIsLoading(false);
+        };
+
+        init();
+    }, []);
 
     return (
         <div className="container">
             <h2 className="display-6 mt-1">{teapot.name}</h2>
             <TabItems tabItems={tabItems} />
-            <Outlet />
+
+            {!isLoading && <Outlet context={[teapot, setTeapot]} />}
+
+            {isLoading && (
+                <div className="d-flex justify-content-center ms-auto">
+                    <div style={{ width: "3rem", height: "3rem" }} className="spinner-border">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
