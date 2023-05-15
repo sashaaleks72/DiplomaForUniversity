@@ -1,581 +1,645 @@
 {
-  "teapots": [
-    {
-      "id": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
-      "name": "Teapot1",
-      "price": "2699",
-      "quantity": "15",
-      "manufacturerCountry": "China",
-      "warrantyInMonths": "12",
-      "volume": "1.8",
-      "color": "black",
-      "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-      "bodyMaterial": "plastic, gold",
-      "power": "1200",
-      "functions": "heating by choosen temperature",
-      "weight": "1",
-      "company": "Tefal",
-      "stockAvailable": true
-    },
-    {
-      "id": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-      "name": "Teapot2",
-      "price": "2499",
-      "quantity": "0",
-      "manufacturerCountry": "China",
-      "warrantyInMonths": "12",
-      "volume": "1.8",
-      "color": "black",
-      "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-      "bodyMaterial": "plastic",
-      "power": "1200",
-      "functions": "heating by choosen temperature",
-      "weight": "1",
-      "company": "Tefal",
-      "stockAvailable": true
-    },
-    {
-      "id": "ae4e7cba-e3ad-11ed-b5ea-0242ac120002",
-      "name": "Teapot3",
-      "quantity": 12,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1200,
-      "price": 2199,
-      "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-      "name": "Teapot4",
-      "quantity": 12,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1200,
-      "price": 3199,
-      "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "b4a65a56-e3ad-11ed-b5ea-0242ac120002",
-      "name": "Teapot5",
-      "quantity": 12,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1200,
-      "price": 2189,
-      "imgName": "https://content2.rozetka.com.ua/goods/images/big_tile/274310222.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "name": "Teapot6",
-      "price": "2000",
-      "quantity": "12",
-      "manufacturerCountry": "China",
-      "warrantyInMonths": "12",
-      "volume": "1.8",
-      "color": "black",
-      "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/64732971.jpg",
-      "bodyMaterial": "plastic",
-      "power": "1200",
-      "functions": "heating by choosen temperature",
-      "weight": "1",
-      "company": "Tefal",
-      "stockAvailable": true
-    },
-    {
-      "id": "6053c798-e3af-11ed-b5ea-0242ac120002",
-      "name": "Teapot7",
-      "quantity": 16,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1400,
-      "price": 2599,
-      "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/64732971.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "db036538-47af-4c7f-b8dd-d6e569753295",
-      "name": "Teapot8",
-      "quantity": 12,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1200,
-      "price": 3899,
-      "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "6850bf92-811c-4347-ba03-31700b8faad3",
-      "name": "Teapot9",
-      "quantity": 12,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1200,
-      "price": 2699,
-      "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "fac7e1f5-d430-4db3-9361-e2b626b22771",
-      "name": "Teapot10",
-      "quantity": 12,
-      "color": "black",
-      "bodyMaterial": "plastic",
-      "power": 1200,
-      "price": 2229,
-      "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-      "volume": 1.8,
-      "functions": "heating by choosen temperature",
-      "weight": 1,
-      "warrantyInMonths": 12,
-      "stockAvailable": true,
-      "company": "Tefal",
-      "manufacturerCountry": "China"
-    },
-    {
-      "id": "e1f42696-b022-4520-bf8b-682acf539ff9",
-      "name": "Teapot11",
-      "price": "2469",
-      "quantity": "12",
-      "manufacturerCountry": "China",
-      "warrantyInMonths": "12",
-      "volume": "1.8",
-      "color": "black",
-      "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
-      "bodyMaterial": "plastic",
-      "power": "1200",
-      "functions": "heating by choosen temperature",
-      "weight": "1",
-      "company": "Tefal",
-      "stockAvailable": true
-    },
-    {
-      "id": "14588a17-5483-4193-8746-9532df9d51e4",
-      "name": "Teapot12",
-      "price": "2999",
-      "quantity": "12",
-      "manufacturerCountry": "China",
-      "warrantyInMonths": "12",
-      "volume": "1.8",
-      "color": "black",
-      "imgName": "https://content2.rozetka.com.ua/goods/images/big_tile/274310222.jpg",
-      "bodyMaterial": "plastic",
-      "power": "1200",
-      "functions": "heating by choosen temperature",
-      "weight": "1",
-      "company": "Tefal",
-      "stockAvailable": true
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "commentText": "I don't like it! The worst thing I've ever bought!",
-      "userName": "Aleksandr Tretiakov",
-      "rate": 2,
-      "advantages": "-",
-      "disadvantags": "Almost all",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
-    },
-    {
-      "id": 2,
-      "commentText": "I like it, because this teapot is the best teapot I've ever bought. I like it, because this teapot is the best teapot I've ever bought",
-      "userName": "Maksim Illarionov",
-      "rate": 5,
-      "advantages": "Everything in this teapot is advantage",
-      "disadvantags": "It doesn't have any disadvantages",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
-    },
-    {
-      "id": 3,
-      "commentText": "I like it, because this teapot is the best teapot I've ever bought",
-      "userName": "Luke Hillington",
-      "rate": 4,
-      "advantages": "Everything in this teapot is advantage",
-      "disadvantags": "It doesn't have any disadvantages",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
-    },
-    {
-      "id": 4,
-      "commentText": "I like it, because this teapot is the best teapot I've ever bought",
-      "userName": "John Miller",
-      "rate": 4,
-      "advantages": "Everything in this teapot is advantage",
-      "disadvantags": "It doesn't have any disadvantages",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
-    },
-    {
-      "commentText": "The best of the best best of the bestbest of the bestbest of the bestbest of the best",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 5,
-      "advantages": "++++++",
-      "disadvantags": "--------------",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
-      "id": 6
-    },
-    {
-      "commentText": "fd",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 4,
-      "advantages": "fdf",
-      "disadvantags": "df",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
-      "id": 7
-    },
-    {
-      "commentText": "fd",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 4,
-      "advantages": "fdf",
-      "disadvantags": "df",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
-      "id": 8
-    },
-    {
-      "commentText": "fdfsfd",
-      "advantages": "The",
-      "disadvantags": "the",
-      "rate": 4,
-      "productId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-      "userName": "Oleksandr Tretiakov",
-      "id": 9
-    },
-    {
-      "commentText": "dfdf",
-      "advantages": "fd",
-      "disadvantags": "",
-      "rate": 4,
-      "productId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-      "userName": "Oleksandr Tretiakov",
-      "id": 10
-    },
-    {
-      "commentText": "dsdfsdffsdfsdfsdfsdf",
-      "advantages": "fdf",
-      "disadvantags": "dfd",
-      "rate": 4,
-      "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "userName": "Oleksandr Tretiakov",
-      "id": 11
-    },
-    {
-      "commentText": "dsdfsdffsdfsdfsdfsdf",
-      "advantages": "fdf",
-      "disadvantags": "dfd",
-      "rate": 5,
-      "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "userName": "Oleksandr Tretiakov",
-      "id": 12
-    },
-    {
-      "commentText": "dsdsd",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 4,
-      "advantages": "gdf",
-      "disadvantags": "fdgfdg",
-      "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "id": 13
-    },
-    {
-      "commentText": "dsdsdgfgf",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 3,
-      "advantages": "gdfhgh",
-      "disadvantags": "fdgfdgghg",
-      "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "id": 14
-    },
-    {
-      "commentText": "fsdfsdffsf",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 4,
-      "advantages": "fsdfsdf",
-      "disadvantags": "sdfsfs",
-      "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "id": 15
-    },
-    {
-      "commentText": "dddddd",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 1,
-      "advantages": "ddddd",
-      "disadvantags": "dddd",
-      "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
-      "id": 16
-    },
-    {
-      "commentText": "",
-      "userName": "Oleksandr Tretiakov",
-      "rate": 4,
-      "advantages": "fd",
-      "disadvantags": "dfd",
-      "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
-      "id": 17
-    }
-  ],
-  "orders": [
-    {
-      "id": 1,
-      "firstName": "Oleksandr",
-      "lastName": "Tretiakov",
-      "patronymic": "Oleksandrovich",
-      "email": "sashaaleks72@gmail.com",
-      "city": "м. Вінниця, Вінницька обл.",
-      "department": "Відділення №3 (до 30 кг): вул. Соборна, 89",
-      "deliveryAddress": "",
-      "orderStatus": "Accepted",
-      "cartItems": [
+    "teapots": [
         {
-          "teapotId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot1",
-          "quantity": 3,
-          "price": 2699
+            "id": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
+            "name": "Teapot1",
+            "price": "2699",
+            "quantity": "15",
+            "manufacturerCountry": "China",
+            "warrantyInMonths": "12",
+            "volume": "1.8",
+            "color": "black",
+            "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+            "bodyMaterial": "plastic, gold",
+            "power": "1200",
+            "functions": "heating by choosen temperature",
+            "weight": "1",
+            "company": "Tefal",
+            "stockAvailable": true
         },
         {
-          "teapotId": "ae4e7cba-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
-          "name": "Teapot3",
-          "quantity": 4,
-          "price": 2199
-        }
-      ],
-      "orderDate": "7.4.2023",
-      "totalSum": 16893
-    },
-    {
-      "firstName": "Vladimir",
-      "lastName": "Petrin",
-      "patronymic": "Olekseyevich",
-      "email": "vlad_is_love@gmail.com",
-      "city": "Харків",
-      "department": "Відділення №28 (до 30 кг на одне місце): просп. Тракторобудівників, 89б",
-      "deliveryAddress": "",
-      "cartItems": [
-        {
-          "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot2",
-          "quantity": 1,
-          "price": 2499
+            "id": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+            "name": "Teapot2",
+            "price": "2499",
+            "quantity": "0",
+            "manufacturerCountry": "China",
+            "warrantyInMonths": "12",
+            "volume": "1.8",
+            "color": "black",
+            "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+            "bodyMaterial": "plastic",
+            "power": "1200",
+            "functions": "heating by choosen temperature",
+            "weight": "1",
+            "company": "Tefal",
+            "stockAvailable": true
         },
         {
-          "teapotId": "ae4e7cba-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
-          "name": "Teapot3",
-          "quantity": 1,
-          "price": 2199
-        }
-      ],
-      "orderStatus": "Delivered",
-      "orderDate": "8.5.2023",
-      "totalSum": 4698,
-      "id": 2
-    },
-    {
-      "firstName": "OLEKSANDR",
-      "lastName": "TRETIAKOV",
-      "patronymic": "Oleksandrovich",
-      "email": "sashaaleks72@gmail.com",
-      "city": "Київ",
-      "department": "Відділення №170 (до 10 кг): просп. Оболонський, 26",
-      "deliveryAddress": "",
-      "cartItems": [
-        {
-          "teapotId": "b4a65a56-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content2.rozetka.com.ua/goods/images/big_tile/274310222.jpg",
-          "name": "Teapot5",
-          "quantity": 5,
-          "price": 2189
-        }
-      ],
-      "orderStatus": "Waiting for accept",
-      "orderDate": "8.5.2023",
-      "totalSum": 10945,
-      "id": 3
-    },
-    {
-      "firstName": "Vladimir",
-      "lastName": "Kel",
-      "patronymic": "Olekseyevich",
-      "email": "kelVladimir2002@gmail.com",
-      "city": "Харків",
-      "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
-      "deliveryAddress": "",
-      "cartItems": [
-        {
-          "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot2",
-          "quantity": 4,
-          "price": "2499"
+            "id": "ae4e7cba-e3ad-11ed-b5ea-0242ac120002",
+            "name": "Teapot3",
+            "quantity": 12,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1200,
+            "price": 2199,
+            "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
         },
         {
-          "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-          "name": "Teapot4",
-          "quantity": 2,
-          "price": 3199
-        }
-      ],
-      "orderStatus": "Waiting for accept",
-      "orderDate": "11.5.2023",
-      "totalSum": 16394,
-      "id": 4
-    },
-    {
-      "firstName": "Vladimir",
-      "lastName": "Kel",
-      "patronymic": "Olekseyevich",
-      "email": "kelVladimir2002@gmail.com",
-      "city": "Харків",
-      "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
-      "deliveryAddress": "",
-      "cartItems": [
-        {
-          "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot2",
-          "quantity": 4,
-          "price": "2499"
+            "id": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+            "name": "Teapot4",
+            "quantity": 12,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1200,
+            "price": 3199,
+            "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
         },
         {
-          "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-          "name": "Teapot4",
-          "quantity": 2,
-          "price": 3199
-        }
-      ],
-      "orderStatus": "Delivered",
-      "orderDate": "11.5.2023",
-      "totalSum": 16394,
-      "id": 5
-    },
-    {
-      "firstName": "Vladimir",
-      "lastName": "Kel",
-      "patronymic": "Olekseyevich",
-      "email": "kelVladimir2002@gmail.com",
-      "city": "Харків",
-      "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
-      "deliveryAddress": "",
-      "cartItems": [
-        {
-          "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot2",
-          "quantity": 4,
-          "price": "2499"
+            "id": "b4a65a56-e3ad-11ed-b5ea-0242ac120002",
+            "name": "Teapot5",
+            "quantity": 12,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1200,
+            "price": 2189,
+            "imgName": "https://content2.rozetka.com.ua/goods/images/big_tile/274310222.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
         },
         {
-          "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-          "name": "Teapot4",
-          "quantity": 2,
-          "price": 3199
-        }
-      ],
-      "orderStatus": "Rejected",
-      "orderDate": "11.5.2023",
-      "totalSum": 16394,
-      "id": 6
-    },
-    {
-      "id": 7,
-      "firstName": "Vladimir",
-      "lastName": "Kel",
-      "patronymic": "Olekseyevich",
-      "email": "kelVladimir2002@gmail.com",
-      "city": "Харків",
-      "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
-      "deliveryAddress": "",
-      "orderStatus": "Accepted",
-      "cartItems": [
-        {
-          "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot2",
-          "quantity": 4,
-          "price": "2499"
+            "id": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "name": "Teapot6",
+            "price": "2000",
+            "quantity": "12",
+            "manufacturerCountry": "China",
+            "warrantyInMonths": "12",
+            "volume": "1.8",
+            "color": "black",
+            "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/64732971.jpg",
+            "bodyMaterial": "plastic",
+            "power": "1200",
+            "functions": "heating by choosen temperature",
+            "weight": "1",
+            "company": "Tefal",
+            "stockAvailable": true
         },
         {
-          "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-          "name": "Teapot4",
-          "quantity": 2,
-          "price": 3199
-        }
-      ],
-      "orderDate": "11.5.2023",
-      "totalSum": 16394
-    },
-    {
-      "firstName": "Vladimir",
-      "lastName": "Kel",
-      "patronymic": "Olekseyevich",
-      "email": "kelVladimir2002@gmail.com",
-      "city": "Харків",
-      "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
-      "deliveryAddress": "",
-      "cartItems": [
-        {
-          "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
-          "name": "Teapot2",
-          "quantity": 4,
-          "price": "2499"
+            "id": "6053c798-e3af-11ed-b5ea-0242ac120002",
+            "name": "Teapot7",
+            "quantity": 16,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1400,
+            "price": 2599,
+            "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/64732971.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
         },
         {
-          "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
-          "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
-          "name": "Teapot4",
-          "quantity": 2,
-          "price": 3199
+            "id": "db036538-47af-4c7f-b8dd-d6e569753295",
+            "name": "Teapot8",
+            "quantity": 12,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1200,
+            "price": 3899,
+            "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
+        },
+        {
+            "id": "6850bf92-811c-4347-ba03-31700b8faad3",
+            "name": "Teapot9",
+            "quantity": 12,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1200,
+            "price": 2699,
+            "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
+        },
+        {
+            "id": "fac7e1f5-d430-4db3-9361-e2b626b22771",
+            "name": "Teapot10",
+            "quantity": 12,
+            "color": "black",
+            "bodyMaterial": "plastic",
+            "power": 1200,
+            "price": 2229,
+            "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+            "volume": 1.8,
+            "functions": "heating by choosen temperature",
+            "weight": 1,
+            "warrantyInMonths": 12,
+            "stockAvailable": true,
+            "company": "Tefal",
+            "manufacturerCountry": "China"
+        },
+        {
+            "id": "e1f42696-b022-4520-bf8b-682acf539ff9",
+            "name": "Teapot11",
+            "price": "2469",
+            "quantity": "12",
+            "manufacturerCountry": "China",
+            "warrantyInMonths": "12",
+            "volume": "1.8",
+            "color": "black",
+            "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
+            "bodyMaterial": "plastic",
+            "power": "1200",
+            "functions": "heating by choosen temperature",
+            "weight": "1",
+            "company": "Tefal",
+            "stockAvailable": true
+        },
+        {
+            "id": "14588a17-5483-4193-8746-9532df9d51e4",
+            "name": "Teapot12",
+            "price": "2999",
+            "quantity": "12",
+            "manufacturerCountry": "China",
+            "warrantyInMonths": "12",
+            "volume": "1.8",
+            "color": "black",
+            "imgName": "https://content2.rozetka.com.ua/goods/images/big_tile/274310222.jpg",
+            "bodyMaterial": "plastic",
+            "power": "1200",
+            "functions": "heating by choosen temperature",
+            "weight": "1",
+            "company": "Tefal",
+            "stockAvailable": true
         }
-      ],
-      "orderStatus": "Accepted",
-      "orderDate": "11.5.2023",
-      "totalSum": 16394,
-      "id": 8
-    }
-  ]
+    ],
+    "comments": [
+        {
+            "id": 1,
+            "commentText": "I don't like it! The worst thing I've ever bought!",
+            "userName": "Aleksandr Tretiakov",
+            "rate": 2,
+            "advantages": "-",
+            "disadvantags": "Almost all",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
+        },
+        {
+            "id": 2,
+            "commentText": "I like it, because this teapot is the best teapot I've ever bought. I like it, because this teapot is the best teapot I've ever bought",
+            "userName": "Maksim Illarionov",
+            "rate": 5,
+            "advantages": "Everything in this teapot is advantage",
+            "disadvantags": "It doesn't have any disadvantages",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
+        },
+        {
+            "id": 3,
+            "commentText": "I like it, because this teapot is the best teapot I've ever bought",
+            "userName": "Luke Hillington",
+            "rate": 4,
+            "advantages": "Everything in this teapot is advantage",
+            "disadvantags": "It doesn't have any disadvantages",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
+        },
+        {
+            "id": 4,
+            "commentText": "I like it, because this teapot is the best teapot I've ever bought",
+            "userName": "John Miller",
+            "rate": 4,
+            "advantages": "Everything in this teapot is advantage",
+            "disadvantags": "It doesn't have any disadvantages",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002"
+        },
+        {
+            "commentText": "The best of the best best of the bestbest of the bestbest of the bestbest of the best",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 5,
+            "advantages": "++++++",
+            "disadvantags": "--------------",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
+            "id": 6
+        },
+        {
+            "commentText": "fd",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 4,
+            "advantages": "fdf",
+            "disadvantags": "df",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
+            "id": 7
+        },
+        {
+            "commentText": "fd",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 4,
+            "advantages": "fdf",
+            "disadvantags": "df",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
+            "id": 8
+        },
+        {
+            "commentText": "fdfsfd",
+            "advantages": "The",
+            "disadvantags": "the",
+            "rate": 4,
+            "productId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+            "userName": "Oleksandr Tretiakov",
+            "id": 9
+        },
+        {
+            "commentText": "dfdf",
+            "advantages": "fd",
+            "disadvantags": "",
+            "rate": 4,
+            "productId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+            "userName": "Oleksandr Tretiakov",
+            "id": 10
+        },
+        {
+            "commentText": "dsdfsdffsdfsdfsdfsdf",
+            "advantages": "fdf",
+            "disadvantags": "dfd",
+            "rate": 4,
+            "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "userName": "Oleksandr Tretiakov",
+            "id": 11
+        },
+        {
+            "commentText": "dsdfsdffsdfsdfsdfsdf",
+            "advantages": "fdf",
+            "disadvantags": "dfd",
+            "rate": 5,
+            "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "userName": "Oleksandr Tretiakov",
+            "id": 12
+        },
+        {
+            "commentText": "dsdsd",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 4,
+            "advantages": "gdf",
+            "disadvantags": "fdgfdg",
+            "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "id": 13
+        },
+        {
+            "commentText": "dsdsdgfgf",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 3,
+            "advantages": "gdfhgh",
+            "disadvantags": "fdgfdgghg",
+            "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "id": 14
+        },
+        {
+            "commentText": "fsdfsdffsf",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 4,
+            "advantages": "fsdfsdf",
+            "disadvantags": "sdfsfs",
+            "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "id": 15
+        },
+        {
+            "commentText": "dddddd",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 1,
+            "advantages": "ddddd",
+            "disadvantags": "dddd",
+            "productId": "b74a2ff8-e3ad-11ed-b5ea-0242ac120002",
+            "id": 16
+        },
+        {
+            "commentText": "",
+            "userName": "Oleksandr Tretiakov",
+            "rate": 4,
+            "advantages": "fd",
+            "disadvantags": "dfd",
+            "productId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
+            "id": 17
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "firstName": "Oleksandr",
+            "lastName": "Tretiakov",
+            "patronymic": "Oleksandrovich",
+            "email": "sashaaleks72@gmail.com",
+            "city": "м. Вінниця, Вінницька обл.",
+            "department": "Відділення №3 (до 30 кг): вул. Соборна, 89",
+            "deliveryAddress": "",
+            "orderStatus": "Accepted",
+            "cartItems": [
+                {
+                    "teapotId": "90513f9a-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot1",
+                    "quantity": 3,
+                    "price": 2699
+                },
+                {
+                    "teapotId": "ae4e7cba-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
+                    "name": "Teapot3",
+                    "quantity": 4,
+                    "price": 2199
+                }
+            ],
+            "orderDate": "7.4.2023",
+            "totalSum": 16893
+        },
+        {
+            "firstName": "Vladimir",
+            "lastName": "Petrin",
+            "patronymic": "Olekseyevich",
+            "email": "vlad_is_love@gmail.com",
+            "city": "Харків",
+            "department": "Відділення №28 (до 30 кг на одне місце): просп. Тракторобудівників, 89б",
+            "deliveryAddress": "",
+            "cartItems": [
+                {
+                    "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot2",
+                    "quantity": 1,
+                    "price": 2499
+                },
+                {
+                    "teapotId": "ae4e7cba-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/267792323.jpg",
+                    "name": "Teapot3",
+                    "quantity": 1,
+                    "price": 2199
+                }
+            ],
+            "orderStatus": "Delivered",
+            "orderDate": "8.5.2023",
+            "totalSum": 4698,
+            "id": 2
+        },
+        {
+            "firstName": "OLEKSANDR",
+            "lastName": "TRETIAKOV",
+            "patronymic": "Oleksandrovich",
+            "email": "sashaaleks72@gmail.com",
+            "city": "Київ",
+            "department": "Відділення №170 (до 10 кг): просп. Оболонський, 26",
+            "deliveryAddress": "",
+            "cartItems": [
+                {
+                    "teapotId": "b4a65a56-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content2.rozetka.com.ua/goods/images/big_tile/274310222.jpg",
+                    "name": "Teapot5",
+                    "quantity": 5,
+                    "price": 2189
+                }
+            ],
+            "orderStatus": "Waiting for accept",
+            "orderDate": "8.5.2023",
+            "totalSum": 10945,
+            "id": 3
+        },
+        {
+            "firstName": "Vladimir",
+            "lastName": "Kel",
+            "patronymic": "Olekseyevich",
+            "email": "kelVladimir2002@gmail.com",
+            "city": "Харків",
+            "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
+            "deliveryAddress": "",
+            "cartItems": [
+                {
+                    "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot2",
+                    "quantity": 4,
+                    "price": "2499"
+                },
+                {
+                    "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+                    "name": "Teapot4",
+                    "quantity": 2,
+                    "price": 3199
+                }
+            ],
+            "orderStatus": "Waiting for accept",
+            "orderDate": "11.5.2023",
+            "totalSum": 16394,
+            "id": 4
+        },
+        {
+            "firstName": "Vladimir",
+            "lastName": "Kel",
+            "patronymic": "Olekseyevich",
+            "email": "kelVladimir2002@gmail.com",
+            "city": "Харків",
+            "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
+            "deliveryAddress": "",
+            "cartItems": [
+                {
+                    "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot2",
+                    "quantity": 4,
+                    "price": "2499"
+                },
+                {
+                    "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+                    "name": "Teapot4",
+                    "quantity": 2,
+                    "price": 3199
+                }
+            ],
+            "orderStatus": "Delivered",
+            "orderDate": "11.5.2023",
+            "totalSum": 16394,
+            "id": 5
+        },
+        {
+            "firstName": "Vladimir",
+            "lastName": "Kel",
+            "patronymic": "Olekseyevich",
+            "email": "kelVladimir2002@gmail.com",
+            "city": "Харків",
+            "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
+            "deliveryAddress": "",
+            "cartItems": [
+                {
+                    "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot2",
+                    "quantity": 4,
+                    "price": "2499"
+                },
+                {
+                    "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+                    "name": "Teapot4",
+                    "quantity": 2,
+                    "price": 3199
+                }
+            ],
+            "orderStatus": "Rejected",
+            "orderDate": "11.5.2023",
+            "totalSum": 16394,
+            "id": 6
+        },
+        {
+            "id": 7,
+            "firstName": "Vladimir",
+            "lastName": "Kel",
+            "patronymic": "Olekseyevich",
+            "email": "kelVladimir2002@gmail.com",
+            "city": "Харків",
+            "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
+            "deliveryAddress": "",
+            "orderStatus": "Accepted",
+            "cartItems": [
+                {
+                    "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot2",
+                    "quantity": 4,
+                    "price": "2499"
+                },
+                {
+                    "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+                    "name": "Teapot4",
+                    "quantity": 2,
+                    "price": 3199
+                }
+            ],
+            "orderDate": "11.5.2023",
+            "totalSum": 16394
+        },
+        {
+            "firstName": "Vladimir",
+            "lastName": "Kel",
+            "patronymic": "Olekseyevich",
+            "email": "kelVladimir2002@gmail.com",
+            "city": "Харків",
+            "department": "Відділення №17 (до 30 кг на одне місце): вул. 23 серпня, 67а",
+            "deliveryAddress": "",
+            "cartItems": [
+                {
+                    "teapotId": "a882f55e-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content.rozetka.com.ua/goods/images/big_tile/163131692.jpg",
+                    "name": "Teapot2",
+                    "quantity": 4,
+                    "price": "2499"
+                },
+                {
+                    "teapotId": "b1a83694-e3ad-11ed-b5ea-0242ac120002",
+                    "imgName": "https://content1.rozetka.com.ua/goods/images/big_tile/10626237.jpg",
+                    "name": "Teapot4",
+                    "quantity": 2,
+                    "price": 3199
+                }
+            ],
+            "orderStatus": "Accepted",
+            "orderDate": "11.5.2023",
+            "totalSum": 16394,
+            "id": 8
+        }
+    ],
+    "chats": [
+        {
+            "id": 1,
+            "orderId": "1",
+            "userName": "Maksim Illarionov",
+            "messages": [
+                {
+                    "messageId": 1,
+                    "userId": "client",
+                    "messageBody": "Hi, I have a problem with my teapot.",
+                    "sendingTime": "14.5.2023"
+                },
+                {
+                    "messageId": 2,
+                    "userId": "client",
+                    "messageBody": "Could you help me?",
+                    "sendingTime": "14.5.2023"
+                },
+                {
+                    "messageId": 3,
+                    "userId": "admin",
+                    "messageBody": "Hello! Of course I could. What kind problem do you have with your teapot?",
+                    "sendingTime": "14.5.2023"
+                },
+                {
+                    "messageId": 4,
+                    "userId": "client",
+                    "messageBody": "I have a lot of problems with my teapot(",
+                    "sendingTime": "14.5.2023"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "orderId": "2",
+            "userName": "Vladimir Kel",
+            "messages": [
+                {
+                    "messageId": 1,
+                    "userId": "client",
+                    "messageBody": "Hi, I have a problem with my teapot.",
+                    "sendingTime": "14.5.2023"
+                },
+                {
+                    "messageId": 2,
+                    "userId": "client",
+                    "messageBody": "Could you help me?",
+                    "sendingTime": "14.5.2023"
+                },
+                {
+                    "messageId": 3,
+                    "userId": "admin",
+                    "messageBody": "Hello! Of course I could. What kind problem do you have with your teapot?",
+                    "sendingTime": "14.5.2023"
+                },
+                {
+                    "messageId": 4,
+                    "userId": "client",
+                    "messageBody": "I have a lot of problems with my teapot(",
+                    "sendingTime": "14.5.2023"
+                }
+            ]
+        }
+    ]
 }

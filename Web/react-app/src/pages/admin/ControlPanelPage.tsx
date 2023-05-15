@@ -7,7 +7,7 @@ const ControlPanelPage = (): JSX.Element => {
     const [navItems] = useState<INavItem[]>([
         { title: "Teapots", path: "/admin/catalog" },
         { title: "Orders", path: "/admin/orders" },
-        { title: "Chat", path: "/admin/chat" },
+        { title: "Chat", path: "/admin/chats" },
     ]);
 
     return (
