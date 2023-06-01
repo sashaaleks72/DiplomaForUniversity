@@ -124,7 +124,8 @@ const PersonalInfo = (): JSX.Element => {
 
                     setPersonInfo(profile);
                     setAllowanceToEdit(false);
-                }}>
+                }}
+            >
                 <div className="w-75">
                     {firstNameErrorMessage && <div className="text-danger">* {firstNameErrorMessage}</div>}
                     <div className="fs-5 fw-light">First name</div>

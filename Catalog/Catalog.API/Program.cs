@@ -1,8 +1,8 @@
-using Catalog.Host.Data;
 using Catalog.Host.Providers;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.Services;
 using Catalog.Host.Services.Abstractions;
+using Data;
 using Infrastructure.Filters;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,7 +23,8 @@ builder.Services.AddTransient<ICatalogCompanyProvider, CatalogCompanyProvider>()
 builder.Services.AddTransient<ICatalogCompanyService, CatalogCompanyService>();
 
 builder.Services.AddScoped<IDbContextWrapper<ApplicationDbContext>, DbContextWrapper<ApplicationDbContext>>();
-builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseNpgsql(connectionString));
+
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 var app = builder.Build();
 
@@ -32,8 +33,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

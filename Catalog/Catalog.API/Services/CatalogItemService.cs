@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.RequestModels;
 using Catalog.Host.Services.Abstractions;
+using Data;
+using Data.Entities;
 using Infrastructure.Exceptions;
 
 namespace Catalog.Host.Services

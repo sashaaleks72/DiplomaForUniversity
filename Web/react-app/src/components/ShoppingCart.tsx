@@ -2,7 +2,7 @@ import cart from "../store/cart";
 import ModalWrapper from "./UI/ModalWrapper/ModalWrapper";
 import { observer } from "mobx-react-lite";
 import cartSvg from "../images/shopping-cart.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 interface ShoppingCartProps {
     isShoppingCartOpen: boolean;

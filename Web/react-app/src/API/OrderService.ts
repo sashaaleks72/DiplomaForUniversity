@@ -14,11 +14,22 @@ class OrderService {
 
     static async getOrders(userId?: string, orderStatus?: string): Promise<IOrder[]> {
         const receivedOrders = await axios({
-            url: `${apiUrl}/orders?userId=${userId}${orderStatus ? `&orderStatus=${orderStatus}` : ""}`,
+            url: `${apiUrl}/orders?${userId ? `userId=${userId}` : ""}${orderStatus ? `&orderStatus=${orderStatus}` : ""}`,
             method: "get",
         }).then(response => response.data);
 
         return receivedOrders;
+    }
+
+    static async getDeliveredOrderedProductsByUserId(userId: string) {
+        const receivedOrders: IOrder[] = await axios({
+            url: `${apiUrl}/orders?userId=${userId}`,
+            method: "get",
+        }).then(response => response.data);
+
+        const deliveredProducts = receivedOrders.map(order => order.cartItems.map(product => product));
+
+        console.log(deliveredProducts);
     }
 
     static async getOrderById(orderId: string): Promise<IOrder> {

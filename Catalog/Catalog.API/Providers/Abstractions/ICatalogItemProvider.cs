@@ -1,5 +1,5 @@
-﻿using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
+﻿using Data;
+using Data.Entities;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Catalog.Host.Providers.Abstractions

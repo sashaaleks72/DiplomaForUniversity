@@ -1,6 +1,6 @@
 global using AutoMapper;
-global using Catalog.Host.Data;
-global using Catalog.Host.Data.Entities;
+global using Data;
+global using Data.Entities;
 global using Catalog.Host.Providers.Abstractions;
 global using Catalog.Host.ResponseModels;
 global using Catalog.Host.Services;

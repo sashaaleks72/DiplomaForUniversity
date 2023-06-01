@@ -19,6 +19,7 @@ import OrderAdminList from "./components/OrderAdminList";
 import EditOrderPage from "./pages/admin/EditOrderPage";
 import ChatList from "./components/ChatList";
 import Chat from "./components/Chat";
+import Support from "./components/Support";
 
 const App = () => {
     return (
@@ -35,6 +36,7 @@ const App = () => {
                     <Route path="orders" element={<OrderList />} />
                     <Route path="wish-list" element={<WishList />} />
                     <Route path="personal-info" element={<PersonalInfo />} />
+                    <Route path="chat" element={<Support />} />
                 </Route>
                 <Route path="/admin" element={<ControlPanelPage />}>
                     <Route path="catalog" element={<TeapotAdminList />} />

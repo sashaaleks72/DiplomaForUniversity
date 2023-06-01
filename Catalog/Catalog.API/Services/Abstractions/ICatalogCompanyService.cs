@@ -1,4 +1,5 @@
-﻿using Catalog.Host.Data.Entities;
+﻿using Data;
+using Data.Entities;
 using Catalog.Host.RequestModels;
 
 namespace Catalog.Host.Services.Abstractions

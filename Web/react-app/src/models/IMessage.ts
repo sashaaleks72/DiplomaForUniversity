@@ -1,11 +1,11 @@
 import IPersonInfo from "./IPersonInfo";
 
 interface IMessage {
-    messageId?: number;
-    userId: string;
+    id?: number;
+    chatId: string;
+    userName: string;
     messageBody: string;
     sendingTime: string;
-    chatId: string;
 }
 
 export default IMessage;

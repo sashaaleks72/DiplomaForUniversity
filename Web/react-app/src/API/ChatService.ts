@@ -13,12 +13,20 @@ class ChatService {
         return receivedData;
     }
 
-    static async getChatById(chatId: string): Promise<IMessage[]> {
+    static async getMessagesByChatId(chatId: string): Promise<IMessage[]> {
         const receivedData: IMessage[] = await axios
-            .get(`${apiUrl}/chats/${chatId}`)
+            .get(`${apiUrl}/messages?chatId=${chatId}`)
             .then(response => response.data);
 
         return receivedData;
+    }
+
+    static async sendMessage(message: IMessage): Promise<void> {
+        await axios({
+            url: `${apiUrl}/messages`,
+            method: "post",
+            data: message
+        })
     }
 }
 

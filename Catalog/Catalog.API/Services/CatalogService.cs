@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Catalog.Host.Data;
+using Data;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.ResponseModels;
 using Catalog.Host.Services.Abstractions;

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import IChat from "../models/IChat";
 import ChatService from "../API/ChatService";
 import Chat from "./Chat";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 const ChatList = (): JSX.Element => {
     const [chats, setChats] = useState<IChat[]>([]);
+
+    const { id } = useParams();
 
     const navigate = useNavigate();
 
@@ -28,10 +30,6 @@ const ChatList = (): JSX.Element => {
         init();
     }, []);
 
-    useEffect(() => {
-        console.log(selectedChat);
-    }, [selectedChat]);
-
     return (
         <div className="container mt-2">
             <div className="fw-light fs-4">Chats</div>
@@ -40,7 +38,7 @@ const ChatList = (): JSX.Element => {
                     {chats.map((chatItem) => (
                         <div
                             key={chatItem.id}
-                            className={chatItem.id === selectedChat.id ? selectedChatBtnClass : chatBtnClass}
+                            className={chatItem.id === +id! ? selectedChatBtnClass : chatBtnClass}
                             onClick={() => {
                                 setSelectedChat(chatItem);
                                 navigate(`/admin/chats/${chatItem.id}`);
@@ -49,9 +47,7 @@ const ChatList = (): JSX.Element => {
                         </div>
                     ))}
                 </div>
-                <div>
-                    <Outlet />
-                </div>
+                {id ? <Outlet /> : <div className="mx-auto fs-4 fw-light">Choose a chat</div>}
             </div>
         </div>
     );

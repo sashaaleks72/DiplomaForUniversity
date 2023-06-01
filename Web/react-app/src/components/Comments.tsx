@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import ITeapot from "../models/ITeapot";
-import IUser from "../models/IUser";
 import u_heart from "../images/heart-regular.svg";
 import p_heart from "../images/heart-solid.svg";
 import x_mark from "../images/xmark-solid.svg";

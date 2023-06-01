@@ -1,4 +1,5 @@
-﻿using Catalog.Host.Data.Entities;
+﻿using Data;
+using Data.Entities;
 
 namespace Catalog.Host.ResponseModels
 {

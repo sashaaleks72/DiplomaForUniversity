@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using Catalog.Host.Data.Entities;
+using Data;
 using Catalog.Host.RequestModels;
 using Catalog.Host.ResponseModels;
+using Data.Entities;
 
 namespace Catalog.Host.MapConfigs
 {

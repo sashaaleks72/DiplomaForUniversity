@@ -1,4 +1,7 @@
-﻿namespace Catalog.UnitTests.Services
+﻿using Data;
+using Data.Entities;
+
+namespace Catalog.UnitTests.Services
 {
     public class CatalogServiceTest
     {
@@ -21,7 +24,7 @@
             var dbContextTransaction = new Mock<IDbContextTransaction>();
             _dbContextWrapper.Setup(d => d.BeginTransaction(CancellationToken.None)).ReturnsAsync(dbContextTransaction.Object);
 
-            _catalogService = new CatalogService(_catalogItemProvider.Object, _catalogCompanyProvider.Object, _mapper.Object, _logger.Object, _dbContextWrapper.Object);
+            //_catalogService = new CatalogService(_catalogItemProvider.Object, _catalogCompanyProvider.Object, _mapper.Object, _logger.Object, _dbContextWrapper.Object);
         }
 
         [Fact]

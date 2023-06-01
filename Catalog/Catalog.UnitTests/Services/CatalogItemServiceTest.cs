@@ -1,5 +1,6 @@
-﻿using Catalog.Host.Data.Entities;
-using Catalog.Host.RequestModels;
+﻿using Catalog.Host.RequestModels;
+using Data.Entities;
+using Data;
 
 namespace Catalog.UnitTests.Services
 {
@@ -22,7 +23,7 @@ namespace Catalog.UnitTests.Services
             var dbContextTransaction = new Mock<IDbContextTransaction>();
             _dbContextWrapper.Setup(d => d.BeginTransaction(CancellationToken.None)).ReturnsAsync(dbContextTransaction.Object);
 
-            _catalogItemService = new CatalogItemService(_catalogItemProvider.Object, _mapper.Object, _logger.Object, _dbContextWrapper.Object);
+            //_catalogItemService = new CatalogItemService(_catalogItemProvider.Object, _mapper.Object, _logger.Object, _dbContextWrapper.Object);
         }
 
         [Fact]

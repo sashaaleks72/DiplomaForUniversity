@@ -379,7 +379,8 @@
                 }
             ],
             "orderDate": "7.4.2023",
-            "totalSum": 16893
+            "totalSum": 16893,
+            "userId": "bc2218c0-c93b-4e50-95fc-93fddaf020c5"
         },
         {
             "firstName": "Vladimir",
@@ -408,7 +409,8 @@
             "orderStatus": "Delivered",
             "orderDate": "8.5.2023",
             "totalSum": 4698,
-            "id": 2
+            "id": 2,
+            "userId": "92a80f34-5a83-429d-a7e3-bacb1788d713"
         },
         {
             "firstName": "OLEKSANDR",
@@ -430,7 +432,8 @@
             "orderStatus": "Waiting for accept",
             "orderDate": "8.5.2023",
             "totalSum": 10945,
-            "id": 3
+            "id": 3,
+            "userId": "bc2218c0-c93b-4e50-95fc-93fddaf020c5"
         },
         {
             "firstName": "Vladimir",
@@ -459,6 +462,7 @@
             "orderStatus": "Waiting for accept",
             "orderDate": "11.5.2023",
             "totalSum": 16394,
+            "userId": "4b5efca3-4c1d-4c6d-9ec0-900eda6ff747",
             "id": 4
         },
         {
@@ -488,6 +492,7 @@
             "orderStatus": "Delivered",
             "orderDate": "11.5.2023",
             "totalSum": 16394,
+            "userId": "4b5efca3-4c1d-4c6d-9ec0-900eda6ff747",
             "id": 5
         },
         {
@@ -517,6 +522,7 @@
             "orderStatus": "Rejected",
             "orderDate": "11.5.2023",
             "totalSum": 16394,
+            "userId": "4b5efca3-4c1d-4c6d-9ec0-900eda6ff747",
             "id": 6
         },
         {
@@ -546,6 +552,7 @@
                 }
             ],
             "orderDate": "11.5.2023",
+            "userId": "4b5efca3-4c1d-4c6d-9ec0-900eda6ff747",
             "totalSum": 16394
         },
         {
@@ -575,6 +582,7 @@
             "orderStatus": "Accepted",
             "orderDate": "11.5.2023",
             "totalSum": 16394,
+            "userId": "4b5efca3-4c1d-4c6d-9ec0-900eda6ff747",
             "id": 8
         }
     ],
@@ -582,64 +590,126 @@
         {
             "id": 1,
             "orderId": "1",
-            "userName": "Maksim Illarionov",
-            "messages": [
-                {
-                    "messageId": 1,
-                    "userId": "client",
-                    "messageBody": "Hi, I have a problem with my teapot.",
-                    "sendingTime": "14.5.2023"
-                },
-                {
-                    "messageId": 2,
-                    "userId": "client",
-                    "messageBody": "Could you help me?",
-                    "sendingTime": "14.5.2023"
-                },
-                {
-                    "messageId": 3,
-                    "userId": "admin",
-                    "messageBody": "Hello! Of course I could. What kind problem do you have with your teapot?",
-                    "sendingTime": "14.5.2023"
-                },
-                {
-                    "messageId": 4,
-                    "userId": "client",
-                    "messageBody": "I have a lot of problems with my teapot(",
-                    "sendingTime": "14.5.2023"
-                }
-            ]
+            "userName": "Maksim Illarionov"
         },
         {
             "id": 2,
             "orderId": "2",
+            "userName": "Vladimir Kel"
+        }
+    ],
+    "messages": [
+        {
+            "id": 1,
+            "chatId": 1,
+            "userName": "Maksim Illarionov",
+            "messageBody": "Hi, I have a problem with my teapot.",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 1,
+            "id": 2,
+            "userName": "Maksim Illarionov",
+            "messageBody": "Could you help me?",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 1,
+            "id": 3,
+            "userName": "Admin",
+            "messageBody": "Hello! Of course I could. What kind of problem do you have with your teapot?",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 1,
+            "id": 4,
+            "userName": "Maksim Illarionov",
+            "messageBody": "I have a lot of problems with my teapot(",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 2,
+            "id": 5,
             "userName": "Vladimir Kel",
-            "messages": [
-                {
-                    "messageId": 1,
-                    "userId": "client",
-                    "messageBody": "Hi, I have a problem with my teapot.",
-                    "sendingTime": "14.5.2023"
-                },
-                {
-                    "messageId": 2,
-                    "userId": "client",
-                    "messageBody": "Could you help me?",
-                    "sendingTime": "14.5.2023"
-                },
-                {
-                    "messageId": 3,
-                    "userId": "admin",
-                    "messageBody": "Hello! Of course I could. What kind problem do you have with your teapot?",
-                    "sendingTime": "14.5.2023"
-                },
-                {
-                    "messageId": 4,
-                    "userId": "client",
-                    "messageBody": "I have a lot of problems with my teapot(",
-                    "sendingTime": "14.5.2023"
-                }
-            ]
+            "messageBody": "Hi, I have a problem with my teapot.",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 2,
+            "id": 6,
+            "userName": "Vladimir Kel",
+            "messageBody": "Could you help me?",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 2,
+            "id": 7,
+            "userName": "Admin",
+            "messageBody": "Hello! Of course I could. What kind of problem do you have with your teapot?",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "chatId": 2,
+            "id": 8,
+            "userName": "Vladimir Kel",
+            "messageBody": "I have a lot of problems with my teapot(",
+            "sendingTime": "14.5.2023"
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Hi",
+            "sendingTime": "15.05.2023",
+            "chatId": "1",
+            "id": 9
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Wow, I've done it!!!",
+            "sendingTime": "15.05.2023",
+            "chatId": "1",
+            "id": 10
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Wwowowowowoo",
+            "sendingTime": "15.05.2023",
+            "chatId": "1",
+            "id": 11
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Wow",
+            "sendingTime": "1684181003507",
+            "chatId": "1",
+            "id": 12
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Of mine\n",
+            "sendingTime": "1684181034025",
+            "chatId": "1",
+            "id": 13
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Hello!",
+            "sendingTime": "1684181043820",
+            "chatId": "1",
+            "id": 14
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Hello!\n",
+            "sendingTime": "1684181096407",
+            "chatId": "2",
+            "id": 15
+        },
+        {
+            "userName": "Admin",
+            "messageBody": "Oh....",
+            "sendingTime": "1684181284377",
+            "chatId": "2",
+            "id": 16
         }
     ]
 }
