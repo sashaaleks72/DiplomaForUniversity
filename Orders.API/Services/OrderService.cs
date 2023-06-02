@@ -59,7 +59,7 @@ namespace Orders.API.Services
         public async Task<int> MakeAnOrder(OrderRequest newOrder)
         {
             var order = _mapper.Map<OrderEntity>(newOrder);
-            int id = await _orderProvider.MakeAnOrder(order);
+            int id = await _orderProvider.AddOrder(order);
 
             return id;
         }

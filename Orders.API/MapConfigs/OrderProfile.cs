@@ -17,8 +17,6 @@ namespace Catalog.Host.MapConfigs
 
             CreateMap<OrderRequest, OrderEntity>()
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(s => DateTime.UtcNow));
-            CreateMap<CartItemRequest, OrderProductEntity>()
-                .ForMember(dest => dest., opt => opt.MapFrom(s => DateTime.UtcNow));
         }
     }
 }
