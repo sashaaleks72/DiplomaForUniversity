@@ -33,12 +33,12 @@ namespace Orders.API.Services
                 if (orderId > 0)
                 {
                     var order = await _orderProvider.GetOrderById(orderId);
-                    _logger.LogInformation("Order received");
 
                     orderResponse = order == null 
                     ? throw new BusinessException("Order with input id doesn't exist!")
                     : _mapper.Map<OrderResponse>(order);
-                    _logger.LogInformation("Order mapped");
+
+                    orderResponse.CartItems = _mapper.Map<List<CartItemResponse>>(order.OrderProducts);
                 }
 
                 return orderResponse;
@@ -52,16 +52,43 @@ namespace Orders.API.Services
                 var receivedOrders = await _orderProvider.GetOrders(userId);
                 var ordersResponses = _mapper.Map<List<OrderResponse>>(receivedOrders);
 
+                for (int i = 0; i < ordersResponses.Count; i++)
+                {
+                    ordersResponses[i].CartItems = _mapper.Map<List<CartItemResponse>>(receivedOrders[i].OrderProducts);
+                }
+
                 return ordersResponses;
             });
         }
 
-        public async Task<int> MakeAnOrder(OrderRequest newOrder)
+        public async Task UpdateOrder(int orderId, UpdateOrderRequest updateOrderRequest)
         {
-            var order = _mapper.Map<OrderEntity>(newOrder);
-            int id = await _orderProvider.MakeAnOrder(order);
+            await ExecuteSafeAsync(async () => {
+                var orderToUpdate = _mapper.Map<OrderEntity>(updateOrderRequest);
+                orderToUpdate.Id = orderId;
 
-            return id;
+                bool isUpdated = await _orderProvider.UpdateOrder(orderToUpdate);
+
+                if (!isUpdated)
+                {
+                    throw new BusinessException("Order isn't updated by some reason");
+                }
+            });
+        }
+
+        public async Task MakeAnOrder(OrderRequest requestOrder)
+        {
+            var order = _mapper.Map<OrderEntity>(requestOrder);
+            var orderProducts = _mapper.Map<List<OrderProductEntity>>(requestOrder.CartItems);
+
+            foreach (var item in orderProducts) 
+            {
+                item.Order = order;
+            }
+
+            bool isCompleted = await _orderProvider.AddOrder(order, orderProducts);
+
+            if (!isCompleted) throw new BusinessException("Order hasn't been created by some reason");
         }
     }
 }

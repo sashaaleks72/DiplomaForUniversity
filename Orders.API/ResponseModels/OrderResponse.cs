@@ -21,7 +21,7 @@ namespace Orders.API.ResponseModels
 
         public string OrderStatus { get; set; } = string.Empty;
 
-        public DateTime OrderDate { get; set; }
+        public string OrderDate { get; set; } = string.Empty;
 
         public double TotalSum { get; set; }
 
