@@ -1,20 +1,21 @@
 import axios from 'axios';
 import ITeapot from '../models/ITeapot';
 import IComment from '../models/IComment';
-import { apiUrl } from './ApiUrl';
+import { catalogUrl } from './ApiUrls';
+import { IPagination } from '../models/IPagination';
 
 class TeapotsService {
     static async getTeapots(
         page?: number,
         limit?: number,
         sortOptions?: string,
-    ): Promise<ITeapot[]> {
+    ): Promise<IPagination<ITeapot>> {
         let sortArr: string[] = [];
 
         if (sortOptions) sortArr = sortOptions.split(':');
 
-        const recievedTeapots: ITeapot[] = await axios
-            .get(`${apiUrl}/teapots?page=${page}&limit=${limit}`)
+        const recievedTeapots: IPagination<ITeapot> = await axios
+            .get(`${catalogUrl}/teapots?page=${page}&limit=${limit}`)
             .then((response) => response.data);
 
         return recievedTeapots;
@@ -22,7 +23,7 @@ class TeapotsService {
 
     static async getTeapotById(teapotId: string | undefined) {
         const recievedTeapot: ITeapot = await axios
-            .get(`${apiUrl}/teapots/${teapotId}`)
+            .get(`${catalogUrl}/teapots/${teapotId}`)
             .then((response) => response.data);
 
         return recievedTeapot;
@@ -33,7 +34,7 @@ class TeapotsService {
         changedTeapot: ITeapot,
     ): Promise<void> {
         await axios({
-            url: `${apiUrl}/teapots/${teapotId}`,
+            url: `${catalogUrl}/teapots/${teapotId}`,
             method: 'PUT',
             data: changedTeapot,
         });
@@ -41,7 +42,7 @@ class TeapotsService {
 
     static async addNewTeapot(newTeapot: ITeapot): Promise<void> {
         await axios({
-            url: `${apiUrl}/teapots`,
+            url: `${catalogUrl}/teapots`,
             method: 'POST',
             data: newTeapot,
         });
@@ -49,7 +50,7 @@ class TeapotsService {
 
     static async delTeapotById(teapotId: string): Promise<void> {
         await axios({
-            url: `${apiUrl}/teapots/${teapotId}`,
+            url: `${catalogUrl}/teapots/${teapotId}`,
             method: 'DELETE',
         });
     }
@@ -58,7 +59,7 @@ class TeapotsService {
         productId: string,
     ): Promise<IComment[]> {
         const recievedComments: IComment[] = await axios
-            .get(`${apiUrl}/comments?productId=${productId}`)
+            .get(`${catalogUrl}/comments?productId=${productId}`)
             .then((response) => response.data);
 
         return recievedComments;
@@ -69,7 +70,7 @@ class TeapotsService {
         comment: IComment,
     ): Promise<void> {
         await axios({
-            url: `${apiUrl}/comments`,
+            url: `${catalogUrl}/comments`,
             method: 'post',
             data: comment,
         });
@@ -77,7 +78,7 @@ class TeapotsService {
 
     static async getTeapotsCount(): Promise<number> {
         const quantityOfTeapots: number = await axios
-            .get(`${apiUrl}/teapots`)
+            .get(`${catalogUrl}/teapots`)
             .then((response) => response.data.length);
 
         return quantityOfTeapots;

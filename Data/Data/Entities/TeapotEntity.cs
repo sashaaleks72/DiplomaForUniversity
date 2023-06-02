@@ -29,4 +29,6 @@ public class TeapotEntity
     public virtual CompanyEntity Company { get; set; } = null!;
 
     public string ManufacturerCountry { get; set; } = null!;
+    
+    public virtual ICollection<CommentEntity> Comments { get; set; }
 }

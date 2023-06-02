@@ -21,4 +21,5 @@ public class UserEntity
     public string PhoneNumber { get; set; } = null!;
 
     public virtual RoleEntity Role { get; set; } = null!;
+    public virtual ICollection<CommentEntity> Comments { get; set; }
 }
