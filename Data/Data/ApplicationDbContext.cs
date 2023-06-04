@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Data.Configurations;
+using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data;
@@ -20,6 +21,12 @@ public class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.UseHiLo();
+        modelBuilder.ApplyConfiguration(new CompanyEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new TeapotEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new RoleEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderProductEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new OrderStatusEntityConfiguration());
     }
 }

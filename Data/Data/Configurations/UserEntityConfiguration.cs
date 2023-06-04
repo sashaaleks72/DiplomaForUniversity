@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Configurations
 {
-    internal class UserEntityConfiguration
+    public class UserEntityConfiguration : IEntityTypeConfiguration<UserEntity>
     {
+        public void Configure(EntityTypeBuilder<UserEntity> builder)
+        {
+            builder.HasKey(o => o.Id);
+        }
     }
 }

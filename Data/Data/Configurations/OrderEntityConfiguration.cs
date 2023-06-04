@@ -8,7 +8,8 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderEntity> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(o => o.Id);
+            builder.Property(o => o.Id).ValueGeneratedOnAdd();
         }
     }
 }

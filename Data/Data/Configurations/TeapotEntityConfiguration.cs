@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Data.Entities;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Configurations
 {
-    internal class TeapotEntityConfiguration
+    public class TeapotEntityConfiguration : IEntityTypeConfiguration<TeapotEntity>
     {
+        public void Configure(EntityTypeBuilder<TeapotEntity> builder)
+        {
+            builder.HasKey(o => o.Id);
+            builder.Property(o => o.Id).ValueGeneratedOnAdd();
+        }
     }
 }
