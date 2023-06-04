@@ -40,7 +40,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.OrderEntity", b =>
@@ -97,7 +97,7 @@ namespace Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.OrderProductEntity", b =>
@@ -127,7 +127,7 @@ namespace Data.Migrations
 
                     b.HasIndex("TeapotId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.OrderStatusEntity", b =>
@@ -144,7 +144,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("OrderStatuses");
+                    b.ToTable("OrderStatuses", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.RoleEntity", b =>
@@ -161,7 +161,7 @@ namespace Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.TeapotEntity", b =>
@@ -219,7 +219,7 @@ namespace Data.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Teapots");
+                    b.ToTable("Teapots", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.UserEntity", b =>
@@ -248,6 +248,10 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Patronymic")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -263,7 +267,7 @@ namespace Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("Data.Entities.OrderEntity", b =>

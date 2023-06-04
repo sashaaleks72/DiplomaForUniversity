@@ -13,12 +13,8 @@ namespace Data.Migrations
                 name: "Companies",
                 columns: table => new
                 {
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    Id = table.Column<int>(type: "int", nullable: false),
-========
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CountryOfRegistration = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -31,12 +27,8 @@ namespace Data.Migrations
                 name: "OrderStatuses",
                 columns: table => new
                 {
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    Id = table.Column<int>(type: "int", nullable: false),
-========
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                     StatusName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -48,12 +40,8 @@ namespace Data.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    Id = table.Column<int>(type: "int", nullable: false),
-========
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -92,14 +80,10 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserEntity",
+                name: "Users",
                 columns: table => new
                 {
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-========
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Patronymic = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -111,9 +95,9 @@ namespace Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserEntity", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserEntity_Roles_RoleId",
+                        name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
@@ -124,12 +108,8 @@ namespace Data.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    Id = table.Column<int>(type: "int", nullable: false),
-========
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Patronymic = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -140,11 +120,7 @@ namespace Data.Migrations
                     TotalSum = table.Column<double>(type: "float", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderStatusId = table.Column<int>(type: "int", nullable: false),
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-========
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                 },
                 constraints: table =>
                 {
@@ -167,12 +143,8 @@ namespace Data.Migrations
                 name: "OrderItems",
                 columns: table => new
                 {
-<<<<<<<< HEAD:Data/Data/Migrations/20230601170939_InitialCreate.cs
-                    Id = table.Column<int>(type: "int", nullable: false),
-========
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>>> main:Data/Data/Migrations/20230602082710_Initial.cs
                     TeapotId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
@@ -221,8 +193,8 @@ namespace Data.Migrations
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserEntity_RoleId",
-                table: "UserEntity",
+                name: "IX_Users_RoleId",
+                table: "Users",
                 column: "RoleId");
         }
 

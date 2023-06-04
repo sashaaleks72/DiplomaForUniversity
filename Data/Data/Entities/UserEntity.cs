@@ -14,11 +14,13 @@ public class UserEntity
 
     public string HashedPassword { get; set; } = null!;
 
-    //public DateOnly DateOfBirth { get; set; }
+    public string PasswordSalt { get; set; } = null!;
 
     public string Gender { get; set; } = null!;
 
     public string PhoneNumber { get; set; } = null!;
+
+    public int RoleId { get; set; }
 
     public virtual RoleEntity Role { get; set; } = null!;
 }
