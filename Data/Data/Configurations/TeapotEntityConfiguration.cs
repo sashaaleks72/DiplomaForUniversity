@@ -10,6 +10,9 @@ namespace Data.Configurations
         {
             builder.HasKey(o => o.Id);
             builder.Property(o => o.Id).ValueGeneratedOnAdd();
+            builder.HasMany(o => o.Comments)
+                .WithOne(c => c.Teapot)
+                .HasForeignKey(c => c.TeapotId);
         }
     }
 }

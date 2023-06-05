@@ -31,4 +31,5 @@ public class UserEntity
     public int RoleId { get; set; }
 
     public virtual RoleEntity Role { get; set; } = null!;
+    public virtual ICollection<CommentEntity> Comments { get; set; }
 }

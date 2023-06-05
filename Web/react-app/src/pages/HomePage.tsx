@@ -1,22 +1,27 @@
-import { useEffect, useState } from "react";
-import TeapotList from "../components/TeapotList";
-import CustomSelect from "../components/UI/CustomSelect/CustomSelect";
-import TeapotsService from "../API/TeapotsService";
-import { useFetching } from "../hooks/useFetching";
-import ITeapot from "../models/ITeapot";
-import { getQuantityOfPages } from "../utils/pagination";
+import { useEffect, useState } from 'react';
+import TeapotList from '../components/TeapotList';
+import CustomSelect from '../components/UI/CustomSelect/CustomSelect';
+import TeapotsService from '../API/TeapotsService';
+import { useFetching } from '../hooks/useFetching';
+import ITeapot from '../models/ITeapot';
+import { getQuantityOfPages } from '../utils/pagination';
+import { IPagination } from '../models/IPagination';
 
 const HomePage = (): JSX.Element => {
-    const [teapots, setTeapots] = useState<ITeapot[]>([]);
-    const [sort, setSort] = useState<string>("");
+    const [teapots, setTeapots] = useState<IPagination<ITeapot> | null>(null);
+    const [sort, setSort] = useState<string>('');
     const [limit] = useState<number>(6);
     const [page, setPage] = useState<number>(1);
     const [quantityOfPages, setQuantityOfPages] = useState<number>(0);
     const [pages, setPages] = useState<number[]>([]);
 
     const [fetchTeapots, isLoading] = useFetching(async () => {
-        const recievedTeapots = await TeapotsService.getTeapots(page, limit, sort);
-        const quantityOfPages = await getQuantityOfPages(limit);
+        const recievedTeapots = await TeapotsService.getTeapots(
+            page,
+            limit,
+            sort,
+        );
+        const quantityOfPages = await getQuantityOfPages(recievedTeapots);
 
         setTeapots(recievedTeapots);
         setQuantityOfPages(quantityOfPages);
@@ -51,20 +56,20 @@ const HomePage = (): JSX.Element => {
                         className="w-25 mb-2"
                         selectOptions={[
                             {
-                                value: "name:asc",
-                                title: "Sort by title (ascending)",
+                                value: 'name:asc',
+                                title: 'Sort by title (ascending)',
                             },
                             {
-                                value: "name:desc",
-                                title: "Sort by title (descending)",
+                                value: 'name:desc',
+                                title: 'Sort by title (descending)',
                             },
                             {
-                                value: "price:asc",
-                                title: "Sort by price (ascending)",
+                                value: 'price:asc',
+                                title: 'Sort by price (ascending)',
                             },
                             {
-                                value: "price:desc",
-                                title: "Sort by price (descending)",
+                                value: 'price:desc',
+                                title: 'Sort by price (descending)',
                             },
                         ]}
                         setValue={(sortOption: string) => setSort(sortOption)}
@@ -75,20 +80,27 @@ const HomePage = (): JSX.Element => {
                     {isLoading && (
                         <div className="d-flex justify-content-center ms-auto">
                             <div className="spinner-border spinner-width-sm">
-                                <span className="visually-hidden">Loading...</span>
+                                <span className="visually-hidden">
+                                    Loading...
+                                </span>
                             </div>
                         </div>
                     )}
                 </div>
 
-                <TeapotList teapots={teapots} />
+                <TeapotList teapots={teapots?.data} />
                 <div className="text-center mt-1">
                     {pages.map((el) => {
                         return (
                             <button
-                                className={el === page ? "btn btn-info text-white ms-1" : "btn border border-info ms-1"}
+                                className={
+                                    el === page
+                                        ? 'btn btn-info text-white ms-1'
+                                        : 'btn border border-info ms-1'
+                                }
                                 key={el}
-                                onClick={() => setPage(el)}>
+                                onClick={() => setPage(el)}
+                            >
                                 {el}
                             </button>
                         );

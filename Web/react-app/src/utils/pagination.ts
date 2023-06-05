@@ -1,8 +1,7 @@
-import TeapotsService from "../API/TeapotsService";
+import { IPagination } from '../models/IPagination';
 
-export const getQuantityOfPages = async (limit: number): Promise<number> => {
-    const recievedCount: number = await TeapotsService.getTeapotsCount();
-    const quantityOfPages = Math.ceil(recievedCount / limit);
-
-    return quantityOfPages;
+export const getQuantityOfPages = async (
+    paginationObject: IPagination<any>,
+): Promise<number> => {
+    return Math.ceil(paginationObject.totalQuantity / paginationObject.limit);
 };

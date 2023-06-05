@@ -132,9 +132,9 @@ namespace Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Orders_UserEntity_UserId",
+                        name: "FK_Orders_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "UserEntity",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -213,7 +213,7 @@ namespace Data.Migrations
                 name: "OrderStatuses");
 
             migrationBuilder.DropTable(
-                name: "UserEntity");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Companies");

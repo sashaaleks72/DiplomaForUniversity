@@ -13,6 +13,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<OrderStatusEntity> OrderStatuses { get; set; } = null!;
     public DbSet<RoleEntity> Roles { get; set; } = null!;
     public DbSet<UserEntity> Users { get; set; } = null!;
+    public DbSet<CommentEntity> Comments { get; set; } = null;
 
 
     public ApplicationDbContext(DbContextOptions options) : base(options)
@@ -28,5 +29,6 @@ public class ApplicationDbContext : DbContext
         modelBuilder.ApplyConfiguration(new UserEntityConfiguration());
         modelBuilder.ApplyConfiguration(new OrderProductEntityConfiguration());
         modelBuilder.ApplyConfiguration(new OrderStatusEntityConfiguration());
+        modelBuilder.ApplyConfiguration(new CommentEntityConfiguration());
     }
 }
