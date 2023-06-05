@@ -77,7 +77,15 @@ namespace Catalog.Host.Providers
 
         public async Task<bool> RemoveTeapotAsync(string teapotId)
         {
-            int quantityOfRemovedEntries = await _dbContext.Database.ExecuteSqlRawAsync($"DELETE FROM public.\"Teapots\" WHERE \"Id\" = '{teapotId}';");
+            var teapotToDelete = await _dbContext.Teapots.SingleOrDefaultAsync(t => t.Id == teapotId);
+
+            if (teapotToDelete != null) 
+            {
+                _dbContext.Teapots.Remove(teapotToDelete);
+            }
+
+            int quantityOfRemovedEntries = await _dbContext.SaveChangesAsync();
+
             return quantityOfRemovedEntries > 0;
         }
     }

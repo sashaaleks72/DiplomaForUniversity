@@ -30,6 +30,20 @@ namespace Infrastructure.Filters
 
                 context.ExceptionHandled = true;
             }
+            else if (context.Exception is AuthorizationException authEx)
+            {
+                var details = new ValidationProblemDetails
+                {
+                    Instance = context.HttpContext.Request.Path,
+                    Detail = authEx.Message,
+                    Status = StatusCodes.Status401Unauthorized
+                };
+
+                context.Result = new UnauthorizedObjectResult(details);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
+
+                context.ExceptionHandled = true;
+            }
             else
             {
                 _logger.LogError(new EventId(context.Exception.HResult), context.Exception, context.Exception.Message);

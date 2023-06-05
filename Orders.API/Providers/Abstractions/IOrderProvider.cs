@@ -6,10 +6,12 @@ namespace Orders.API.Providers.Abstractions
 {
     public interface IOrderProvider
     {
-        public Task<int> AddOrder(OrderEntity order);
+        public Task<bool> AddOrder(OrderEntity order, List<OrderProductEntity> orderProducts);
 
         public Task<List<OrderEntity>> GetOrders(Guid? userId);
 
         public Task<OrderEntity?> GetOrderById(int orderId);
+
+        public Task<bool> UpdateOrder(OrderEntity updatedOrder);
     }
 }

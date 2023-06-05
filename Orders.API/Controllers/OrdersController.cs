@@ -39,10 +39,19 @@ namespace Orders.API.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(OrderResponse), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> GetOrderById(int orderId)
+        public async Task<ActionResult> GetOrderById([FromRoute] int id)
         {
-            var receivedOrder = await _orderService.GetOrderById(orderId);
+            var receivedOrder = await _orderService.GetOrderById(id);
             return Ok(receivedOrder);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult> UpdateOrder([FromRoute] int id, [FromBody] UpdateOrderRequest orderRequest)
+        {
+            await _orderService.UpdateOrder(id, orderRequest);
+            return Ok("Order has been updated!");
         }
     }
 }

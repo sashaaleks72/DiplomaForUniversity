@@ -103,7 +103,7 @@ namespace Catalog.UnitTests.Services
         public async Task RemoveTeapotAsync_IsRemoved_Success()
         {
             //arrange
-            var id = "1";
+            string id = Guid.NewGuid().ToString();
             _catalogItemProvider.Setup(c => c.RemoveTeapotAsync(It.Is<string>(i => i == id))).ReturnsAsync(true);
 
             //act
@@ -128,7 +128,7 @@ namespace Catalog.UnitTests.Services
         public async Task RemoveTeapotAsync_IsNotRemoved_ExceptionThrown()
         {
             //arrange
-            var id = "0";
+            string id = Guid.NewGuid().ToString();
             _catalogItemProvider.Setup(c => c.RemoveTeapotAsync(It.Is<string>(i => i == id))).ReturnsAsync(false);
 
             //act
@@ -154,7 +154,7 @@ namespace Catalog.UnitTests.Services
         public async Task UpdateTeapotAsync_IsUpdated_Success()
         {
             //arrange
-            var id = "1";
+            string id = Guid.NewGuid().ToString();
 
             var teapotRequest = new TeapotRequest
             {
@@ -192,7 +192,7 @@ namespace Catalog.UnitTests.Services
         public async Task UpdateTeapotAsync_IsNotUpdated_ExceptionThrown()
         {
             //arrange
-            var id = "0";
+            string id = Guid.NewGuid().ToString();
 
             var teapotRequest = new TeapotRequest
             {
