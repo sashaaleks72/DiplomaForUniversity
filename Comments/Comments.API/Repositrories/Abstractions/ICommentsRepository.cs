@@ -8,5 +8,4 @@ public interface ICommentsRepository
 {
     public Task<bool> AddCommentAsync(CommentEntity newComment);
     public Task<PaginatedItems<CommentEntity>> GetTeapotCommentsAsync(string teapotId, int page, int limit);
-    public Task<CommentEntity> GetCommentByIdAsync(int commentId);
 }

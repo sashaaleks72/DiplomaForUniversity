@@ -1,23 +1,44 @@
+using Catalog.Host.Services.Abstractions;
 using Comments.API.Repositrories.Abstractions;
 using Data;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Comments.API.Repositrories;
 
 public class CommentsRepository: ICommentsRepository
 {
-    public Task<bool> AddCommentAsync(CommentEntity newComment)
+    private readonly ApplicationDbContext _dbContext;
+
+    public CommentsRepository(IDbContextWrapper<ApplicationDbContext> dbContextWrapper)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContextWrapper.DbContext;
     }
 
-    public Task<PaginatedItems<CommentEntity>> GetTeapotCommentsAsync(string teapotId, int page, int limit)
+    public async Task<bool> AddCommentAsync(CommentEntity newComment)
     {
-        throw new NotImplementedException();
+        await _dbContext.Comments.AddAsync(newComment);
+        int quantityOfSavedEntries = await _dbContext.SaveChangesAsync();
+
+        return quantityOfSavedEntries > 0;
     }
 
-    public Task<CommentEntity> GetCommentByIdAsync(int commentId)
+    public async Task<PaginatedItems<CommentEntity>> GetTeapotCommentsAsync(string teapotId, int page, int limit)
     {
-        throw new NotImplementedException();
+        var totalCount = await _dbContext.Comments.CountAsync();
+
+        var recievedComments = await _dbContext.Comments
+            .Where(c => c.TeapotId == teapotId)
+            .Skip((page - 1) * limit)
+            .Take(limit)
+            .ToListAsync();
+
+        var paginatedItems = new PaginatedItems<CommentEntity>
+        {
+            Data = recievedComments,
+            TotalQuantity = totalCount
+        };
+
+        return paginatedItems;
     }
 }

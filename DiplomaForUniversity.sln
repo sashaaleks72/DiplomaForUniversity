@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.UnitTests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data\Data.csproj", "{C1024316-1F1C-4323-A12E-6C05D24DEA43}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.API", "Orders.API\Orders.API.csproj", "{A9F1C9F1-832C-4088-A700-71C6F99CA7AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.API", "Orders\Orders.API\Orders.API.csproj", "{A9F1C9F1-832C-4088-A700-71C6F99CA7AC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Comments.API", "Comments\Comments.API\Comments.API.csproj", "{BB94D5F3-D6C8-4F41-B4A5-385B56DB89C8}"
 EndProject

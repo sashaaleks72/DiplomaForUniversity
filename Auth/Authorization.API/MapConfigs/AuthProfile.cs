@@ -15,7 +15,8 @@ namespace Authorization.API.MapConfigs
                 .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(s => ""));
 
             CreateMap<UserEntity, ProfileResponseModel>()
-                .ForMember(dest => dest.Birthday, opt => opt.MapFrom(s => s.Birthday.ToString("dd.MM.yyyy")));
+                .ForMember(dest => dest.Birthday, opt => opt.MapFrom(s => s.Birthday.ToString("dd.MM.yyyy")))
+                .ForMember(dest => dest.UserId, opt => opt.MapFrom(s => s.Id));
         }
     }
 }
