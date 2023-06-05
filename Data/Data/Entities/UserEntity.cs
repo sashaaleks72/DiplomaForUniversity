@@ -16,6 +16,14 @@ public class UserEntity
 
     public string PasswordSalt { get; set; } = null!;
 
+    public string RefreshToken { get; set; } = null!;
+
+    public DateTime Birthday { get; set; }
+
+    public DateTime TokenCreated { get; set; }
+
+    public DateTime TokenExpires { get; set; }
+
     public string Gender { get; set; } = null!;
 
     public string PhoneNumber { get; set; } = null!;

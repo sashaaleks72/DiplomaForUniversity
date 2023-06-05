@@ -28,5 +28,32 @@ namespace Authorization.API.Repositrories
             var receivedUser = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
             return receivedUser;
         }
+
+        public async Task<bool> UpdateUserByEmail(string email, UserEntity updatedUser)
+        {
+            int quantityOfUpdatedRows = 0;
+            var receivedUser = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
+            
+            if (receivedUser != null)
+            {
+                Type typeOfUserEntity = typeof(UserEntity);
+                var properties = typeOfUserEntity.GetProperties();
+
+                foreach (var property in properties)
+                {
+                    var updatedValue = property.GetValue(updatedUser);
+                    var currentValue = property.GetValue(receivedUser);
+
+                    if (updatedValue != null && !updatedValue.Equals(currentValue))
+                    {
+                        property.SetValue(currentValue, updatedValue);
+                    }
+                }
+
+                quantityOfUpdatedRows = await _dbContext.SaveChangesAsync();
+            }
+            
+            return quantityOfUpdatedRows > 0;
+        }
     }
 }

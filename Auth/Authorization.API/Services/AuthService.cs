@@ -1,13 +1,15 @@
 ﻿using Authorization.API.Repositrories.Abstractions;
 using Authorization.API.RequestModels;
+using Authorization.API.ResponseModels;
 using Authorization.API.Services.Abstractions;
 using AutoMapper;
 using Data.Entities;
 using Infrastructure.Exceptions;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Net;
+using System.Security.Authentication;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace Authorization.API.Services
 {
@@ -16,12 +18,24 @@ namespace Authorization.API.Services
         private readonly IMapper _mapper;
         private readonly IAuthRepository _authRepository;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public AuthService(IMapper mapper, IAuthRepository authRepository, IConfiguration configuration)
+        public AuthService(IMapper mapper, IAuthRepository authRepository, IConfiguration configuration, IHttpContextAccessor contextAccessor)
         {
             _mapper = mapper;
             _authRepository = authRepository;
             _configuration = configuration;
+            _contextAccessor = contextAccessor;
+        }
+
+        public async Task<ProfileResponseModel> GetProfile()
+        {
+            var authorizedUserEmail = _contextAccessor.HttpContext!.User.Claims.SingleOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")!.Value;
+            var receivedUser = await _authRepository.GetUserByEmail(authorizedUserEmail);
+
+            var profile = _mapper.Map<ProfileResponseModel>(receivedUser);
+
+            return profile;
         }
 
         public async Task Register(RegistrationModel userToRegister)
@@ -30,7 +44,7 @@ namespace Authorization.API.Services
 
             if (receivedUser != null)
             {
-                new BusinessException("User with input email already exists");
+                throw new BusinessException("User with input email already exists");
             }
 
             var user = _mapper.Map<UserEntity>(userToRegister);
@@ -61,16 +75,71 @@ namespace Authorization.API.Services
 
             if (!isVerified) throw new AuthorizationException("Password is wrong");
 
-            var token = CreateToken(credentials);
+            var token = CreateToken(receivedUser);
+
+            var refreshToken = GenerateRefreshToken();
+            SetRefreshToken(refreshToken, receivedUser);
+
             return token;
         }
 
-        private string CreateToken(LoginModel credentials)
+        public async Task<string> RefreshToken()
+        {
+            var refreshToken = _contextAccessor.HttpContext!.Request.Cookies["refreshToken"];
+            var authorizedUserEmail = _contextAccessor.HttpContext.User.Claims.SingleOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")!.Value;
+            var receivedUser = await _authRepository.GetUserByEmail(authorizedUserEmail);
+
+            if (!receivedUser!.RefreshToken.Equals(refreshToken))
+            {
+                throw new AuthenticationException("Invalid Refresh Token");
+            }
+            else if (receivedUser.TokenExpires < DateTime.Now)
+            {
+                throw new AuthenticationException("Token expired.");
+            }
+
+            string token = CreateToken(receivedUser);
+
+            var newRefreshToken = GenerateRefreshToken();
+            SetRefreshToken(newRefreshToken, receivedUser);
+
+            return token;
+        }
+
+        private RefreshToken GenerateRefreshToken()
+        {
+            var refreshToken = new RefreshToken
+            {
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7),
+                Created = DateTime.Now
+            };
+
+            return refreshToken;
+        }
+
+        private void SetRefreshToken(RefreshToken newRefreshToken, UserEntity user)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires
+            };
+            _contextAccessor.HttpContext!.Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+            user.RefreshToken = newRefreshToken.Token;
+            user.TokenCreated = newRefreshToken.Created;
+            user.TokenExpires = newRefreshToken.Expires;
+
+            _authRepository.UpdateUserByEmail(user.Email, user);
+        }
+
+        private string CreateToken(UserEntity user)
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Email, credentials.Email),
-                // new Claim(ClaimTypes.Role, "Admin")
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role, user.Role.Name)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
@@ -80,7 +149,7 @@ namespace Authorization.API.Services
 
             var token = new JwtSecurityToken(
                 claims: claims,
-                expires: DateTime.Now.AddDays(1),
+                expires: DateTime.Now.AddHours(1),
                 signingCredentials: creds);
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);

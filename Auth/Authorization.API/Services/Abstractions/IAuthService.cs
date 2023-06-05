@@ -1,6 +1,5 @@
 ﻿using Authorization.API.RequestModels;
-using Data.Entities;
-using Infrastructure.Exceptions;
+using Authorization.API.ResponseModels;
 
 namespace Authorization.API.Services.Abstractions
 {
@@ -9,5 +8,9 @@ namespace Authorization.API.Services.Abstractions
         public Task Register(RegistrationModel userToRegister);
 
         public Task<string> Login(LoginModel credentials);
+
+        public Task<string> RefreshToken();
+
+        public Task<ProfileResponseModel> GetProfile();
     }
 }
