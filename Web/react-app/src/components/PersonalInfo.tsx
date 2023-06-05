@@ -1,21 +1,28 @@
-import { useEffect, useState } from "react";
-import IPersonInfo from "../models/IPersonInfo";
+import { useEffect, useState } from 'react';
+import IPersonInfo from '../models/IPersonInfo';
+import { useFetching } from '../hooks/useFetching';
+import IRegister from '../models/IRegister';
+import AuthService from '../API/AuthService';
 
 const PersonalInfo = (): JSX.Element => {
     const [personInfo, setPersonInfo] = useState<IPersonInfo>();
 
     const [validationProfile, setValidationProfile] = useState<IPersonInfo>({
-        userId: "",
-        firstName: "",
-        lastName: "",
-        patronymic: "",
-        birthday: "",
+        email: '',
+        firstName: '',
+        lastName: '',
+        patronymic: '',
+        birthday: '',
     });
 
-    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState<string>("");
-    const [lastNameErrorMessage, setLastNameErrorMessage] = useState<string>("");
-    const [patronymicErrorMessage, setPatronymicErrorMessage] = useState<string>("");
-    const [birthdayErrorMessage, setBirthdayErrorMessage] = useState<string>("");
+    const [firstNameErrorMessage, setFirstNameErrorMessage] =
+        useState<string>('');
+    const [lastNameErrorMessage, setLastNameErrorMessage] =
+        useState<string>('');
+    const [patronymicErrorMessage, setPatronymicErrorMessage] =
+        useState<string>('');
+    const [birthdayErrorMessage, setBirthdayErrorMessage] =
+        useState<string>('');
 
     const onFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValidationProfile({
@@ -24,9 +31,9 @@ const PersonalInfo = (): JSX.Element => {
         });
 
         if (!e.target.value) {
-            setFirstNameErrorMessage("The first name field must be filled!");
+            setFirstNameErrorMessage('The first name field must be filled!');
         } else {
-            setFirstNameErrorMessage("");
+            setFirstNameErrorMessage('');
         }
     };
 
@@ -37,9 +44,9 @@ const PersonalInfo = (): JSX.Element => {
         });
 
         if (!e.target.value) {
-            setLastNameErrorMessage("The last name field must be filled!");
+            setLastNameErrorMessage('The last name field must be filled!');
         } else {
-            setLastNameErrorMessage("");
+            setLastNameErrorMessage('');
         }
     };
 
@@ -50,9 +57,9 @@ const PersonalInfo = (): JSX.Element => {
         });
 
         if (!e.target.value) {
-            setPatronymicErrorMessage("The patronymic field must be filled!");
+            setPatronymicErrorMessage('The patronymic field must be filled!');
         } else {
-            setPatronymicErrorMessage("");
+            setPatronymicErrorMessage('');
         }
     };
 
@@ -63,9 +70,9 @@ const PersonalInfo = (): JSX.Element => {
         });
 
         if (!e.target.value) {
-            setBirthdayErrorMessage("The birthday field must be filled!");
+            setBirthdayErrorMessage('The birthday field must be filled!');
         } else {
-            setBirthdayErrorMessage("");
+            setBirthdayErrorMessage('');
         }
     };
 
@@ -73,10 +80,20 @@ const PersonalInfo = (): JSX.Element => {
     const [formIsValid, setFormIsValid] = useState<boolean>(false);
 
     useEffect(() => {
-        if (firstNameErrorMessage || lastNameErrorMessage || patronymicErrorMessage || birthdayErrorMessage)
+        if (
+            firstNameErrorMessage ||
+            lastNameErrorMessage ||
+            patronymicErrorMessage ||
+            birthdayErrorMessage
+        )
             setFormIsValid(false);
         else setFormIsValid(true);
-    }, [firstNameErrorMessage, lastNameErrorMessage, patronymicErrorMessage, birthdayErrorMessage]);
+    }, [
+        firstNameErrorMessage,
+        lastNameErrorMessage,
+        patronymicErrorMessage,
+        birthdayErrorMessage,
+    ]);
 
     /*
     useEffect(() => {
@@ -115,7 +132,7 @@ const PersonalInfo = (): JSX.Element => {
                     };
 
                     const profile: IPersonInfo = {
-                        userId: "",
+                        email: '',
                         firstName: target.firstName.value,
                         lastName: target.lastName.value,
                         patronymic: target.patronymic.value,
@@ -127,53 +144,69 @@ const PersonalInfo = (): JSX.Element => {
                 }}
             >
                 <div className="w-75">
-                    {firstNameErrorMessage && <div className="text-danger">* {firstNameErrorMessage}</div>}
+                    {firstNameErrorMessage && (
+                        <div className="text-danger">
+                            * {firstNameErrorMessage}
+                        </div>
+                    )}
                     <div className="fs-5 fw-light">First name</div>
                     <input
                         disabled={!isAllowToEdit}
                         type="text"
                         className="form-control"
                         name="firstName"
-                        value={validationProfile["firstName"]}
+                        value={validationProfile['firstName']}
                         onChange={(e) => onFirstNameChange(e)}
                         required
                     />
                 </div>
                 <div className="w-75">
-                    {lastNameErrorMessage && <div className="text-danger">* {lastNameErrorMessage}</div>}
+                    {lastNameErrorMessage && (
+                        <div className="text-danger">
+                            * {lastNameErrorMessage}
+                        </div>
+                    )}
                     <div className="fs-5 fw-light">Last name</div>
                     <input
                         disabled={!isAllowToEdit}
                         type="text"
                         className="form-control"
                         name="lastName"
-                        value={validationProfile["lastName"]}
+                        value={validationProfile['lastName']}
                         onChange={(e) => onLastNameChange(e)}
                         required
                     />
                 </div>
                 <div className="w-75">
-                    {patronymicErrorMessage && <div className="text-danger">* {patronymicErrorMessage}</div>}
+                    {patronymicErrorMessage && (
+                        <div className="text-danger">
+                            * {patronymicErrorMessage}
+                        </div>
+                    )}
                     <div className="fs-5 fw-light">Patronymic</div>
                     <input
                         disabled={!isAllowToEdit}
                         type="text"
                         className="form-control"
                         name="patronymic"
-                        value={validationProfile["patronymic"]}
+                        value={validationProfile['patronymic']}
                         onChange={(e) => onPatronymicChange(e)}
                         required
                     />
                 </div>
                 <div className="w-75">
-                    {birthdayErrorMessage && <div className="text-danger">* {birthdayErrorMessage}</div>}
+                    {birthdayErrorMessage && (
+                        <div className="text-danger">
+                            * {birthdayErrorMessage}
+                        </div>
+                    )}
                     <div className="fs-5 fw-light">Date of birth</div>
                     <input
                         disabled={!isAllowToEdit}
                         type="date"
                         className="form-control"
                         name="birthday"
-                        value={validationProfile["birthday"]}
+                        value={validationProfile['birthday']}
                         onChange={(e) => onBirthdayChange(e)}
                         required
                     />
@@ -181,15 +214,19 @@ const PersonalInfo = (): JSX.Element => {
 
                 <div className="text-center mt-3">
                     {!isAllowToEdit && (
-                        <div className="btn btn-success" role="button" onClick={(e) => setAllowanceToEdit(true)}>
+                        <div
+                            className="btn btn-success"
+                            role="button"
+                            onClick={(e) => setAllowanceToEdit(true)}
+                        >
                             Edit profile
                         </div>
                     )}
                     <input
                         disabled={!formIsValid}
-                        type={isAllowToEdit ? "submit" : "hidden"}
+                        type={isAllowToEdit ? 'submit' : 'hidden'}
                         className="btn btn-primary"
-                        value={"Save changes"}
+                        value={'Save changes'}
                     />
                 </div>
             </form>

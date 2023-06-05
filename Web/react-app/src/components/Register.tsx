@@ -1,26 +1,33 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import IRegister from "../models/IRegister";
-import ModalWrapper from "./UI/ModalWrapper/ModalWrapper";
-import facebook from "../images/facebook.svg";
-import google from "../images/google.svg";
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import IRegister from '../models/IRegister';
+import ModalWrapper from './UI/ModalWrapper/ModalWrapper';
+import facebook from '../images/facebook.svg';
+import google from '../images/google.svg';
+import AuthService from '../API/AuthService';
 
 interface RegisterProps {
     isModalOpened: boolean;
     setIsModalOpened: (state: boolean) => void;
 }
 
-const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Element => {
+const Register = ({
+    isModalOpened,
+    setIsModalOpened,
+}: RegisterProps): JSX.Element => {
     const navigate = useNavigate();
     const [signUpModel, setSignUpModel] = useState<IRegister>();
-    const [signUpValidationModel, setSignUpValidationModel] = useState<IRegister>({
-        firstName: "",
-        lastName: "",
-        patronymic: "",
-        birthday: "",
-        pass: "",
-        email: "",
-    });
+    const [signUpValidationModel, setSignUpValidationModel] =
+        useState<IRegister>({
+            firstName: '',
+            lastName: '',
+            patronymic: '',
+            birthday: '',
+            password: '',
+            email: '',
+            phoneNumber: '',
+            gender: '',
+        });
 
     useEffect(() => {
         if (signUpModel) {
@@ -29,19 +36,27 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
         }
     }, [signUpModel]);
 
-    const [emailErrorMessage, setEmailErrorMessage] = useState<string>("The email field can't be empty!");
-    const [passErrorMessage, setPassErrorMessage] = useState<string>("The password field can't be empty!");
-    const [confirmPassErrorMessage, setConfirmPassErrorMessage] = useState<string>(
-        "The confirm password field can't be empty!"
+    const [emailErrorMessage, setEmailErrorMessage] = useState<string>(
+        "The email field can't be empty!",
     );
-    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState<string>("The first name field can't be empty!");
-    const [lastNameErrorMessage, setLastNameErrorMessage] = useState<string>("The last name field can't be empty!");
-    const [patronymicErrorMessage, setPatronymicErrorMessage] = useState<string>(
-        "The patronymic field can't be empty!"
+    const [passErrorMessage, setPassErrorMessage] = useState<string>(
+        "The password field can't be empty!",
     );
-    const [birthdayErrorMessage, setBirthdayErrorMessage] = useState<string>("The date of birth field can't be empty!");
+    const [confirmPassErrorMessage, setConfirmPassErrorMessage] =
+        useState<string>("The confirm password field can't be empty!");
+    const [firstNameErrorMessage, setFirstNameErrorMessage] = useState<string>(
+        "The first name field can't be empty!",
+    );
+    const [lastNameErrorMessage, setLastNameErrorMessage] = useState<string>(
+        "The last name field can't be empty!",
+    );
+    const [patronymicErrorMessage, setPatronymicErrorMessage] =
+        useState<string>("The patronymic field can't be empty!");
+    const [birthdayErrorMessage, setBirthdayErrorMessage] = useState<string>(
+        "The date of birth field can't be empty!",
+    );
 
-    const [confirmPass, setConfirmPass] = useState<string>("");
+    const [confirmPass, setConfirmPass] = useState<string>('');
 
     const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let re =
@@ -53,34 +68,37 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
         });
 
         if (String(e.target.value).toLowerCase().match(re)) {
-            setEmailErrorMessage("");
+            setEmailErrorMessage('');
         } else {
             setEmailErrorMessage("Email isn't valid!");
         }
     };
 
     const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let re = /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{10,16}$/;
+        let re =
+            /^(?!.*\s)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).{10,16}$/;
 
         setSignUpValidationModel({
             ...signUpValidationModel,
-            pass: e.target.value,
+            password: e.target.value,
         });
 
         if (String(e.target.value).match(re)) {
-            setPassErrorMessage("");
+            setPassErrorMessage('');
         } else {
-            setPassErrorMessage("Invalid password!");
+            setPassErrorMessage('Invalid password!');
         }
     };
 
-    const onConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onConfirmPasswordChange = (
+        e: React.ChangeEvent<HTMLInputElement>,
+    ) => {
         setConfirmPass(e.target.value);
 
-        if (e.target.value !== signUpValidationModel["pass"]) {
+        if (e.target.value !== signUpValidationModel['password']) {
             setConfirmPassErrorMessage("Passwords don't match!");
         } else {
-            setConfirmPassErrorMessage("");
+            setConfirmPassErrorMessage('');
         }
     };
 
@@ -91,9 +109,9 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
         });
 
         if (!e.target.value) {
-            setFirstNameErrorMessage("The first name field must be filled!");
+            setFirstNameErrorMessage('The first name field must be filled!');
         } else {
-            setFirstNameErrorMessage("");
+            setFirstNameErrorMessage('');
         }
     };
 
@@ -104,9 +122,9 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
         });
 
         if (!e.target.value) {
-            setLastNameErrorMessage("The last name field must be filled!");
+            setLastNameErrorMessage('The last name field must be filled!');
         } else {
-            setLastNameErrorMessage("");
+            setLastNameErrorMessage('');
         }
     };
 
@@ -117,9 +135,9 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
         });
 
         if (!e.target.value) {
-            setPatronymicErrorMessage("The patronymic field must be filled!");
+            setPatronymicErrorMessage('The patronymic field must be filled!');
         } else {
-            setPatronymicErrorMessage("");
+            setPatronymicErrorMessage('');
         }
     };
 
@@ -130,9 +148,9 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
         });
 
         if (!e.target.value) {
-            setBirthdayErrorMessage("The birthday field must be filled!");
+            setBirthdayErrorMessage('The birthday field must be filled!');
         } else {
-            setBirthdayErrorMessage("");
+            setBirthdayErrorMessage('');
         }
     };
 
@@ -173,12 +191,34 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
     }, [signUpModel]);
     */
 
+    const onSignUpClick = async () => {
+        try {
+            if (signUpModel) await AuthService.Register(signUpModel);
+            setSignUpValidationModel({
+                firstName: '',
+                lastName: '',
+                patronymic: '',
+                birthday: '',
+                password: '',
+                email: '',
+                phoneNumber: '',
+                gender: '',
+            });
+        } catch (error) {
+            // Handle registration error
+            console.log(error);
+        }
+    };
+
     return (
         <ModalWrapper isVisible={isModalOpened} setIsVisible={setIsModalOpened}>
             <div>
                 <div className="d-flex justify-content-between border-bottom mb-2 pb-1">
                     <div className="fs-4">Sign up</div>
-                    <div className="btn btn-close" onClick={() => setIsModalOpened(false)}></div>
+                    <div
+                        className="btn btn-close"
+                        onClick={() => setIsModalOpened(false)}
+                    ></div>
                 </div>
                 <div className="d-flex">
                     <form
@@ -197,42 +237,57 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
 
                             const signUpModel: IRegister = {
                                 email: target.email.value,
-                                pass: target.pass.value,
+                                password: target.pass.value,
                                 firstName: target.firstName.value,
                                 lastName: target.lastName.value,
                                 patronymic: target.patronymic.value,
                                 birthday: target.birthday.value,
+                                phoneNumber: '',
+                                gender: '',
                             };
 
                             setSignUpModel(signUpModel);
-                        }}>
+                        }}
+                    >
                         <div className="mb-3">
-                            {emailErrorMessage && <div className="text-danger">* {emailErrorMessage}</div>}
+                            {emailErrorMessage && (
+                                <div className="text-danger">
+                                    * {emailErrorMessage}
+                                </div>
+                            )}
                             <div>Email</div>
                             <input
                                 type="text"
                                 className="form-control"
                                 name="email"
-                                value={signUpValidationModel["email"]}
+                                value={signUpValidationModel['email']}
                                 onChange={(e) => onEmailChange(e)}
                                 required
                             />
                         </div>
                         <div className="mb-3">
-                            {passErrorMessage && <div className="text-danger">* {passErrorMessage}</div>}
+                            {passErrorMessage && (
+                                <div className="text-danger">
+                                    * {passErrorMessage}
+                                </div>
+                            )}
                             <div>Password</div>
                             <input
                                 type="password"
                                 className="form-control"
                                 name="pass"
-                                value={signUpValidationModel["pass"]}
+                                value={signUpValidationModel['password']}
                                 onChange={(e) => onPasswordChange(e)}
                                 required
                             />
                         </div>
 
                         <div className="mb-3">
-                            {confirmPassErrorMessage && <div className="text-danger">* {confirmPassErrorMessage}</div>}
+                            {confirmPassErrorMessage && (
+                                <div className="text-danger">
+                                    * {confirmPassErrorMessage}
+                                </div>
+                            )}
                             <div>Confirm password</div>
                             <input
                                 type="password"
@@ -244,43 +299,59 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
                             />
                         </div>
                         <div className="mb-3">
-                            {firstNameErrorMessage && <div className="text-danger">* {firstNameErrorMessage}</div>}
+                            {firstNameErrorMessage && (
+                                <div className="text-danger">
+                                    * {firstNameErrorMessage}
+                                </div>
+                            )}
                             <div>First name</div>
                             <input
                                 type="text"
                                 className="form-control"
                                 name="firstName"
-                                value={signUpValidationModel["firstName"]}
+                                value={signUpValidationModel['firstName']}
                                 onChange={(e) => onFirstNameChange(e)}
                                 required
                             />
                         </div>
                         <div className="mb-3">
-                            {lastNameErrorMessage && <div className="text-danger">* {lastNameErrorMessage}</div>}
+                            {lastNameErrorMessage && (
+                                <div className="text-danger">
+                                    * {lastNameErrorMessage}
+                                </div>
+                            )}
                             <div>Last name</div>
                             <input
                                 type="text"
                                 className="form-control"
                                 name="lastName"
-                                value={signUpValidationModel["lastName"]}
+                                value={signUpValidationModel['lastName']}
                                 onChange={(e) => onLastNameChange(e)}
                                 required
                             />
                         </div>
                         <div className="mb-3">
-                            {patronymicErrorMessage && <div className="text-danger">* {patronymicErrorMessage}</div>}
+                            {patronymicErrorMessage && (
+                                <div className="text-danger">
+                                    * {patronymicErrorMessage}
+                                </div>
+                            )}
                             <div>Patronymic</div>
                             <input
                                 type="text"
                                 className="form-control"
                                 name="patronymic"
-                                value={signUpValidationModel["patronymic"]}
+                                value={signUpValidationModel['patronymic']}
                                 onChange={(e) => onPatronymicChange(e)}
                                 required
                             />
                         </div>
                         <div className="mb-3">
-                            {birthdayErrorMessage && <div className="text-danger">* {birthdayErrorMessage}</div>}
+                            {birthdayErrorMessage && (
+                                <div className="text-danger">
+                                    * {birthdayErrorMessage}
+                                </div>
+                            )}
                             <div>Date of birth</div>
                             <input
                                 type="date"
@@ -291,19 +362,30 @@ const Register = ({ isModalOpened, setIsModalOpened }: RegisterProps): JSX.Eleme
                             />
                         </div>
 
-                        <button disabled={!formIsValid} type="submit" className="btn btn-primary">
+                        <button
+                            disabled={!formIsValid}
+                            type="submit"
+                            className="btn btn-primary"
+                            onClick={onSignUpClick}
+                        >
                             Sign up
                         </button>
                     </form>
                     <div className="d-flex flex-column justify-content-center w-50 align-items-center">
-                        <div className="text-black-50 fw-bold mb-1">Sign in as a user</div>
-                        <div style={{ minWidth: "150px" }} className="btn d-flex border rounded-2 px-3 py-2 bg-light">
+                        <div className="text-black-50 fw-bold mb-1">
+                            Sign in as a user
+                        </div>
+                        <div
+                            style={{ minWidth: '150px' }}
+                            className="btn d-flex border rounded-2 px-3 py-2 bg-light"
+                        >
                             <img className="me-1" src={google} width={25} />
                             <div>Google</div>
                         </div>
                         <div
-                            style={{ minWidth: "150px" }}
-                            className="btn d-flex border rounded-2 px-3 py-2 bg-light mt-1">
+                            style={{ minWidth: '150px' }}
+                            className="btn d-flex border rounded-2 px-3 py-2 bg-light mt-1"
+                        >
                             <img className="me-1" src={facebook} width={25} />
                             <div className="">Facebook</div>
                         </div>

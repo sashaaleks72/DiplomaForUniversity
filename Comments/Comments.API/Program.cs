@@ -39,6 +39,16 @@ builder.Services.AddSwaggerGen(opts =>
     opts.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials()
+            .WithOrigins("http://localhost:3000");
+    });
+});
 builder.Services.AddScoped<IDbContextWrapper<ApplicationDbContext>, DbContextWrapper<ApplicationDbContext>>();
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
@@ -52,7 +62,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
-
+app.UseCors("CorsPolicy");
 app.MapControllers();
 
 app.Run();

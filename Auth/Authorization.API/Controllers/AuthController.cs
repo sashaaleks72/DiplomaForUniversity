@@ -27,8 +27,8 @@ namespace Authorization.API.Controllers
 
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(UserEntity), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UserEntity>> Register(RegistrationModel userToRegister)
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<string>> Register(RegistrationModel userToRegister)
         {
             await _authService.Register(userToRegister);
             return Ok("registered");
@@ -55,7 +55,7 @@ namespace Authorization.API.Controllers
 
         [HttpGet, Authorize]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ProfileResponseModel), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<ProfileResponseModel>> GetProfile()
         {
             var profile = await _authService.GetProfile();
