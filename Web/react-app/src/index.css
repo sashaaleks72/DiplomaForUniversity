@@ -1,0 +1,21 @@
+/* Ширина и цвет полосы прокрутки */
+::-webkit-scrollbar {
+    width: 8px;
+
+}
+
+/* Фон полосы прокрутки */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Цвет полосы прокрутки */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Цвет полосы прокрутки при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

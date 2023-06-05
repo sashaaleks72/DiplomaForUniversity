@@ -11,11 +11,11 @@ namespace Authorization.API.MapConfigs
         public AuthProfile() 
         {
             CreateMap<RegistrationModel, UserEntity>()
-                .ForMember(dest => dest.Birthday, opt => opt.MapFrom(s => DateTime.ParseExact(s.Birthday, "dd.MM.yyyy", CultureInfo.InvariantCulture)))
+                .ForMember(dest => dest.Birthday, opt => opt.MapFrom(s => DateTime.ParseExact(s.Birthday, "yyyy-MM-dd", CultureInfo.InvariantCulture)))
                 .ForMember(dest => dest.RefreshToken, opt => opt.MapFrom(s => ""));
 
             CreateMap<UserEntity, ProfileResponseModel>()
-                .ForMember(dest => dest.Birthday, opt => opt.MapFrom(s => s.Birthday.ToString("dd.MM.yyyy")))
+                .ForMember(dest => dest.Birthday, opt => opt.MapFrom(s => s.Birthday.ToString("yyyy-MM-dd")))
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(s => s.Id));
         }
     }
