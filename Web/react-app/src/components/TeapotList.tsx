@@ -1,5 +1,8 @@
+import AuthService from '../API/AuthService';
+import IRegister from '../models/IRegister';
 import ITeapot from '../models/ITeapot';
 import TeapotItem from './TeapotItem';
+import { useEffect } from 'react';
 
 interface TeapotListProps {
     teapots: ITeapot[] | undefined;

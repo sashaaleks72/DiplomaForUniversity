@@ -6,7 +6,6 @@ import { useFetching } from '../hooks/useFetching';
 import ITeapot from '../models/ITeapot';
 import { getQuantityOfPages } from '../utils/pagination';
 import { IPagination } from '../models/IPagination';
-
 const HomePage = (): JSX.Element => {
     const [teapots, setTeapots] = useState<IPagination<ITeapot> | null>(null);
     const [sort, setSort] = useState<string>('');
