@@ -3,6 +3,8 @@ import ITeapot from '../models/ITeapot';
 import IComment from '../models/IComment';
 import { catalogUrl } from './ApiUrls';
 import { IPagination } from '../models/IPagination';
+import user from '../store/user';
+import ITeapotRequest from '../models/ITeapotRequest';
 
 class TeapotsService {
     static async getTeapots(
@@ -18,7 +20,7 @@ class TeapotsService {
         const order = sortArr[1] || "-";
 
         const recievedTeapots: IPagination<ITeapot> = await axios
-            .get(`${catalogUrl}/teapots?page=${page}&limit=${limit}&sort=${sort}&order=${order}`)
+            .get(`${catalogUrl}/Teapots?page=${page}&limit=${limit}&sort=${sort}&order=${order}`)
             .then((response) => response.data);
 
         return recievedTeapots;
@@ -26,7 +28,7 @@ class TeapotsService {
 
     static async getTeapotById(teapotId: string | undefined) {
         const recievedTeapot: ITeapot = await axios
-            .get(`${catalogUrl}/teapots/${teapotId}`)
+            .get(`${catalogUrl}/Teapot/${teapotId}`)
             .then((response) => response.data);
 
         return recievedTeapot;
@@ -34,27 +36,36 @@ class TeapotsService {
 
     static async changeTeapotById(
         teapotId: string,
-        changedTeapot: ITeapot,
+        changedTeapot: ITeapotRequest,
     ): Promise<void> {
         await axios({
-            url: `${catalogUrl}/teapots/${teapotId}`,
+            url: `${catalogUrl}/Edit/${teapotId}`,
             method: 'PUT',
             data: changedTeapot,
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         });
     }
 
     static async addNewTeapot(newTeapot: ITeapot): Promise<void> {
         await axios({
-            url: `${catalogUrl}/teapots`,
+            url: `${catalogUrl}/Add`,
             method: 'POST',
             data: newTeapot,
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         });
     }
 
     static async delTeapotById(teapotId: string): Promise<void> {
         await axios({
-            url: `${catalogUrl}/teapots/${teapotId}`,
+            url: `${catalogUrl}/Delete/${teapotId}`,
             method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         });
     }
 
@@ -76,6 +87,9 @@ class TeapotsService {
             url: `${catalogUrl}/comments`,
             method: 'post',
             data: comment,
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         });
     }
 

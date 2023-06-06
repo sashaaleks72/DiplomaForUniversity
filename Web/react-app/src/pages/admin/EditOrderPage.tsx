@@ -6,6 +6,7 @@ import CustomSelect from "../../components/UI/CustomSelect/CustomSelect";
 import ISelectTuple from "../../models/ISelectTuple";
 import NovaPostService from "../../API/NovaPostService";
 import user from "../../store/user";
+import IOrderUpdate from "../../models/IOrderUpdate";
 
 const EditOrderPage = (): JSX.Element => {
     const { id } = useParams();
@@ -83,7 +84,7 @@ const EditOrderPage = (): JSX.Element => {
     }, [settlementRef]);
 
     const [options] = useState<ISelectTuple[]>([
-        { title: "Pending", value: "Waiting for accept" },
+        { title: "Pending", value: "Pending" },
         { title: "Accepted", value: "Accepted" },
         { title: "Rejected", value: "Rejected" },
         { title: "Delivered", value: "Delivered" },
@@ -146,20 +147,14 @@ const EditOrderPage = (): JSX.Element => {
                             orderStatus: { value: string };
                         };
 
-                        const preparedOrder: IOrder = {
-                            id: order.id!,
+                        const preparedOrder: IOrderUpdate = {
                             firstName: target.firstName.value,
                             lastName: target.lastName.value,
                             patronymic: target.patronymic.value,
-                            email: order.email,
                             city: selectedCity,
                             department: department ?? "",
                             deliveryAddress: deliveryAddress ?? "",
                             orderStatus: selectedValue,
-                            cartItems: order.cartItems,
-                            orderDate: order.orderDate,
-                            totalSum: order.totalSum,
-                            userId: (await user.getProfile()!).userId,
                         };
 
                         await OrderService.changeOrderById(order.id!, preparedOrder);

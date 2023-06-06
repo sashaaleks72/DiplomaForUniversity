@@ -12,7 +12,7 @@ const OrderAdminList = (): JSX.Element => {
     const [orders, setOrders] = useState<IOrder[]>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [options] = useState<ISelectTuple[]>([
-        { title: "Pending", value: "Waiting for accept" },
+        { title: "Pending", value: "Pending" },
         { title: "Accepted", value: "Accepted" },
         { title: "Rejected", value: "Rejected" },
         { title: "Delivered", value: "Delivered" },

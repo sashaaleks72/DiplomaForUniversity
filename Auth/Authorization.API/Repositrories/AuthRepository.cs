@@ -29,7 +29,7 @@ namespace Authorization.API.Repositrories
             return receivedUser;
         }
 
-        public async Task<bool> UpdateUserByEmail(string email, UserEntity updatedUser)
+        public async Task<UserEntity?> UpdateUserByEmail(string email, UserEntity updatedUser)
         {
             int quantityOfUpdatedRows = 0;
             var receivedUser = await _dbContext.Users.SingleOrDefaultAsync(u => u.Email == email);
@@ -53,7 +53,7 @@ namespace Authorization.API.Repositrories
                 quantityOfUpdatedRows = await _dbContext.SaveChangesAsync();
             }
             
-            return quantityOfUpdatedRows > 0;
+            return quantityOfUpdatedRows > 0 ? receivedUser : null;
         }
     }
 }

@@ -22,11 +22,19 @@ namespace Orders.API.Providers
             return receivedOrder;
         }
 
-        public async Task<List<OrderEntity>> GetOrders(Guid? userId)
+        public async Task<List<OrderEntity>> GetOrders(Guid? userId, string? status)
         {
-            var query = userId != null 
-                ? _dbContext.Orders.Where(o => o.UserId == userId).AsQueryable()
-                : _dbContext.Orders.AsQueryable();
+            var query = _dbContext.Orders.AsQueryable(); 
+
+            if (userId != null)
+            {
+                query = _dbContext.Orders.Where(o => o.UserId == userId).AsQueryable();
+            }
+
+            if (status != null)
+            {
+                query = query.Where(o => o.OrderStatus.StatusName == status).AsQueryable();
+            }
 
             var receivedOrders = await query.ToListAsync();
 

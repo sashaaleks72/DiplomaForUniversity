@@ -45,11 +45,11 @@ namespace Orders.API.Services
             });
         }
 
-        public async Task<List<OrderResponse>> GetOrders(Guid? userId)
+        public async Task<List<OrderResponse>> GetOrders(Guid? userId, string? status)
         {
             return await ExecuteSafeAsync(async () =>
             {
-                var receivedOrders = await _orderProvider.GetOrders(userId);
+                var receivedOrders = await _orderProvider.GetOrders(userId, status);
                 var ordersResponses = _mapper.Map<List<OrderResponse>>(receivedOrders);
 
                 for (int i = 0; i < ordersResponses.Count; i++)

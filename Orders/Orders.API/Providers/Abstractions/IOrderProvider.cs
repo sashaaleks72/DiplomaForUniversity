@@ -8,7 +8,7 @@ namespace Orders.API.Providers.Abstractions
     {
         public Task<bool> AddOrder(OrderEntity order, List<OrderProductEntity> orderProducts);
 
-        public Task<List<OrderEntity>> GetOrders(Guid? userId);
+        public Task<List<OrderEntity>> GetOrders(Guid? userId, string? status);
 
         public Task<OrderEntity?> GetOrderById(int orderId);
 

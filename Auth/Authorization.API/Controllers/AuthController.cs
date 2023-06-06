@@ -53,6 +53,16 @@ namespace Authorization.API.Controllers
             return Ok(token);
         }
 
+        [HttpPut, Authorize]
+        [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ProfileResponseModel), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<ProfileResponseModel>> UpdateProfile(UpdateProfileModel updatedProfile)
+        {
+            var response = await _authService.UpdateUser(updatedProfile);
+            return Ok(response);
+        }
+
         [HttpGet, Authorize]
         [ProducesResponseType((int)HttpStatusCode.Unauthorized)]
         [ProducesResponseType(typeof(ProfileResponseModel), (int)HttpStatusCode.OK)]

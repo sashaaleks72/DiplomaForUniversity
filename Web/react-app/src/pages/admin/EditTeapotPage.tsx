@@ -2,12 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import ITeapot from "../../models/ITeapot";
 import { useEffect, useState } from "react";
 import TeapotsService from "../../API/TeapotsService";
+import ITeapotRequest from "../../models/ITeapotRequest";
 
 const EditTeapotPage = (): JSX.Element => {
     const { id } = useParams();
 
-    const [teapot, setTeapot] = useState<ITeapot>({
-        id: "",
+    const [teapot, setTeapot] = useState<ITeapotRequest>({
         name: "",
         price: 0,
         quantity: 0,
@@ -20,8 +20,7 @@ const EditTeapotPage = (): JSX.Element => {
         power: 0,
         functions: "",
         weight: 0,
-        company: "",
-        stockAvailable: false,
+        companyId: 0,
     });
 
     const navigate = useNavigate();
@@ -29,7 +28,7 @@ const EditTeapotPage = (): JSX.Element => {
     useEffect(() => {
         const init = async () => {
             const teapot: ITeapot = await TeapotsService.getTeapotById(id);
-            setTeapot(teapot);
+            setTeapot(teapot as unknown as ITeapotRequest);
         };
 
         init();
@@ -59,8 +58,7 @@ const EditTeapotPage = (): JSX.Element => {
                             company: { value: string };
                         };
 
-                        const preparedTeapot: ITeapot = {
-                            id: teapot.id!,
+                        const preparedTeapot: ITeapotRequest = {
                             name: target.name.value,
                             price: target.price.value,
                             quantity: target.quantity.value,
@@ -73,11 +71,10 @@ const EditTeapotPage = (): JSX.Element => {
                             power: target.power.value,
                             functions: target.functions.value,
                             weight: target.weight.value,
-                            company: target.company.value,
-                            stockAvailable: Number(target.quantity.value) ? true : false,
+                            companyId: +target.company.value,
                         };
 
-                        await TeapotsService.changeTeapotById(teapot.id!, preparedTeapot);
+                        await TeapotsService.changeTeapotById(id!, preparedTeapot);
                         navigate("/admin/catalog");
                     }}>
                     <div className="d-flex">
@@ -192,7 +189,7 @@ const EditTeapotPage = (): JSX.Element => {
                                     className="form-control"
                                     name="company"
                                     required
-                                    defaultValue={teapot.company}
+                                    defaultValue={teapot.companyId}
                                 />
                             </div>
 

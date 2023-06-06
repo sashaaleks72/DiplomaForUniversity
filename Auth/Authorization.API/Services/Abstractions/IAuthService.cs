@@ -7,6 +7,8 @@ namespace Authorization.API.Services.Abstractions
     {
         public Task Register(RegistrationModel userToRegister);
 
+        public Task<ProfileResponseModel> UpdateUser(UpdateProfileModel userToUpdate);
+
         public Task<string> Login(LoginModel credentials);
 
         public Task<string> RefreshToken();

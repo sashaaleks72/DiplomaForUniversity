@@ -1,9 +1,8 @@
-interface IPersonInfo {
-    userId: string
+interface IProfileRequest {
     firstName: string;
     lastName: string;
     patronymic: string;
     birthday: string;
 }
 
-export default IPersonInfo;
+export default IProfileRequest;

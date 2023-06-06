@@ -33,9 +33,9 @@ namespace Orders.API.Controllers
         [Authorize]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(List<OrderResponse>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<List<OrderResponse>>> GetOrders(Guid? userId)
+        public async Task<ActionResult<List<OrderResponse>>> GetOrders(Guid? userId, string? status)
         { 
-            var receivedOrders = await _orderService.GetOrders(userId);
+            var receivedOrders = await _orderService.GetOrders(userId, status);
             return Ok(receivedOrders);
         }
 

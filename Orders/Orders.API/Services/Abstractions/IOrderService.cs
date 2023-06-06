@@ -7,7 +7,7 @@ namespace Orders.API.Services.Abstractions
     {
         public Task MakeAnOrder(OrderRequest order);
 
-        public Task<List<OrderResponse>> GetOrders(Guid? userId);
+        public Task<List<OrderResponse>> GetOrders(Guid? userId, string? status);
 
         public Task<OrderResponse?> GetOrderById(int orderId);
 

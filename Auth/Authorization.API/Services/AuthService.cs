@@ -6,6 +6,7 @@ using AutoMapper;
 using Data.Entities;
 using Infrastructure.Exceptions;
 using Microsoft.IdentityModel.Tokens;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
 using System.Security.Claims;
@@ -26,6 +27,33 @@ namespace Authorization.API.Services
             _authRepository = authRepository;
             _configuration = configuration;
             _contextAccessor = contextAccessor;
+        }
+
+        public async Task<ProfileResponseModel> UpdateUser(UpdateProfileModel userToUpdate) 
+        {
+            UserEntity? updatedUserToDb = null;
+
+            var authorizedUserEmail = _contextAccessor.HttpContext!.User.Claims.SingleOrDefault(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress")!.Value;
+            var receivedUser = await _authRepository.GetUserByEmail(authorizedUserEmail);
+
+            if (receivedUser != null)
+            {
+                receivedUser.Birthday = DateTime.ParseExact(userToUpdate.Birthday, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                receivedUser.FirstName = userToUpdate.FirstName;
+                receivedUser.LastName = userToUpdate.LastName;
+                receivedUser.Patronymic = userToUpdate.Patronymic;
+
+                updatedUserToDb = await _authRepository.UpdateUserByEmail(authorizedUserEmail, receivedUser);
+            }
+
+            if (updatedUserToDb == null)
+            {
+                throw new BusinessException("User hasn't been updated by some reason!");
+            }
+
+            var response = _mapper.Map<ProfileResponseModel>(updatedUserToDb);
+
+            return response;
         }
 
         public async Task<ProfileResponseModel> GetProfile()
@@ -78,7 +106,7 @@ namespace Authorization.API.Services
             var token = CreateToken(receivedUser);
 
             var refreshToken = GenerateRefreshToken();
-            SetRefreshToken(refreshToken, receivedUser);
+            await SetRefreshToken(refreshToken, receivedUser);
 
             return token;
         }
@@ -101,7 +129,7 @@ namespace Authorization.API.Services
             string token = CreateToken(receivedUser);
 
             var newRefreshToken = GenerateRefreshToken();
-            SetRefreshToken(newRefreshToken, receivedUser);
+            await SetRefreshToken(newRefreshToken, receivedUser);
 
             return token;
         }
@@ -118,7 +146,7 @@ namespace Authorization.API.Services
             return refreshToken;
         }
 
-        private void SetRefreshToken(RefreshToken newRefreshToken, UserEntity user)
+        private async Task SetRefreshToken(RefreshToken newRefreshToken, UserEntity user)
         {
             var cookieOptions = new CookieOptions
             {
@@ -131,7 +159,7 @@ namespace Authorization.API.Services
             user.TokenCreated = newRefreshToken.Created;
             user.TokenExpires = newRefreshToken.Expires;
 
-            _authRepository.UpdateUserByEmail(user.Email, user);
+            await _authRepository.UpdateUserByEmail(user.Email, user);
         }
 
         private string CreateToken(UserEntity user)

@@ -3,6 +3,7 @@ import IOrder from "../models/IOrder";
 import { ordersUrl } from "./ApiUrls";
 import user from "../store/user";
 import IOrderRequest from "../models/IOrderRequest";
+import IOrderUpdate from "../models/IOrderUpdate";
 
 const apiUrl: string = "http://localhost:3001";
 
@@ -21,20 +22,21 @@ class OrderService {
     }
 
     static async getOrders(userId?: string, orderStatus?: string): Promise<IOrder[]> {
-        const receivedOrders = await axios({
-            url: `${ordersUrl}/GetOrders?${userId ? `userId=${userId}` : ""}${orderStatus ? `&orderStatus=${orderStatus}` : ""}`,
+        const response = await axios({
+            url: `${ordersUrl}/GetOrders?${userId ? `userId=${userId}` : ""}${orderStatus ? `&status=${orderStatus}` : ""}`,
             method: "get",
             headers: {
                 Authorization: `Bearer ${user.getToken()}`,
             },
-        }).then(response => response.data);
+        }).then(response => response);
 
-        return receivedOrders;
+        console.log(response)
+        return response.data;
     }
 
     static async getDeliveredOrderedProductsByUserId(userId: string) {
         const receivedOrders: IOrder[] = await axios({
-            url: `${ordersUrl}/orders?userId=${userId}`,
+            url: `${ordersUrl}/GetOrders?userId=${userId}`,
             method: "get",
             headers: {
                 Authorization: `Bearer ${user.getToken()}`,
@@ -48,7 +50,7 @@ class OrderService {
 
     static async getOrderById(orderId: string): Promise<IOrder> {
         const receivedOrder = await axios({
-            url: `${ordersUrl}/orders/${orderId}`,
+            url: `${ordersUrl}/GetOrderById/${orderId}`,
             method: "get",
             headers: {
                 Authorization: `Bearer ${user.getToken()}`,
@@ -58,9 +60,9 @@ class OrderService {
         return receivedOrder;
     }
 
-    static async changeOrderById(orderId: string, order: IOrder): Promise<void> {
+    static async changeOrderById(orderId: string, order: IOrderUpdate): Promise<void> {
         await axios({
-            url: `${apiUrl}/orders/${orderId}`,
+            url: `${ordersUrl}/UpdateOrder/${orderId}`,
             method: "put",
             data: order,
             headers: {

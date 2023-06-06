@@ -6,21 +6,22 @@ import IPersonInfo from '../models/IPersonInfo';
 import User from '../store/user';
 import { response } from 'express';
 import user from '../store/user';
+import IProfileRequest from '../models/IProfileRequest';
 
 class AuthService {
-    static async Login(loginModel: ILogin): Promise<string> {
-        let errorMsg: string = "";
+    static async Login(loginModel: ILogin): Promise<{ token: string, error: string }> {
+        const responseData = {
+            token: "",
+            error: ""
+        }
 
         const token: string = await axios({
             url: `${authUrl}/login`,
             method: 'POST',
             data: loginModel,
-        }).then((response) => response.data).catch(err => errorMsg = err.response.data.detail);
+        }).then((response) => responseData.token = response.data).catch(err => responseData.error = err.response.data.detail);
 
-        user.setToken(token);
-        user.isAuth = true;
-
-        return errorMsg;
+        return responseData;
     }
 
     static async Register(registerModel: IRegister): Promise<string> {
@@ -44,10 +45,23 @@ class AuthService {
     }
 
     static async GetProfile(): Promise<IPersonInfo> {
-        const profile: IPersonInfo = await axios.get(`${authUrl}/getProfile`, {
+        const profile: IPersonInfo = await axios.get(`${authUrl}/GetProfile`, {
             headers: {
                 Authorization: `Bearer ${user.getToken()}`,
             },
+        }).then((response) => response.data);
+
+        return profile;
+    }
+
+    static async UpdateProfile(updatedProfile: IProfileRequest): Promise<IPersonInfo> {
+        const profile: IPersonInfo = await axios({
+            url: `${authUrl}/UpdateProfile`,
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
+            data: updatedProfile,
         }).then((response) => response.data);
 
         return profile;

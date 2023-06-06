@@ -19,8 +19,6 @@ namespace Catalog.Host.MapConfigs
                 .ForMember(dest => dest.ImgName, opt => opt.MapFrom(s => s.Teapot.ImgName))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(s => s.Teapot.Name));
 
-            CreateMap<OrderProductEntity, CartItemResponse>();
-
             CreateMap<OrderRequest, OrderEntity>()
                 .ForMember(dest => dest.OrderDate, opt => opt.MapFrom(s => DateTime.UtcNow));
             CreateMap<UpdateOrderRequest, OrderEntity>()

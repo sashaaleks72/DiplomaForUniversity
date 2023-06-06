@@ -31,7 +31,7 @@ namespace Catalog.Host.ResponseModels
 
         public double Weight { get; set; }
 
-        public object Company { get; set; } = null!;
+        public string Company { get; set; } = string.Empty;
 
         public bool StockAvailable
         {

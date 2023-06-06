@@ -6,6 +6,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import AuthService from "../API/AuthService";
 import IRegister from "../models/IRegister";
 import ILogin from "../models/ILogin";
+import user from "../store/user";
 
 interface LoginProps {
     isOpened: boolean;
@@ -30,7 +31,7 @@ const Login = ({ isOpened, setIsOpened }: LoginProps): JSX.Element => {
 
     const onSubmit = async (data: FieldValues) => {
         var loginData = data as ILogin;
-        const err = await AuthService.Login(loginData);
+        const err = await user.login(loginData);
 
         if (err) {
             setErrorMsg(err);

@@ -7,6 +7,6 @@ namespace Authorization.API.Repositrories.Abstractions
     {
         public Task<bool> AddUser(UserEntity user);
         public Task<UserEntity?> GetUserByEmail(string email);
-        public Task<bool> UpdateUserByEmail(string email, UserEntity updatedUser);
+        public Task<UserEntity?> UpdateUserByEmail(string email, UserEntity updatedUser);
     }
 }

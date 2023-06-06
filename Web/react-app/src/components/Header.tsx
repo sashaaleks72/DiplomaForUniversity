@@ -19,8 +19,6 @@ const Header = observer((): JSX.Element => {
     const [isLoginClicked, setIsLoginClicked] = useState<boolean>(false);
     const [isRegisterClicked, setIsRegisterClicked] = useState<boolean>(false);
 
-    const [isAdmin, setIsAdmin] = useState<boolean>(true);
-
     const navigate = useNavigate();
 
     const navLinkClasses = ({ isActive }: NavLinkParametr) =>
@@ -32,7 +30,7 @@ const Header = observer((): JSX.Element => {
                 <div className="container">
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 align-items-center justify-content-center mb-md-0">
-                            {isAdmin && (
+                            {user.isAdmin && (
                                 <li className="fs-5">
                                     <NavLink to={"/admin/catalog"} className="nav-link px-2 text-white">
                                         Control Panel
@@ -110,7 +108,12 @@ const Header = observer((): JSX.Element => {
                                         <hr className="dropdown-divider" />
                                     </li>
                                     <li>
-                                        <button className="dropdown-item" onClick={() => user.signOut()}>
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                                user.signOut();
+                                                navigate("/catalog");
+                                            }}>
                                             Sign out
                                         </button>
                                     </li>
