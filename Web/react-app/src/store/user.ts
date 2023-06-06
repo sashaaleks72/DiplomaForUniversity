@@ -1,5 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import IPersonInfo from '../models/IPersonInfo';
+import AuthService from '../API/AuthService';
 
 class User {
     isAuthorized: boolean = false;
@@ -32,15 +33,15 @@ class User {
         return this.jwtToken;
     }
 
-    setProfile(personInfo: IPersonInfo): void {
-        this.profile = personInfo;
-    }
+    async getProfile(): Promise<IPersonInfo> {
+        if (!this.profile) {
+            this.profile = await AuthService.GetProfile();
+        }
 
-    getProfile(): IPersonInfo | undefined {
         return this.profile;
     }
 
-    singOut(): void {
+    signOut(): void {
         this.jwtToken = "";
         this.isAuthorized = false;
         localStorage.removeItem('token');

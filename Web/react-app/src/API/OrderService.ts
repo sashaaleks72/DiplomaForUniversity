@@ -2,11 +2,14 @@ import axios from "axios";
 import IOrder from "../models/IOrder";
 import { ordersUrl } from "./ApiUrls";
 import user from "../store/user";
+import IOrderRequest from "../models/IOrderRequest";
 
 const apiUrl: string = "http://localhost:3001";
 
 class OrderService {
-    static async doCheckout(order: IOrder): Promise<void> {
+    static async doCheckout(order: IOrderRequest): Promise<void> {
+        console.log(order);
+
         await axios({
             url: `${ordersUrl}/AddOrder`,
             method: "post",

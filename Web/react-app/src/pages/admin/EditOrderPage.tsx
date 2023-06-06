@@ -5,6 +5,7 @@ import OrderService from "../../API/OrderService";
 import CustomSelect from "../../components/UI/CustomSelect/CustomSelect";
 import ISelectTuple from "../../models/ISelectTuple";
 import NovaPostService from "../../API/NovaPostService";
+import user from "../../store/user";
 
 const EditOrderPage = (): JSX.Element => {
     const { id } = useParams();
@@ -101,6 +102,7 @@ const EditOrderPage = (): JSX.Element => {
         orderStatus: "",
         orderDate: "",
         totalSum: 0,
+        userId: "",
     });
 
     useEffect(() => {
@@ -157,6 +159,7 @@ const EditOrderPage = (): JSX.Element => {
                             cartItems: order.cartItems,
                             orderDate: order.orderDate,
                             totalSum: order.totalSum,
+                            userId: (await user.getProfile()!).userId,
                         };
 
                         await OrderService.changeOrderById(order.id!, preparedOrder);

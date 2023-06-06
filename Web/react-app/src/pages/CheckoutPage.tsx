@@ -6,6 +6,8 @@ import NovaPostService from "../API/NovaPostService";
 import CustomSelect from "../components/UI/CustomSelect/CustomSelect";
 import IOrder from "../models/IOrder";
 import OrderService from "../API/OrderService";
+import user from "../store/user";
+import IOrderRequest from "../models/IOrderRequest";
 
 const CheckoutPage = observer((): JSX.Element => {
     const [selectedCity, setSelectedCity] = useState<string>("");
@@ -14,7 +16,7 @@ const CheckoutPage = observer((): JSX.Element => {
     const [departments, setDepartments] = useState<string[]>([]);
     const [department, setDepartment] = useState<string>("");
     const [isNotFoundCity, setIsNotFoundCity] = useState<boolean>(false);
-    const [order, setOrder] = useState<IOrder>({
+    const [order, setOrder] = useState<IOrderRequest>({
         firstName: "",
         lastName: "",
         patronymic: "",
@@ -23,9 +25,8 @@ const CheckoutPage = observer((): JSX.Element => {
         department: "",
         deliveryAddress: "",
         cartItems: [],
-        orderStatus: "",
-        orderDate: "",
         totalSum: 0,
+        userId: "",
     });
 
     const [defaultCities] = useState([
@@ -133,7 +134,7 @@ const CheckoutPage = observer((): JSX.Element => {
         <div className="mt-3 container">
             <form
                 className="row g-5"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                     e.preventDefault();
 
                     const currentDate = new Date();
@@ -161,6 +162,7 @@ const CheckoutPage = observer((): JSX.Element => {
                             currentDate.getMonth() + 1
                         )}.${currentDate.getFullYear()}`,
                         totalSum: cart.totalPrice,
+                        userId: (await user.getProfile()!).userId,
                     };
 
                     setOrder(newOrder);

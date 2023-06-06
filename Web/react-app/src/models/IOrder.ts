@@ -13,6 +13,7 @@ interface IOrder {
     orderStatus: string;
     orderDate: string;
     totalSum: number;
+    userId: string;
 }
 
 export default IOrder;

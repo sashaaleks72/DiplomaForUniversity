@@ -43,14 +43,14 @@ class AuthService {
         user.setToken(newToken);
     }
 
-    static async GetProfile(): Promise<void> {
+    static async GetProfile(): Promise<IPersonInfo> {
         const profile: IPersonInfo = await axios.get(`${authUrl}/getProfile`, {
             headers: {
                 Authorization: `Bearer ${user.getToken()}`,
             },
-        });
+        }).then((response) => response.data);
 
-        user.setProfile(profile);
+        return profile;
     }
 }
 

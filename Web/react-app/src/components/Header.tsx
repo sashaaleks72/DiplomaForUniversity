@@ -110,7 +110,7 @@ const Header = observer((): JSX.Element => {
                                         <hr className="dropdown-divider" />
                                     </li>
                                     <li>
-                                        <button className="dropdown-item" onClick={() => user.singOut()}>
+                                        <button className="dropdown-item" onClick={() => user.signOut()}>
                                             Sign out
                                         </button>
                                     </li>
