@@ -1,21 +1,29 @@
 import axios from "axios";
 import IOrder from "../models/IOrder";
+import { ordersUrl } from "./ApiUrls";
+import user from "../store/user";
 
 const apiUrl: string = "http://localhost:3001";
 
 class OrderService {
     static async doCheckout(order: IOrder): Promise<void> {
         await axios({
-            url: `${apiUrl}/orders/`,
+            url: `${ordersUrl}/AddOrder`,
             method: "post",
-            data: order
+            data: order,
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         })
     }
 
     static async getOrders(userId?: string, orderStatus?: string): Promise<IOrder[]> {
         const receivedOrders = await axios({
-            url: `${apiUrl}/orders?${userId ? `userId=${userId}` : ""}${orderStatus ? `&orderStatus=${orderStatus}` : ""}`,
+            url: `${ordersUrl}/GetOrders?${userId ? `userId=${userId}` : ""}${orderStatus ? `&orderStatus=${orderStatus}` : ""}`,
             method: "get",
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         }).then(response => response.data);
 
         return receivedOrders;
@@ -23,8 +31,11 @@ class OrderService {
 
     static async getDeliveredOrderedProductsByUserId(userId: string) {
         const receivedOrders: IOrder[] = await axios({
-            url: `${apiUrl}/orders?userId=${userId}`,
+            url: `${ordersUrl}/orders?userId=${userId}`,
             method: "get",
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         }).then(response => response.data);
 
         const deliveredProducts = receivedOrders.map(order => order.cartItems.map(product => product));
@@ -34,8 +45,11 @@ class OrderService {
 
     static async getOrderById(orderId: string): Promise<IOrder> {
         const receivedOrder = await axios({
-            url: `${apiUrl}/orders/${orderId}`,
+            url: `${ordersUrl}/orders/${orderId}`,
             method: "get",
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         }).then(response => response.data);
 
         return receivedOrder;
@@ -45,7 +59,10 @@ class OrderService {
         await axios({
             url: `${apiUrl}/orders/${orderId}`,
             method: "put",
-            data: order
+            data: order,
+            headers: {
+                Authorization: `Bearer ${user.getToken()}`,
+            },
         });
     }
 }

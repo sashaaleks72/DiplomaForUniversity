@@ -23,10 +23,10 @@ namespace Catalog.Host.Services
             _logger = logger;
         }
 
-        public async Task<PaginatedItemsResponse<TeapotResponse>> GetTeapotsAsync(int page, int limit)
+        public async Task<PaginatedItemsResponse<TeapotResponse>> GetTeapotsAsync(string sort, string order, int page, int limit)
         {
             return await ExecuteSafeAsync(async () => {
-                var recievedTeapots = await _catalogItemProvider.GetTeapotsAsync(page, limit);
+                var recievedTeapots = await _catalogItemProvider.GetTeapotsAsync(sort, order, page, limit);
 
                 if (recievedTeapots.Data.Count() == 0)
                 {

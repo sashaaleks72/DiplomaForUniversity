@@ -3,6 +3,7 @@ using Catalog.Host.Services.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Data.Entities;
 using Data;
+using Modules.Test.Extensions;
 
 namespace Catalog.Host.Providers
 {
@@ -15,11 +16,18 @@ namespace Catalog.Host.Providers
             _dbContext = dbContextWrapper.DbContext;
         }
 
-        public async Task<PaginatedItems<TeapotEntity>> GetTeapotsAsync(int page, int limit)
+        public async Task<PaginatedItems<TeapotEntity>> GetTeapotsAsync(string sort, string order, int page, int limit)
         {
             var totalCount = await _dbContext.Teapots.CountAsync();
 
-            var recievedTeapots = await _dbContext.Teapots
+            var query = _dbContext.Teapots.AsQueryable();
+
+            if (sort != null && order != null)
+            {
+                query = query.OrderByParams(sort, order);
+            }
+
+            var recievedTeapots = await query
                 .Skip((page - 1) * limit)
                 .Take(limit)
                 .ToListAsync();

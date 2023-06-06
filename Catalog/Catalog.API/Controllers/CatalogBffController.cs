@@ -20,9 +20,9 @@ namespace Catalog.Host.Controllers
         [HttpGet]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(PaginatedItemsResponse<TeapotResponse>), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<PaginatedItemsResponse<TeapotResponse>>> Teapots([FromQuery] int page = 1, [FromQuery] int limit = 6)
+        public async Task<ActionResult<PaginatedItemsResponse<TeapotResponse>>> Teapots(string sort = "-", string order = "-", int page = 1, int limit = 6)
         {
-            var teapots = await _catalogService.GetTeapotsAsync(page, limit);
+            var teapots = await _catalogService.GetTeapotsAsync(sort, order, page, limit);
             return Ok(teapots);
         }
 

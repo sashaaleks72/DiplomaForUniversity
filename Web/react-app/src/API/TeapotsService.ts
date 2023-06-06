@@ -14,8 +14,11 @@ class TeapotsService {
 
         if (sortOptions) sortArr = sortOptions.split(':');
 
+        const sort = sortArr[0] || "-";
+        const order = sortArr[1] || "-";
+
         const recievedTeapots: IPagination<ITeapot> = await axios
-            .get(`${catalogUrl}/teapots?page=${page}&limit=${limit}`)
+            .get(`${catalogUrl}/teapots?page=${page}&limit=${limit}&sort=${sort}&order=${order}`)
             .then((response) => response.data);
 
         return recievedTeapots;

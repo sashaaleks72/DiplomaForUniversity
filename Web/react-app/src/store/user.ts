@@ -2,15 +2,25 @@ import { makeAutoObservable } from 'mobx';
 import IPersonInfo from '../models/IPersonInfo';
 
 class User {
-    jwtToken!: string | null;
-    profile!: IPersonInfo | null;
+    isAuthorized: boolean = false;
+    jwtToken?: string;
+    profile?: IPersonInfo;
 
     constructor() {
         makeAutoObservable(this);
-        const token = localStorage.getItem('token');
-        if (token) {
-            this.jwtToken = token;
+        this.jwtToken = localStorage.getItem('token') || "";
+
+        if (this.jwtToken) {
+            this.isAuthorized = true;
         }
+    }
+
+    get isAuth(): boolean {
+        return this.isAuthorized;
+    }
+
+    set isAuth(value: boolean) {
+        this.isAuthorized = value;
     }
 
     setToken(token: string): void {
@@ -18,7 +28,7 @@ class User {
         localStorage.setItem('token', token);
     }
 
-    getToken(): string | null {
+    getToken(): string | undefined {
         return this.jwtToken;
     }
 
@@ -26,13 +36,13 @@ class User {
         this.profile = personInfo;
     }
 
-    getProfile(): IPersonInfo | null {
+    getProfile(): IPersonInfo | undefined {
         return this.profile;
     }
 
     singOut(): void {
-        this.jwtToken = null;
-        this.profile = null;
+        this.jwtToken = "";
+        this.isAuthorized = false;
         localStorage.removeItem('token');
     }
 }

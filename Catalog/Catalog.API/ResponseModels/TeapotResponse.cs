@@ -27,6 +27,8 @@ namespace Catalog.Host.ResponseModels
 
         public string Functions { get; set; } = null!;
 
+        public DateTime CreationDate { get; set; } = DateTime.Now;
+
         public double Weight { get; set; }
 
         public object Company { get; set; } = null!;

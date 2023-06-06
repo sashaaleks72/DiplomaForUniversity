@@ -20,6 +20,7 @@ import EditOrderPage from "./pages/admin/EditOrderPage";
 import ChatList from "./components/ChatList";
 import Chat from "./components/Chat";
 import Support from "./components/Support";
+import User from "./store/user";
 
 const App = () => {
     return (

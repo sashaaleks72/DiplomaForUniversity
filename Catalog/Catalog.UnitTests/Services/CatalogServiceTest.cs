@@ -33,6 +33,8 @@ namespace Catalog.UnitTests.Services
             //arrange
             int page = 1;
             int limit = 10;
+            string sort = "title";
+            string order = "asc";
             int total = 20;
 
             var paginatedItems = new PaginatedItems<TeapotEntity>
@@ -56,14 +58,14 @@ namespace Catalog.UnitTests.Services
             };
               
 
-            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
+            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<string>(s => s == sort), It.Is<string>(o => o == order), It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
                 .ReturnsAsync(paginatedItems);
 
             _mapper.Setup(m => m.Map<List<TeapotResponse>>(It.IsAny<List<TeapotEntity>>()))
                 .Returns(teapotsResponse);
 
             //act
-            var result = await _catalogService.GetTeapotsAsync(page, limit);
+            var result = await _catalogService.GetTeapotsAsync(sort, order, page, limit);
 
             //assert
             result.Should().NotBeNull();
@@ -89,19 +91,21 @@ namespace Catalog.UnitTests.Services
             //arrange
             int page = 1;
             int limit = 10;
+            string sort = "title";
+            string order = "asc";
 
             var paginatedItems = new PaginatedItems<TeapotEntity>
             {
                 Data = new List<TeapotEntity> { }
             };
 
-            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
+            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<string>(s => s == sort), It.Is<string>(o => o == order), It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
                 .ReturnsAsync(paginatedItems);
 
             //act
             var action = async () =>
             {
-                await _catalogService.GetTeapotsAsync(page, limit);
+                await _catalogService.GetTeapotsAsync(sort, order, page, limit);
             };
 
             //assert

@@ -4,24 +4,31 @@ import { authUrl } from './ApiUrls';
 import IRegister from '../models/IRegister';
 import IPersonInfo from '../models/IPersonInfo';
 import User from '../store/user';
+import { response } from 'express';
+import user from '../store/user';
 
 class AuthService {
-    static async Login(loginModel: ILogin): Promise<void> {
+    static async Login(loginModel: ILogin): Promise<string> {
+        let errorMsg: string = "";
+
         const token: string = await axios({
             url: `${authUrl}/login`,
             method: 'POST',
             data: loginModel,
-        }).then((response) => response.data);
+        }).then((response) => response.data).catch(err => errorMsg = err.response.data.detail);
 
-        User.setToken(token);
+        user.setToken(token);
+        user.isAuth = true;
+
+        return errorMsg;
     }
 
-    static async Register(registerModel: IRegister): Promise<void> {
-        await axios({
+    static async Register(registerModel: IRegister): Promise<string> {
+        return await axios({
             url: `${authUrl}/register`,
             method: 'POST',
             data: registerModel,
-        }).then((response) => console.log(response));
+        }).then((response) => console.log(response)).catch(err => err.response.data.detail);
     }
 
     static async RefreshToken(): Promise<void> {
@@ -29,21 +36,21 @@ class AuthService {
             url: `${authUrl}/refreshToken`,
             method: 'POST',
             headers: {
-                Authorization: `Bearer ${User.getToken()}`,
+                Authorization: `Bearer ${user.getToken()}`,
             },
         }).then((response) => response.data);
 
-        User.setToken(newToken);
+        user.setToken(newToken);
     }
 
     static async GetProfile(): Promise<void> {
         const profile: IPersonInfo = await axios.get(`${authUrl}/getProfile`, {
             headers: {
-                Authorization: `Bearer ${User.getToken()}`,
+                Authorization: `Bearer ${user.getToken()}`,
             },
         });
 
-        User.setProfile(profile);
+        user.setProfile(profile);
     }
 }
 
