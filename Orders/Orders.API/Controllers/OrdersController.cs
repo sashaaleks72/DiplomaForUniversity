@@ -1,4 +1,5 @@
 ﻿using Infrastracture;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Orders.API.RequestModels;
 using Orders.API.ResponseModels;
@@ -19,6 +20,7 @@ namespace Orders.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Client")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> AddOrder(OrderRequest newOrder)
@@ -28,6 +30,7 @@ namespace Orders.API.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(List<OrderResponse>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<List<OrderResponse>>> GetOrders(Guid? userId)
@@ -37,6 +40,7 @@ namespace Orders.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(OrderResponse), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> GetOrderById([FromRoute] int id)
@@ -46,6 +50,7 @@ namespace Orders.API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> UpdateOrder([FromRoute] int id, [FromBody] UpdateOrderRequest orderRequest)

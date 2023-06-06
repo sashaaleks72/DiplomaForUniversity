@@ -2,7 +2,9 @@
 using Catalog.Host.ResponseModels;
 using Catalog.Host.Services.Abstractions;
 using Infrastracture;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Net;
 
 namespace Catalog.Host.Controllers
@@ -19,6 +21,7 @@ namespace Catalog.Host.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Add(CompanyRequest newCompany)
@@ -28,6 +31,7 @@ namespace Catalog.Host.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Edit(int id, CompanyRequest updatedCompany)
@@ -37,6 +41,7 @@ namespace Catalog.Host.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Delete(int id)
