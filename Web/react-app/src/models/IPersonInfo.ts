@@ -1,5 +1,5 @@
 interface IPersonInfo {
-    email: string;
+    userId: string;
     firstName: string;
     lastName: string;
     patronymic: string;

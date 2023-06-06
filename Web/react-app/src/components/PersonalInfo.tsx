@@ -8,7 +8,7 @@ const PersonalInfo = (): JSX.Element => {
     const [personInfo, setPersonInfo] = useState<IPersonInfo>();
 
     const [validationProfile, setValidationProfile] = useState<IPersonInfo>({
-        email: '',
+        userId: '',
         firstName: '',
         lastName: '',
         patronymic: '',
@@ -132,7 +132,7 @@ const PersonalInfo = (): JSX.Element => {
                     };
 
                     const profile: IPersonInfo = {
-                        email: '',
+                        userId: '',
                         firstName: target.firstName.value,
                         lastName: target.lastName.value,
                         patronymic: target.patronymic.value,

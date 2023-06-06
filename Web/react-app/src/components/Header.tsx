@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import shoppingCart from '../images/cart-shopping-solid.svg';
 import white_heart from '../images/heart-regular_white_color.svg';
@@ -8,6 +8,7 @@ import cart from '../store/cart';
 import { observer } from 'mobx-react-lite';
 import Login from './Login';
 import Register from './Register';
+import User from '../store/user';
 
 interface NavLinkParametr {
     isActive: boolean;
@@ -22,6 +23,10 @@ const Header = observer((): JSX.Element => {
     const [isAdmin, setIsAdmin] = useState<boolean>(true);
 
     const navigate = useNavigate();
+
+    // useEffect(() => {
+    //  setIsLogin()
+    // });
 
     const navLinkClasses = ({ isActive }: NavLinkParametr) =>
         isActive ? 'nav-link px-2 text-white' : 'nav-link px-2 text-secondary';
@@ -128,9 +133,15 @@ const Header = observer((): JSX.Element => {
                                         <hr className="dropdown-divider" />
                                     </li>
                                     <li>
-                                        <a className="dropdown-item">
+                                        <button
+                                            className="dropdown-item"
+                                            onClick={() => {
+                                                User.singOut();
+                                                setIsLogin(false);
+                                            }}
+                                        >
                                             Sign out
-                                        </a>
+                                        </button>
                                     </li>
                                 </ul>
                             </div>

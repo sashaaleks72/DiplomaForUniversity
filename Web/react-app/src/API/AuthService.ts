@@ -3,16 +3,17 @@ import ILogin from '../models/ILogin';
 import { authUrl } from './ApiUrls';
 import IRegister from '../models/IRegister';
 import IPersonInfo from '../models/IPersonInfo';
+import User from '../store/user';
 
 class AuthService {
-    static async Login(loginModel: ILogin): Promise<string> {
+    static async Login(loginModel: ILogin): Promise<void> {
         const token: string = await axios({
             url: `${authUrl}/login`,
             method: 'POST',
             data: loginModel,
         }).then((response) => response.data);
 
-        return token;
+        User.setToken(token);
     }
 
     static async Register(registerModel: IRegister): Promise<void> {
@@ -23,22 +24,26 @@ class AuthService {
         }).then((response) => console.log(response));
     }
 
-    static async RefreshToken(): Promise<string> {
+    static async RefreshToken(): Promise<void> {
         const newToken = await axios({
             url: `${authUrl}/refreshToken`,
             method: 'POST',
+            headers: {
+                Authorization: `Bearer ${User.getToken()}`,
+            },
         }).then((response) => response.data);
 
-        return newToken;
+        User.setToken(newToken);
     }
 
-    static async GetProfile(): Promise<IPersonInfo> {
-        const profile: IPersonInfo = await axios({
-            url: `${authUrl}/getProfile`,
-            // headers: `Bearer`,
+    static async GetProfile(): Promise<void> {
+        const profile: IPersonInfo = await axios.get(`${authUrl}/getProfile`, {
+            headers: {
+                Authorization: `Bearer ${User.getToken()}`,
+            },
         });
 
-        return profile;
+        User.setProfile(profile);
     }
 }
 

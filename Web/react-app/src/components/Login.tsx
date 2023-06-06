@@ -1,7 +1,11 @@
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import ModalWrapper from "./UI/ModalWrapper/ModalWrapper";
-import Register from "./Register";
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import ModalWrapper from './UI/ModalWrapper/ModalWrapper';
+import Register from './Register';
+import { FieldValues } from 'react-hook-form';
+import AuthService from '../API/AuthService';
+import IRegister from '../models/IRegister';
+import ILogin from '../models/ILogin';
 
 interface LoginProps {
     isOpened: boolean;
@@ -10,12 +14,6 @@ interface LoginProps {
 
 const Login = ({ isOpened, setIsOpened }: LoginProps): JSX.Element => {
     const [isRegisterClicked, setIsRegisterClicked] = useState<boolean>(false);
-    //const [signInModel, setSignInModel] = useState<SignInModel>();
-
-    /*useEffect(() => {
-        if (signInModel != undefined) console.log(signInModel);
-    }, [signInModel]);*/
-
     const counter = useRef<number>(0);
 
     useEffect(() => {
@@ -23,12 +21,22 @@ const Login = ({ isOpened, setIsOpened }: LoginProps): JSX.Element => {
         if (counter.current === 3) setIsOpened(false);
     }, [isRegisterClicked]);
 
+    const onSubmit = (data: FieldValues) => {
+        var loginData = data as ILogin;
+        AuthService.Login(loginData);
+
+        setIsOpened(false);
+    };
+
     return (
         <ModalWrapper isVisible={isOpened} setIsVisible={setIsOpened}>
             <div>
                 <div className="d-flex justify-content-between border-bottom mb-2 pb-1">
                     <div className="fs-4">Log In</div>
-                    <div className="btn btn-close" onClick={() => setIsOpened(false)}></div>
+                    <div
+                        className="btn btn-close"
+                        onClick={() => setIsOpened(false)}
+                    ></div>
                 </div>
                 <form
                     onSubmit={(e) => {
@@ -39,15 +47,14 @@ const Login = ({ isOpened, setIsOpened }: LoginProps): JSX.Element => {
                             pass: { value: string };
                         };
 
-                        /*
-                        const signInModel: SignInModel = {
+                        const values = {
                             email: target.email.value,
-                            pass: target.pass.value,
+                            password: target.pass.value,
                         };
 
-                        setSignInModel(signInModel);
-                        */
-                    }}>
+                        onSubmit(values);
+                    }}
+                >
                     <div className="mb-3">
                         <label className="form-label">Email address</label>
                         <input
@@ -60,7 +67,12 @@ const Login = ({ isOpened, setIsOpened }: LoginProps): JSX.Element => {
                     </div>
                     <div className="mb-3">
                         <label className="form-label">Password</label>
-                        <input name="pass" type="password" className="form-control" id="exampleInputPassword1" />
+                        <input
+                            name="pass"
+                            type="password"
+                            className="form-control"
+                            id="exampleInputPassword1"
+                        />
                     </div>
                     <div className="d-flex justify-content-between">
                         <button type="submit" className="btn btn-primary">
@@ -70,13 +82,17 @@ const Login = ({ isOpened, setIsOpened }: LoginProps): JSX.Element => {
                             className="btn p-0 border-0 text-primary text-decoration-underline align-self-center"
                             onClick={() => {
                                 setIsRegisterClicked(true);
-                            }}>
+                            }}
+                        >
                             I am not registered
                         </div>
                     </div>
                 </form>
                 {isRegisterClicked && (
-                    <Register isModalOpened={isRegisterClicked} setIsModalOpened={setIsRegisterClicked} />
+                    <Register
+                        isModalOpened={isRegisterClicked}
+                        setIsModalOpened={setIsRegisterClicked}
+                    />
                 )}
             </div>
         </ModalWrapper>
