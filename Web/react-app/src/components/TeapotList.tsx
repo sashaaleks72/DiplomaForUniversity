@@ -35,11 +35,11 @@ const TeapotList = ({ teapots, isLoading }: TeapotListProps): JSX.Element => {
                                           mt: 2,
                                           minHeight: "330px",
                                       }}></CardMedia>
-                                  <CardContent>
+                                  <CardContent sx={{ paddingBottom: 0 }}>
                                       <Skeleton variant="text" />
                                       <Skeleton variant="text" />
                                   </CardContent>
-                                  <CardActions disableSpacing sx={{ float: "right" }}>
+                                  <CardActions disableSpacing sx={{ float: "right", paddingTop: 0 }}>
                                       <Skeleton variant="rounded" />
                                       <Skeleton variant="rounded" />
                                   </CardActions>
