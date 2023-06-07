@@ -14,6 +14,7 @@ interface ITeapot {
     company: string;
     stockAvailable: boolean;
     manufacturerCountry: string;
+    manualUrl: string;
 }
 
 export default ITeapot;

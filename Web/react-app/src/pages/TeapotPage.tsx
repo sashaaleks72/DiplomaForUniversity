@@ -29,6 +29,7 @@ const TeapotPage = (): JSX.Element => {
         company: "",
         stockAvailable: false,
         manufacturerCountry: "",
+        manualUrl: "",
     });
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
