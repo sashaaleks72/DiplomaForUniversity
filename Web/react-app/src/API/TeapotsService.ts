@@ -83,9 +83,13 @@ class TeapotsService {
 
     static async getCommentsByTeapotId(
         teapotId: string,
+        page: number,
+        limit: number,
     ): Promise<IPagination<IComment>> {
         const recievedComments: IPagination<IComment> = await axios
-            .get(`${commentsUrl}/getCommentsByTeapotId?teapotId=${teapotId}`)
+            .get(
+                `${commentsUrl}/getCommentsByTeapotId?teapotId=${teapotId}&page=${page}&limit=${limit}`,
+            )
             .then((response) => response.data);
 
         return recievedComments;

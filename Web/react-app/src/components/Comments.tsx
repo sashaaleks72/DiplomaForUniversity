@@ -6,7 +6,7 @@ import x_mark from '../images/xmark-solid.svg';
 import unfilled_star from '../images/star-regular.svg';
 import filled_star from '../images/star-solid.svg';
 import Modal from './UI/ModalWrapper/ModalWrapper';
-import { useOutletContext } from 'react-router-dom';
+import { useLocation, useOutletContext } from 'react-router-dom';
 import IComment from '../models/IComment';
 import TeapotsService from '../API/TeapotsService';
 import { useCommentRate } from '../hooks/useCommentRate';
@@ -44,15 +44,20 @@ const Comments = (): JSX.Element => {
         setRate,
     ] = useCommentRate(5);
 
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
     const [userId, setUserId] = useState<string>('');
+    const teapotId = useLocation().pathname.split('/')[1];
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
+        setLoading(true);
         const init = async () => {
-            const recievedComments =
-                teapot != null
-                    ? await TeapotsService.getCommentsByTeapotId(teapot.id!)
-                    : null;
-
+            const recievedComments = await TeapotsService.getCommentsByTeapotId(
+                teapotId,
+                page,
+                limit,
+            );
             setComments(recievedComments);
         };
 
@@ -65,7 +70,8 @@ const Comments = (): JSX.Element => {
 
         init();
         getUserId();
-    }, [teapot]);
+        setLoading(false);
+    }, [page, limit]);
 
     const onFormChangeHandler = (e: React.SyntheticEvent) => {
         const formElementData = e.target as typeof e.target & {
@@ -109,7 +115,13 @@ const Comments = (): JSX.Element => {
 
             await TeapotsService.postUserComment(newComment);
 
-            // setComments([...comments, newComment]);
+            const recievedComments = await TeapotsService.getCommentsByTeapotId(
+                teapotId,
+                page,
+                limit,
+            );
+            setComments(recievedComments);
+
             setIsModal(false);
             setCreateComment({
                 userId: '',
@@ -122,6 +134,24 @@ const Comments = (): JSX.Element => {
             setRate(0);
         }
     };
+
+    useEffect(() => {
+        function handleScroll() {
+            if (
+                window.innerHeight + document.documentElement.scrollTop >=
+                document.documentElement.offsetHeight - 400
+            ) {
+                if (!isLoading) {
+                    setLimit(comments ? comments.limit + 10 : limit);
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [isLoading, comments]);
 
     return (
         <div className="ms-2 mt-2 position-relative d-flex justify-content-between">
