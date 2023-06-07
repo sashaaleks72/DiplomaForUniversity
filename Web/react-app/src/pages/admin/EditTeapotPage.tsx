@@ -1,8 +1,11 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ITeapot from "../../models/ITeapot";
 import { useEffect, useState } from "react";
 import TeapotsService from "../../API/TeapotsService";
 import ITeapotRequest from "../../models/ITeapotRequest";
+import ICompany from "../../models/ICompany";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const EditTeapotPage = (): JSX.Element => {
     const { id } = useParams();
@@ -23,11 +26,17 @@ const EditTeapotPage = (): JSX.Element => {
         companyId: 0,
     });
 
-    const navigate = useNavigate();
+    const [isSavedSuccess, setIsSavedSuccess] = useState<boolean>(false);
+    const [isFormAvailable, setIsFormAvailable] = useState<boolean>(false);
+
+    const [companies, setCompanies] = useState<ICompany[]>([]);
 
     useEffect(() => {
         const init = async () => {
             const teapot: ITeapot = await TeapotsService.getTeapotById(id);
+            const companies: ICompany[] = await TeapotsService.getCompanies();
+
+            setCompanies(companies);
             setTeapot(teapot as unknown as ITeapotRequest);
         };
 
@@ -55,7 +64,7 @@ const EditTeapotPage = (): JSX.Element => {
                             power: { value: number };
                             functions: { value: string };
                             weight: { value: number };
-                            company: { value: string };
+                            companyId: { value: string };
                         };
 
                         const preparedTeapot: ITeapotRequest = {
@@ -71,17 +80,19 @@ const EditTeapotPage = (): JSX.Element => {
                             power: target.power.value,
                             functions: target.functions.value,
                             weight: target.weight.value,
-                            companyId: +target.company.value,
+                            companyId: +target.companyId.value,
                         };
 
                         await TeapotsService.changeTeapotById(id!, preparedTeapot);
-                        navigate("/admin/catalog");
+                        setIsSavedSuccess(true);
+                        setIsFormAvailable(false);
                     }}>
                     <div className="d-flex">
                         <div className="d-flex flex-column w-25">
                             <div className="mb-3">
                                 <div className="">Title</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="text"
                                     className="form-control"
                                     name="name"
@@ -93,6 +104,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Price</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="number"
                                     className="form-control"
                                     name="price"
@@ -104,6 +116,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Quantity</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="number"
                                     className="form-control"
                                     name="quantity"
@@ -115,6 +128,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Manufacturer country</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="text"
                                     className="form-control"
                                     name="manufacturerCountry"
@@ -128,6 +142,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Warranty</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="number"
                                     className="form-control"
                                     name="warrantyInMonths"
@@ -139,6 +154,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Body material</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="text"
                                     className="form-control"
                                     name="bodyMaterial"
@@ -150,6 +166,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Volume</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="number"
                                     className="form-control"
                                     name="volume"
@@ -161,6 +178,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Color</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="text"
                                     className="form-control"
                                     name="color"
@@ -174,6 +192,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Weight</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="number"
                                     className="form-control"
                                     name="weight"
@@ -184,18 +203,24 @@ const EditTeapotPage = (): JSX.Element => {
 
                             <div className="mb-3">
                                 <div className="">Company</div>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    name="company"
-                                    required
-                                    defaultValue={teapot.companyId}
-                                />
+
+                                <select
+                                    disabled={!isFormAvailable}
+                                    className="form-select"
+                                    name="companyId"
+                                    defaultValue={teapot.companyId}>
+                                    {companies.map((c) => (
+                                        <option key={c.id} value={c.id}>
+                                            {c.name}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
                             <div className="mb-3">
                                 <div className="">Power</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="number"
                                     className="form-control"
                                     name="power"
@@ -207,6 +232,7 @@ const EditTeapotPage = (): JSX.Element => {
                             <div className="mb-3">
                                 <div className="">Functions</div>
                                 <input
+                                    disabled={!isFormAvailable}
                                     type="text"
                                     className="form-control"
                                     name="functions"
@@ -221,6 +247,7 @@ const EditTeapotPage = (): JSX.Element => {
                         <div className="">Img url</div>
                         <div className="d-flex">
                             <input
+                                disabled={!isFormAvailable}
                                 type="text"
                                 className="form-control"
                                 name="imgName"
@@ -230,11 +257,25 @@ const EditTeapotPage = (): JSX.Element => {
                         </div>
                     </div>
 
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
+                    <Snackbar open={isSavedSuccess} autoHideDuration={6000} onClose={() => setIsSavedSuccess(false)}>
+                        <Alert onClose={() => setIsSavedSuccess(false)} severity="success" sx={{ width: "100%" }}>
+                            Successfully saved!
+                        </Alert>
+                    </Snackbar>
+
+                    {!isFormAvailable ? (
+                        <div className="text-center">
+                            <div className="btn btn-primary" onClick={() => setIsFormAvailable(true)}>
+                                Edit info
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="text-center">
+                            <button type="submit" className="btn btn-primary">
+                                Save changes
+                            </button>
+                        </div>
+                    )}
                 </form>
             )}
         </div>

@@ -5,6 +5,7 @@ import { catalogUrl } from './ApiUrls';
 import { IPagination } from '../models/IPagination';
 import user from '../store/user';
 import ITeapotRequest from '../models/ITeapotRequest';
+import ICompany from '../models/ICompany';
 
 class TeapotsService {
     static async getTeapots(
@@ -34,6 +35,14 @@ class TeapotsService {
         return recievedTeapot;
     }
 
+    static async getCompanies(): Promise<ICompany[]> {
+        const receivedCompanies = await axios({
+            url: `${catalogUrl}/Companies`
+        }).then((response) => response.data)
+
+        return receivedCompanies;
+    }
+
     static async changeTeapotById(
         teapotId: string,
         changedTeapot: ITeapotRequest,
@@ -48,7 +57,7 @@ class TeapotsService {
         });
     }
 
-    static async addNewTeapot(newTeapot: ITeapot): Promise<void> {
+    static async addNewTeapot(newTeapot: ITeapotRequest): Promise<void> {
         await axios({
             url: `${catalogUrl}/Add`,
             method: 'POST',

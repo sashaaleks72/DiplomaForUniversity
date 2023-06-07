@@ -1,10 +1,24 @@
-import { useState } from "react";
-import ITeapot from "../../models/ITeapot";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TeapotsService from "../../API/TeapotsService";
+import ICompany from "../../models/ICompany";
+import ITeapotRequest from "../../models/ITeapotRequest";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 const AddTeapotPage = (): JSX.Element => {
+    const [isAddedSuccess, setIsAddedSuccess] = useState<boolean>(false);
+    const [companies, setCompanies] = useState<ICompany[]>([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const init = async () => {
+            const companies: ICompany[] = await TeapotsService.getCompanies();
+            setCompanies(companies);
+        };
+
+        init();
+    }, []);
 
     return (
         <div className="container">
@@ -26,11 +40,10 @@ const AddTeapotPage = (): JSX.Element => {
                         power: { value: number };
                         functions: { value: string };
                         weight: { value: number };
-                        company: { value: string };
+                        companyId: { value: string };
                     };
 
-                    const preparedTeapot: ITeapot = {
-                        id: "",
+                    const preparedTeapot: ITeapotRequest = {
                         name: target.name.value,
                         price: target.price.value,
                         quantity: target.quantity.value,
@@ -43,11 +56,11 @@ const AddTeapotPage = (): JSX.Element => {
                         power: target.power.value,
                         functions: target.functions.value,
                         weight: target.weight.value,
-                        company: target.company.value,
-                        stockAvailable: Number(target.quantity.value) ? true : false,
+                        companyId: +target.companyId.value,
                     };
 
                     await TeapotsService.addNewTeapot(preparedTeapot);
+                    setIsAddedSuccess(true);
                     navigate("/admin/catalog");
                 }}>
                 <div className="d-flex">
@@ -103,7 +116,14 @@ const AddTeapotPage = (): JSX.Element => {
 
                         <div className="mb-3">
                             <div className="">Company</div>
-                            <input type="text" className="form-control" name="company" required />
+
+                            <select className="form-select" name="companyId">
+                                {companies.map((c) => (
+                                    <option key={c.id} value={c.id}>
+                                        {c.name}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
 
                         <div className="mb-3">
@@ -124,6 +144,12 @@ const AddTeapotPage = (): JSX.Element => {
                         <input type="text" className="form-control" name="imgName" required />
                     </div>
                 </div>
+
+                <Snackbar open={isAddedSuccess} autoHideDuration={6000} onClose={() => setIsAddedSuccess(false)}>
+                    <Alert onClose={() => setIsAddedSuccess(false)} severity="success" sx={{ width: "100%" }}>
+                        Successfully saved!
+                    </Alert>
+                </Snackbar>
 
                 <div className="text-center">
                     <button type="submit" className="btn btn-primary">

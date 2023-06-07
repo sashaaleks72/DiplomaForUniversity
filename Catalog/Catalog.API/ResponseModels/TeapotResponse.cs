@@ -33,6 +33,8 @@ namespace Catalog.Host.ResponseModels
 
         public string Company { get; set; } = string.Empty;
 
+        public int CompanyId { get; set; } 
+
         public bool StockAvailable
         {
             get
