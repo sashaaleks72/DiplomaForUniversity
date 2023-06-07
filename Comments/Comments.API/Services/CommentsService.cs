@@ -18,8 +18,7 @@ public class CommentsService : BaseDataService<ApplicationDbContext, CommentsSer
 
     public CommentsService(ICommentsRepository commentsRepository, 
         ILogger<CommentsService> logger,
-        IMapper mapper, IDbContextWrapper<ApplicationDbContext> dbContextWrapper,
-        IHttpContextAccessor httpContext
+        IMapper mapper, IDbContextWrapper<ApplicationDbContext> dbContextWrapper
         ) 
         : base(dbContextWrapper, logger)
     {

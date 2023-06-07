@@ -1,11 +1,12 @@
 import axios from 'axios';
 import ITeapot from '../models/ITeapot';
 import IComment from '../models/IComment';
-import { catalogUrl } from './ApiUrls';
+import { catalogUrl, commentsUrl } from './ApiUrls';
 import { IPagination } from '../models/IPagination';
 import user from '../store/user';
 import ITeapotRequest from '../models/ITeapotRequest';
 import ICompany from '../models/ICompany';
+import ICommentRequest from '../models/ICommentRequest';
 
 class TeapotsService {
     static async getTeapots(
@@ -17,11 +18,13 @@ class TeapotsService {
 
         if (sortOptions) sortArr = sortOptions.split(':');
 
-        const sort = sortArr[0] || "-";
-        const order = sortArr[1] || "-";
+        const sort = sortArr[0] || '-';
+        const order = sortArr[1] || '-';
 
         const recievedTeapots: IPagination<ITeapot> = await axios
-            .get(`${catalogUrl}/Teapots?page=${page}&limit=${limit}&sort=${sort}&order=${order}`)
+            .get(
+                `${catalogUrl}/Teapots?page=${page}&limit=${limit}&sort=${sort}&order=${order}`,
+            )
             .then((response) => response.data);
 
         return recievedTeapots;
@@ -37,8 +40,8 @@ class TeapotsService {
 
     static async getCompanies(): Promise<ICompany[]> {
         const receivedCompanies = await axios({
-            url: `${catalogUrl}/Companies`
-        }).then((response) => response.data)
+            url: `${catalogUrl}/Companies`,
+        }).then((response) => response.data);
 
         return receivedCompanies;
     }
@@ -78,24 +81,23 @@ class TeapotsService {
         });
     }
 
-    static async getCommentsByProductId(
-        productId: string,
-    ): Promise<IComment[]> {
-        const recievedComments: IComment[] = await axios
-            .get(`${catalogUrl}/comments?productId=${productId}`)
+    static async getCommentsByTeapotId(
+        teapotId: string,
+    ): Promise<IPagination<IComment>> {
+        const recievedComments: IPagination<IComment> = await axios
+            .get(`${commentsUrl}/getCommentsByTeapotId?teapotId=${teapotId}`)
             .then((response) => response.data);
 
         return recievedComments;
     }
 
     static async postUserComment(
-        userId: string,
-        comment: IComment,
+        commentRequest: ICommentRequest,
     ): Promise<void> {
         await axios({
-            url: `${catalogUrl}/comments`,
+            url: `${commentsUrl}/addComment`,
             method: 'post',
-            data: comment,
+            data: commentRequest,
             headers: {
                 Authorization: `Bearer ${user.getToken()}`,
             },
