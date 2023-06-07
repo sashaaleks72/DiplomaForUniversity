@@ -3,6 +3,7 @@ import { Accordion } from "react-bootstrap";
 import IOrder from "../models/IOrder";
 import OrderService from "../API/OrderService";
 import checklist from "../images/checklist.svg";
+import user from "../store/user";
 
 const OrderList = (): JSX.Element => {
     const [orders, setOrders] = useState<IOrder[]>();
@@ -13,7 +14,8 @@ const OrderList = (): JSX.Element => {
 
         const init = async () => {
             setIsLoading(true);
-            const receivedOrders = await OrderService.getOrders();
+            const profile = await user.getProfile();
+            const receivedOrders = await OrderService.getOrders(profile.userId);
             setIsLoading(false);
 
             if (!isUseEffectActive) return;

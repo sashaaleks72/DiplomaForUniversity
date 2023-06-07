@@ -7,6 +7,9 @@ import ITeapot from "../models/ITeapot";
 import { getQuantityOfPages } from "../utils/pagination";
 import { IPagination } from "../models/IPagination";
 import ISelectTuple from "../models/ISelectTuple";
+import Skeleton from "@mui/material/Skeleton";
+import { Grid } from "@mui/material";
+import TeapotItem from "../components/TeapotItem";
 const HomePage = (): JSX.Element => {
     const [teapots, setTeapots] = useState<IPagination<ITeapot> | null>(null);
     const [sort, setSort] = useState<string>("");
@@ -67,7 +70,7 @@ const HomePage = (): JSX.Element => {
                 <h3 className="display-6 text-center">Teapot list</h3>
                 <div className="d-flex">
                     <CustomSelect
-                        className="w-25 mb-2"
+                        className="w-25 mb-3"
                         selectOptions={selectOptions}
                         setValue={(sortOption: string) => setSort(sortOption)}
                         value={sort}
@@ -83,7 +86,8 @@ const HomePage = (): JSX.Element => {
                     )}
                 </div>
 
-                <TeapotList teapots={teapots?.data} />
+                <TeapotList teapots={teapots?.data} isLoading={isLoading} />
+
                 <div className="text-center mt-1">
                     {pages.map((el) => {
                         return (

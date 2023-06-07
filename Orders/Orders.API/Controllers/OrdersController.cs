@@ -20,7 +20,7 @@ namespace Orders.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Client")]
+        [Authorize]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> AddOrder(OrderRequest newOrder)

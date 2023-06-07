@@ -2,6 +2,7 @@ import TeapotItem from "./TeapotItem";
 import wishes from "../store/wishes";
 import { observer } from "mobx-react-lite";
 import wishlist from "../images/wishlist.svg";
+import Grid from "@mui/material/Grid";
 
 const WishList = observer((): JSX.Element => {
     return (
@@ -15,30 +16,32 @@ const WishList = observer((): JSX.Element => {
                 </div>
             )}
 
-            <div className="row row-cols-xs-1 row-cols-md-2 row-cols-xl-3 g-4">
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2 }}>
                 {wishes.wishItems.map((wishItem) => (
-                    <TeapotItem
-                        key={wishItem.teapotId}
-                        teapot={{
-                            id: wishItem.teapotId,
-                            name: wishItem.name,
-                            price: wishItem.price,
-                            imgName: wishItem.imgName,
-                            quantity: 0,
-                            color: "",
-                            bodyMaterial: "",
-                            power: 0,
-                            volume: 0,
-                            warrantyInMonths: 0,
-                            functions: "",
-                            weight: 0,
-                            company: "",
-                            stockAvailable: false,
-                            manufacturerCountry: "",
-                        }}
-                    />
+                    <Grid item xs={12} md={6} lg={4}>
+                        <TeapotItem
+                            key={wishItem.teapotId}
+                            teapot={{
+                                id: wishItem.teapotId,
+                                name: wishItem.name,
+                                price: wishItem.price,
+                                imgName: wishItem.imgName,
+                                quantity: 0,
+                                color: "",
+                                bodyMaterial: "",
+                                power: 0,
+                                volume: 0,
+                                warrantyInMonths: 0,
+                                functions: "",
+                                weight: 0,
+                                company: "",
+                                stockAvailable: false,
+                                manufacturerCountry: "",
+                            }}
+                        />
+                    </Grid>
                 ))}
-            </div>
+            </Grid>
         </div>
     );
 });
