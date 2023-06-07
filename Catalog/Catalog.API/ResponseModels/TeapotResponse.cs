@@ -29,6 +29,8 @@ namespace Catalog.Host.ResponseModels
 
         public DateTime CreationDate { get; set; } = DateTime.Now;
 
+        public string ManualUrl { get; set; } = string.Empty;
+
         public double Weight { get; set; }
 
         public string Company { get; set; } = string.Empty;

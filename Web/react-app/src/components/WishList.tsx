@@ -37,6 +37,7 @@ const WishList = observer((): JSX.Element => {
                                 company: "",
                                 stockAvailable: false,
                                 manufacturerCountry: "",
+                                manualUrl: "",
                             }}
                         />
                     </Grid>

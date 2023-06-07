@@ -27,6 +27,8 @@ public class TeapotEntity
 
     public DateTime CreationDate { get; set; } = DateTime.Now;
 
+    public string ManualUrl { get; set; } = string.Empty;
+
     public int CompanyId { get; set; }
     public virtual CompanyEntity Company { get; set; } = null!;
 
