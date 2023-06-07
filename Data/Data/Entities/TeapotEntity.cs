@@ -25,8 +25,12 @@ public class TeapotEntity
 
     public double Weight { get; set; }
 
+    public DateTime CreationDate { get; set; } = DateTime.Now;
+
     public int CompanyId { get; set; }
     public virtual CompanyEntity Company { get; set; } = null!;
 
     public string ManufacturerCountry { get; set; } = null!;
+
+    public virtual ICollection<CommentEntity> Comments { get; set; } = null!;
 }

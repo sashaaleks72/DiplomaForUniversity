@@ -9,6 +9,9 @@ namespace Data.Configurations
         public void Configure(EntityTypeBuilder<UserEntity> builder)
         {
             builder.HasKey(o => o.Id);
+            builder.HasMany(o => o.Comments)
+                .WithOne(c => c.User)
+                .HasForeignKey(c => c.UserId);
         }
     }
 }

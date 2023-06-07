@@ -5,7 +5,7 @@ public class OrderProductEntity
     public int Id { get; set; }
 
     public virtual TeapotEntity Teapot { get; set; } = null!;
-    public string TeapotId { get; set; } = null!;
+    public string TeapotId { get; set; } = string.Empty;
 
     public virtual OrderEntity Order { get; set; } = null!;
     public int OrderId { get; set; }

@@ -2,7 +2,9 @@
 using Catalog.Host.ResponseModels;
 using Catalog.Host.Services.Abstractions;
 using Infrastracture;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Net;
 
 namespace Catalog.Host.Controllers
@@ -19,51 +21,33 @@ namespace Catalog.Host.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Add(CompanyRequest newCompany)
         {
-            try
-            {
-                await _catalogCompanyService.AddCompanyAsync(newCompany);
-                return Ok("Company has been added!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            await _catalogCompanyService.AddCompanyAsync(newCompany);
+            return Ok("Company has been added!");
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Edit(int id, CompanyRequest updatedCompany)
         {
-            try
-            {
-                await _catalogCompanyService.UpdateCompanyAsync(id, updatedCompany);
-                return Ok("Company has been updated!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            await _catalogCompanyService.UpdateCompanyAsync(id, updatedCompany);
+            return Ok("Company has been updated!");
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult> Delete(int id)
         {
-            try
-            {
-                await _catalogCompanyService.DeleteCompanyByIdAsync(id);
-                return Ok("Company has been deleted!");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            await _catalogCompanyService.DeleteCompanyByIdAsync(id);
+            return Ok("Company has been deleted!");
         }
     }
 }

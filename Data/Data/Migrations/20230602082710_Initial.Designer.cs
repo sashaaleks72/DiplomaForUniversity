@@ -23,6 +23,8 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            modelBuilder.Entity("Data.Data.Entities.CompanyEntity", b =>
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1));
 
             modelBuilder.Entity("Data.Entities.CompanyEntity", b =>
                 {
@@ -44,7 +46,6 @@ namespace Data.Migrations
 
                     b.ToTable("Companies");
                 });
-
             modelBuilder.Entity("Data.Entities.OrderEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -101,7 +102,6 @@ namespace Data.Migrations
 
                     b.ToTable("Orders");
                 });
-
             modelBuilder.Entity("Data.Entities.OrderProductEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -131,7 +131,6 @@ namespace Data.Migrations
 
                     b.ToTable("OrderItems");
                 });
-
             modelBuilder.Entity("Data.Entities.OrderStatusEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -148,7 +147,6 @@ namespace Data.Migrations
 
                     b.ToTable("OrderStatuses");
                 });
-
             modelBuilder.Entity("Data.Entities.RoleEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -165,7 +163,6 @@ namespace Data.Migrations
 
                     b.ToTable("Roles");
                 });
-
             modelBuilder.Entity("Data.Entities.TeapotEntity", b =>
                 {
                     b.Property<string>("Id")
@@ -223,7 +220,6 @@ namespace Data.Migrations
 
                     b.ToTable("Teapots");
                 });
-
             modelBuilder.Entity("Data.Entities.UserEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -265,9 +261,8 @@ namespace Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("UserEntity");
                 });
-
             modelBuilder.Entity("Data.Entities.OrderEntity", b =>
                 {
                     b.HasOne("Data.Entities.OrderStatusEntity", "OrderStatus")
@@ -275,7 +270,6 @@ namespace Data.Migrations
                         .HasForeignKey("OrderStatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.HasOne("Data.Entities.UserEntity", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -286,7 +280,6 @@ namespace Data.Migrations
 
                     b.Navigation("User");
                 });
-
             modelBuilder.Entity("Data.Entities.OrderProductEntity", b =>
                 {
                     b.HasOne("Data.Entities.OrderEntity", "Order")
@@ -294,7 +287,6 @@ namespace Data.Migrations
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
                     b.HasOne("Data.Entities.TeapotEntity", "Teapot")
                         .WithMany()
                         .HasForeignKey("TeapotId")
@@ -305,7 +297,6 @@ namespace Data.Migrations
 
                     b.Navigation("Teapot");
                 });
-
             modelBuilder.Entity("Data.Entities.TeapotEntity", b =>
                 {
                     b.HasOne("Data.Entities.CompanyEntity", "Company")
@@ -316,7 +307,6 @@ namespace Data.Migrations
 
                     b.Navigation("Company");
                 });
-
             modelBuilder.Entity("Data.Entities.UserEntity", b =>
                 {
                     b.HasOne("Data.Entities.RoleEntity", "Role")

@@ -1,6 +1,5 @@
-﻿using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Data;
+using Data.Entities;
 
 namespace Catalog.Host.Providers.Abstractions
 {
@@ -12,7 +11,7 @@ namespace Catalog.Host.Providers.Abstractions
 
         public Task<bool> UpdateTeapotAsync(TeapotEntity newTeapot);
 
-        public Task<PaginatedItems<TeapotEntity>> GetTeapotsAsync(int page, int limit);
+        public Task<PaginatedItems<TeapotEntity>> GetTeapotsAsync(string sort, string order, int page, int limit);
 
         public Task<TeapotEntity?> GetTeapotByIdAsync(string teapotId);
 

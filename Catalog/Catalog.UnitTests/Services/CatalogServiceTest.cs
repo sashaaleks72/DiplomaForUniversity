@@ -1,16 +1,5 @@
-﻿using AutoMapper;
-using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
-using Catalog.Host.Providers.Abstractions;
-using Catalog.Host.ResponseModels;
-using Catalog.Host.Services;
-using Catalog.Host.Services.Abstractions;
-using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Logging;
-using Moq;
-using System.Collections.Generic;
+﻿using Data;
+using Data.Entities;
 
 namespace Catalog.UnitTests.Services
 {
@@ -35,7 +24,7 @@ namespace Catalog.UnitTests.Services
             var dbContextTransaction = new Mock<IDbContextTransaction>();
             _dbContextWrapper.Setup(d => d.BeginTransaction(CancellationToken.None)).ReturnsAsync(dbContextTransaction.Object);
 
-            _catalogService = new CatalogService(_catalogItemProvider.Object, _catalogCompanyProvider.Object, _mapper.Object, _logger.Object, _dbContextWrapper.Object);
+            //_catalogService = new CatalogService(_catalogItemProvider.Object, _catalogCompanyProvider.Object, _mapper.Object, _logger.Object, _dbContextWrapper.Object);
         }
 
         [Fact]
@@ -44,6 +33,8 @@ namespace Catalog.UnitTests.Services
             //arrange
             int page = 1;
             int limit = 10;
+            string sort = "title";
+            string order = "asc";
             int total = 20;
 
             var paginatedItems = new PaginatedItems<TeapotEntity>
@@ -67,14 +58,14 @@ namespace Catalog.UnitTests.Services
             };
               
 
-            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
+            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<string>(s => s == sort), It.Is<string>(o => o == order), It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
                 .ReturnsAsync(paginatedItems);
 
             _mapper.Setup(m => m.Map<List<TeapotResponse>>(It.IsAny<List<TeapotEntity>>()))
                 .Returns(teapotsResponse);
 
             //act
-            var result = await _catalogService.GetTeapotsAsync(page, limit);
+            var result = await _catalogService.GetTeapotsAsync(sort, order, page, limit);
 
             //assert
             result.Should().NotBeNull();
@@ -100,19 +91,21 @@ namespace Catalog.UnitTests.Services
             //arrange
             int page = 1;
             int limit = 10;
+            string sort = "title";
+            string order = "asc";
 
             var paginatedItems = new PaginatedItems<TeapotEntity>
             {
                 Data = new List<TeapotEntity> { }
             };
 
-            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
+            _catalogItemProvider.Setup(c => c.GetTeapotsAsync(It.Is<string>(s => s == sort), It.Is<string>(o => o == order), It.Is<int>(p => p == page), It.Is<int>(l => l == limit)))
                 .ReturnsAsync(paginatedItems);
 
             //act
             var action = async () =>
             {
-                await _catalogService.GetTeapotsAsync(page, limit);
+                await _catalogService.GetTeapotsAsync(sort, order, page, limit);
             };
 
             //assert
@@ -321,7 +314,7 @@ namespace Catalog.UnitTests.Services
         [Fact]
         public async Task GetTeapotsByCompanyNameAsync_DataIsEmpty_ThrownException()
         {
-            //arrange
+            //arrange   
             int page = 1;
             int limit = 10;
             string companyName = "test";

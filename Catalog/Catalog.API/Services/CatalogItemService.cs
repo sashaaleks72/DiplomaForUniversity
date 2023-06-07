@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.RequestModels;
 using Catalog.Host.Services.Abstractions;
+using Data;
+using Data.Entities;
+using Infrastructure.Exceptions;
 
 namespace Catalog.Host.Services
 {
@@ -30,13 +31,13 @@ namespace Catalog.Host.Services
 
                 if (!isAdded)
                 {
-                    string errMsg = "Teapot hasn't been added by some reason!";
+                    string errMsg = "Teapot hasn't been added by some reason";
 
                     _logger.LogError(errMsg);
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
 
-                _logger.LogInformation("Teapot was recieved");
+                _logger.LogInformation("Teapot has been added");
             });
 
         }
@@ -51,7 +52,7 @@ namespace Catalog.Host.Services
                     string errMsg = "Teapot hasn't been removed by some reason";
 
                     _logger.LogError(errMsg);
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
 
                 _logger.LogInformation("Teapot has been removed");
@@ -71,7 +72,7 @@ namespace Catalog.Host.Services
                     string errMsg = "Teapot hasn't been updated by some reason";
 
                     _logger.LogError(errMsg);
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
 
                 _logger.LogInformation("Teapot has been updated");

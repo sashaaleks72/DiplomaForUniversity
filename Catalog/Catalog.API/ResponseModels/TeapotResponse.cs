@@ -1,10 +1,11 @@
-﻿using Catalog.Host.Data.Entities;
+﻿using Data;
+using Data.Entities;
 
 namespace Catalog.Host.ResponseModels
 {
     public class TeapotResponse
     {
-        public string Id { get; set; } = Guid.NewGuid().ToString();
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public string Name { get; set; } = null!;
 
@@ -26,9 +27,13 @@ namespace Catalog.Host.ResponseModels
 
         public string Functions { get; set; } = null!;
 
+        public DateTime CreationDate { get; set; } = DateTime.Now;
+
         public double Weight { get; set; }
 
-        public object Company { get; set; } = null!;
+        public string Company { get; set; } = string.Empty;
+
+        public int CompanyId { get; set; } 
 
         public bool StockAvailable
         {

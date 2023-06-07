@@ -1,7 +1,7 @@
-﻿using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
-using Catalog.Host.Providers.Abstractions;
+﻿using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.Services.Abstractions;
+using Data;
+using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.Host.Providers

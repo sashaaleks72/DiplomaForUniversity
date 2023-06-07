@@ -10,30 +10,55 @@ services:
        - ASPNETCORE_ENVIRONMENT=Development
        - ASPNETCORE_URLS=http://+:5000
     depends_on:
-       - postgres
+       - authorization.api
     ports:
       - 5000:5000
-  
-  pgadmin4:
-    image: dpage/pgadmin4
-    container_name: pgadmin4
+
+  orders.api:
+    container_name: orders.api
+    build:
+      context: .
+      dockerfile: Orders/Orders.API/Dockerfile
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_URLS=http://+:5001
     depends_on:
-      - postgres
+       - authorization.api
     ports:
-      - 8001:80    
-
-  postgres:
-    image: postgres:13.3
-    container_name: postgres
+      - 5001:5001
+      
+  authorization.api:
+    container_name: authorization.api
+    build:
+      context: .
+      dockerfile: Auth/Authorization.API/Dockerfile
     environment:
-      POSTGRES_PASSWORD: postgres
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_URLS=http://+:5002
     ports:
-      - 5433:5432
+      - 5002:5002
   
+  comments.api:
+    container_name: comments.api
+    build:
+      context: .
+      dockerfile: Comments/Comments.API/Dockerfile
+    environment:
+       - ASPNETCORE_ENVIRONMENT=Development
+       - ASPNETCORE_URLS=http://+:5003
+    depends_on:
+       - authorization.api
+    ports:
+      - 5003:5003
 
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+       - 80:80
+    volumes:
+       - ./Proxy/gateway/nginx/conf.d:/etc/nginx/conf.d
+       
 networks:
   default:
     driver: bridge

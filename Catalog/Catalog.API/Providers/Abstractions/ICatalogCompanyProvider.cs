@@ -1,4 +1,4 @@
-﻿using Catalog.Host.Data.Entities;
+﻿using Data.Entities;
 
 namespace Catalog.Host.Providers.Abstractions
 {

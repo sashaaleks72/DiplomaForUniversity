@@ -27,6 +27,7 @@ namespace Catalog.Host.Services.Abstractions
                 await Action(cancellationToken);
 
                 await transaction.CommitAsync(cancellationToken);
+                _logger.LogInformation("Transaction commited");
             }
             catch (Exception ex)
             {
@@ -45,6 +46,7 @@ namespace Catalog.Host.Services.Abstractions
                 var result = await action(cancellationToken);
 
                 await transaction.CommitAsync(cancellationToken);
+                _logger.LogInformation("Transaction commited");
 
                 return result;
             }

@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
-using Catalog.Host.Data;
-using Catalog.Host.Data.Entities;
+using Data;
+using Data.Entities;
 using Catalog.Host.Providers.Abstractions;
 using Catalog.Host.RequestModels;
 using Catalog.Host.Services.Abstractions;
+using Infrastructure.Exceptions;
 
 namespace Catalog.Host.Services
 {
@@ -34,7 +35,7 @@ namespace Catalog.Host.Services
                     string errMsg = "Company hasn't been added by some reason!";
                     _logger.LogError(errMsg);
 
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
 
                 _logger.LogInformation("Company has been added!");
@@ -53,7 +54,7 @@ namespace Catalog.Host.Services
                     string errMsg = "Company hasn't been removed by some reason!";
                     _logger.LogError(errMsg);
 
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
 
                 _logger.LogInformation("Company has been removed!");
@@ -74,7 +75,7 @@ namespace Catalog.Host.Services
                     string errMsg = "Company hasn't been updated by some reason!";
                     _logger.LogError(errMsg);
 
-                    throw new Exception(errMsg);
+                    throw new BusinessException(errMsg);
                 }
 
                 _logger.LogInformation("Company has been updated!");

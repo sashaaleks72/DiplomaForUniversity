@@ -14,11 +14,22 @@ public class UserEntity
 
     public string HashedPassword { get; set; } = null!;
 
-    //public DateOnly DateOfBirth { get; set; }
+    public string PasswordSalt { get; set; } = null!;
+
+    public string RefreshToken { get; set; } = null!;
+
+    public DateTime Birthday { get; set; }
+
+    public DateTime TokenCreated { get; set; }
+
+    public DateTime TokenExpires { get; set; }
 
     public string Gender { get; set; } = null!;
 
     public string PhoneNumber { get; set; } = null!;
 
+    public int RoleId { get; set; }
+
     public virtual RoleEntity Role { get; set; } = null!;
+    public virtual ICollection<CommentEntity> Comments { get; set; }
 }
