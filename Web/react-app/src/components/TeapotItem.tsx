@@ -31,11 +31,11 @@ const TeapotItem = ({ teapot }: TeapotItemProps): JSX.Element => {
                 onClick={() => navigate(`/${teapot.id}/description`)}>
                 <img src={teapot.imgName} alt={teapot.name} height={300} />
             </CardMedia>
-            <CardContent>
+            <CardContent sx={{ paddingBottom: 0 }}>
                 <Typography variant="h6">{teapot.name}</Typography>
                 <Typography variant="subtitle1">{teapot.price} UAH</Typography>
             </CardContent>
-            <CardActions disableSpacing sx={{ float: "right" }}>
+            <CardActions disableSpacing sx={{ float: "right", paddingTop: 0 }}>
                 <IconButton onClick={() => setIsHeartPressed((prev) => !prev)}>
                     {isHeartPressed ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                 </IconButton>

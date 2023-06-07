@@ -1,6 +1,6 @@
-export default interface IComment {
-    id: number;
-    userFullName: string;
+export default interface ICommentRequest {
+    userId: string;
+    teapotId: string;
     commentText: string;
     rate: number;
     advantages: string;

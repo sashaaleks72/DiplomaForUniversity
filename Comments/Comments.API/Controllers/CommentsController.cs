@@ -29,7 +29,7 @@ namespace Comments.API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Client")]
+        [Authorize]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<PaginatedItemsResponse<CommentResponse>>> AddComment([FromBody] CommentRequest commentRequest)

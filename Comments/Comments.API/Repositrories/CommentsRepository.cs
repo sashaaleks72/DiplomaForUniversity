@@ -25,7 +25,7 @@ public class CommentsRepository: ICommentsRepository
 
     public async Task<PaginatedItems<CommentEntity>> GetTeapotCommentsAsync(string teapotId, int page, int limit)
     {
-        var totalCount = await _dbContext.Comments.CountAsync();
+        var totalCount = await _dbContext.Comments.Where(c => c.TeapotId == teapotId).CountAsync();
 
         var recievedComments = await _dbContext.Comments
             .Where(c => c.TeapotId == teapotId)
