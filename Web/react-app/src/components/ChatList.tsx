@@ -17,7 +17,6 @@ const ChatList = (): JSX.Element => {
 
     const [selectedChat, setSelectedChat] = useState<IChat>({
         id: 0,
-        orderId: 0,
         userName: "",
     });
 

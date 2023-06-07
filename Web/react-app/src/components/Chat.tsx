@@ -3,6 +3,9 @@ import send from "../images/send.svg";
 import IMessage from "../models/IMessage";
 import { useParams } from "react-router-dom";
 import ChatService from "../API/ChatService";
+import { HubConnection, HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import { chatHubUrl } from "../API/ApiUrls";
+import user from "../store/user";
 
 const Chat = (): JSX.Element => {
     const { id } = useParams();
@@ -16,6 +19,30 @@ const Chat = (): JSX.Element => {
     });
 
     const [isSendBtnClicked, setIsSetBtnClicked] = useState<boolean>(false);
+    const [connection, setConnection] = useState<HubConnection>();
+    const [isStarted, setIsStarted] = useState<boolean>(false);
+
+    const joinRoom = async () => {
+        const userId = (await user.getProfile()).userId;
+        const conversationTopic = "Hello world!";
+        
+        try {
+            const connection = new HubConnectionBuilder()
+                .withUrl(chatHubUrl)
+                .configureLogging(LogLevel.Information)
+                .build();
+
+            connection.on("ReceiveMessage", (user, message) => {
+                console.log("message received: ", message);
+            });
+
+            await connection.start();
+            await connection.invoke("JoinRoom", { userId, conversationTopic });
+            setConnection(connection);
+        } catch (e) {
+            console.log(e);
+        }
+    };
 
     useEffect(() => {
         const init = async () => {
@@ -40,10 +67,21 @@ const Chat = (): JSX.Element => {
         init();
     }, [isSendBtnClicked]);
 
+    if (!isStarted) {
+        return (
+            <div
+                className="btn btn-primary container"
+                onClick={() => {
+                    joinRoom();
+                    setIsStarted(true);
+                }}>
+                Start conversation
+            </div>
+        );
+    }
+
     return (
-        <div
-            style={{ minWidth: "700px", minHeight: "700px" }}
-            className="border border-start-0 border-2 position-relative">
+        <div style={{ minWidth: "700px", minHeight: "700px" }} className="mt-2 border border-2 position-relative">
             <div className="d-flex flex-column">
                 {messages.map((msg) => (
                     <div key={msg.id} className="ms-1">

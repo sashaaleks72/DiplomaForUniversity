@@ -37,7 +37,7 @@ const App = () => {
                     <Route path="orders" element={<OrderList />} />
                     <Route path="wish-list" element={<WishList />} />
                     <Route path="personal-info" element={<PersonalInfo />} />
-                    <Route path="chat" element={<Support />} />
+                    <Route path="chat" element={<Chat />} />
                 </Route>
                 <Route path="/admin" element={<ControlPanelPage />}>
                     <Route path="catalog" element={<TeapotAdminList />} />
