@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ITeapot from "../models/ITeapot";
 import cart from "../store/cart";
 import u_heart from "../images/heart-regular.svg";
 import p_heart from "../images/heart-solid.svg";
 import { useWishesUpdate } from "../hooks/useWishesUpdate";
+import { Card, CardMedia, CardContent, IconButton, CardActions, Typography } from "@mui/material";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 interface TeapotItemProps {
     teapot: ITeapot;
@@ -11,29 +15,35 @@ interface TeapotItemProps {
 
 const TeapotItem = ({ teapot }: TeapotItemProps): JSX.Element => {
     const [isHeartPressed, setIsHeartPressed] = useWishesUpdate(teapot);
+    const navigate = useNavigate();
 
     return (
-        <div className="col">
-            <div className="card">
-                <div className="card-body">
-                    <div className="text-center">
-                        <Link to={`/${teapot.id}/description`}>
-                            <img src={teapot.imgName} alt={teapot.name} height={300} />
-                        </Link>
-                    </div>
-                    <h5 className="card-title">{teapot.name}</h5>
-                    <p className="card-text">{teapot.price} UAH</p>
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div className="btn btn-primary" onClick={() => cart.addToCart(teapot)}>
-                            Add to cart
-                        </div>
-                        <div style={{ cursor: "pointer" }} onClick={() => setIsHeartPressed((prev) => !prev)}>
-                            <img src={isHeartPressed ? p_heart : u_heart} height={25}></img>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Card
+            className="container"
+            sx={{
+                maxWidth: "450px",
+                border: "1px solid rgba(0,0,0, 0.2)",
+                boxShadow: "2px 2px 2px 1px rgba(0,0,0, 0.1)",
+            }}
+            elevation={0}>
+            <CardMedia
+                sx={{ cursor: "pointer", textAlign: "center", mt: 2, minHeight: "300px" }}
+                onClick={() => navigate(`/${teapot.id}/description`)}>
+                <img src={teapot.imgName} alt={teapot.name} height={300} />
+            </CardMedia>
+            <CardContent>
+                <Typography variant="h6">{teapot.name}</Typography>
+                <Typography variant="subtitle1">{teapot.price} UAH</Typography>
+            </CardContent>
+            <CardActions disableSpacing sx={{ float: "right" }}>
+                <IconButton onClick={() => setIsHeartPressed((prev) => !prev)}>
+                    {isHeartPressed ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                </IconButton>
+                <IconButton onClick={() => cart.addToCart(teapot)}>
+                    <AddShoppingCartIcon />
+                </IconButton>
+            </CardActions>
+        </Card>
     );
 };
 
