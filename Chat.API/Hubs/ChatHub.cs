@@ -4,6 +4,8 @@ using Chat.API.Models;
 using Data;
 using Data.Entities;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace Chat.API.Hubs
 {
@@ -20,18 +22,60 @@ namespace Chat.API.Hubs
 
         public async Task JoinRoom(UserConnection userConnection)
         {
-            if (string.IsNullOrEmpty(userConnection.ChatId) && userConnection.ConversationTopic != null)
+            if (userConnection.ChatId == Guid.Empty && userConnection.ConversationTopic != null)
             {
                 var chat = new ChatEntity { ConversationTopic = userConnection.ConversationTopic };
                 await _dbContext.Chats.AddAsync(chat);
                 await _dbContext.SaveChangesAsync();
+
+                var userChat = new UserChatEntity { ChatId = chat.Id, ConnectionId = Context.ConnectionId, UserId = userConnection.UserId };
+                await _dbContext.UserChats.AddAsync(userChat);
+                await _dbContext.SaveChangesAsync();
+
                 await Groups.AddToGroupAsync(Context.ConnectionId, chat.Id.ToString());
                 await Clients.Group(chat.Id.ToString()).SendAsync("ReceiveMessage", _botUser, $"{userConnection.UserFullName} started conversation");
             }
 
-            if (!string.IsNullOrEmpty(userConnection.ChatId))
+            if (userConnection.ChatId != Guid.Empty)
             {
-                await Clients.Group(userConnection.ChatId!).SendAsync("ReceiveMessage", _botUser, $"Operator {userConnection.UserFullName} has joined");
+                var userChat = new UserChatEntity { ChatId = userConnection.ChatId, ConnectionId = Context.ConnectionId, UserId = userConnection.UserId };
+                await _dbContext.UserChats.AddAsync(userChat);
+                await _dbContext.SaveChangesAsync();
+
+                await Groups.AddToGroupAsync(Context.ConnectionId, userConnection.ChatId.ToString());
+                await Clients.Group(userConnection.ChatId.ToString()).SendAsync("ReceiveMessage", _botUser, $"Operator {userConnection.UserFullName} has joined");
+            }
+        }
+
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            var userChat = await _dbContext.UserChats.SingleOrDefaultAsync(uc => uc.ConnectionId == Context.ConnectionId);
+
+            if (userChat != null)
+            {
+                string userFullName = $"{userChat.User.FirstName} {userChat.User.LastName}";
+                await Clients.Group(userChat.ChatId.ToString()).SendAsync("ReceiveMessage", _botUser, $"{userFullName} has stopped conversation");
+
+                var receivedChat = await _dbContext.Chats.SingleOrDefaultAsync(c => c.Id == userChat.ChatId);
+
+                if (receivedChat != null)
+                {
+                    _dbContext.Chats.Remove(receivedChat);
+                    await _dbContext.SaveChangesAsync();
+                }
+            }
+
+            await base.OnDisconnectedAsync(exception);
+        }
+
+        public async Task SendMessage(string message)
+        {
+            var userChat = await _dbContext.UserChats.SingleOrDefaultAsync(uc => uc.ConnectionId == Context.ConnectionId);
+
+            if (userChat != null)
+            {
+                string userFullName = $"{userChat.User.FirstName} {userChat.User.LastName}";
+                await Clients.Group(userChat.ChatId.ToString()).SendAsync("ReceiveMessage", userFullName, message);
             }
         }
     }

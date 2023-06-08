@@ -1,6 +1,6 @@
 interface IChat {
-    id: number;
-    userName: string;
+    id: string;
+    conversationTopic: string;
 }
 
 export default IChat;
